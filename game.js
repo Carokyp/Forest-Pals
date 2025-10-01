@@ -1,45 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const menu = document.getElementById("menu");
-  const howToPlayArea = document.getElementById("how-to-play-area");
-  const gameArea = document.getElementById("game-area");
+  // Array to hold references to different sections of the game
+  const sections = [
+    document.getElementById("menu"),
+    document.getElementById("how-to-play-area"),
+    document.getElementById("game-area"),
+  ];
 
-  // Fonction pour démarrer le jeu
-  function startGame() {
-    document.getElementById("start").addEventListener("click", () => {
-      menu.style.display = "none";
-      gameArea.style.display = "block";
-    });
+  // Hide all sections initially
+  sections.forEach((element) => (element.style.display = "none"));
+
+  /**
+   * function to show a specific section and hide others
+   */
+
+  function show(section) {
+    sections.forEach((element) => (element.style.display = "none"));
+    section.style.display = "flex"; // ou "block" selon ton layout
   }
 
-  function howToPlayButton() {
-    document
-      .getElementById("how-to-play-button")
-      .addEventListener("click", () => {
-        menu.style.display = "none";
-        howToPlayArea.style.display = "flex";
-      });
-  }
+  // Start and How to Play buttons
+  document
+    .getElementById("start")
+    .addEventListener("click", () => show(sections[2]));
+  document
+    .getElementById("how-to-play-btn")
+    .addEventListener("click", () => show(sections[1]));
 
-  function backToMenu() {
-    // Bouton back de How to Play
-    document
-      .getElementById("back-to-menu-howto")
-      .addEventListener("click", () => {
-        howToPlayArea.style.display = "none";
-        menu.style.display = "flex";
-      });
+  // Back buttons
+  document
+    .getElementById("back-btn")
+    .addEventListener("click", () => show(sections[0]));
 
-    // Bouton back de Game Area
-    document
-      .getElementById("back-to-menu-game")
-      .addEventListener("click", () => {
-        gameArea.style.display = "none";
-        menu.style.display = "flex";
-      });
-  }
-
-  // Initialiser tous les boutons
-  startGame();
-  howToPlayButton();
-  backToMenu();
+  // Show the menu initially
+  show(sections[0]);
 });
