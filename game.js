@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("click", () => show(sections[1]));
 
   // Back buttons
-  document
-    .getElementById("back-btn")
-    .addEventListener("click", () => show(sections[0]));
+  document.querySelectorAll("#back-btn").forEach((button) => {
+    button.addEventListener("click", () => show(sections[0]));
+  });
 
   // Show the menu initially
   show(sections[0]);
