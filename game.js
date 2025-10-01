@@ -15,7 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function show(section) {
     sections.forEach((element) => (element.style.display = "none"));
-    section.style.display = "flex"; // ou "block" selon ton layout
+    section.style.display = "flex";
+    
   }
 
   // Start and How to Play buttons
