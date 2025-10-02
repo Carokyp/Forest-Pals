@@ -6,22 +6,18 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("game-area"),
   ];
 
-  // Hide all sections initially
-  sections.forEach((element) => (element.style.display = "none"));
-
   /**
-   * function to show a specific section and hide others
+   * function to hide all sections and show a specific section
    */
 
   function show(section) {
     sections.forEach((element) => (element.style.display = "none"));
     section.style.display = "flex";
-    
   }
 
   // Start and How to Play buttons
   document
-    .getElementById("start")
+    .getElementById("start-btn")
     .addEventListener("click", () => show(sections[2]));
   document
     .getElementById("how-to-play-btn")
@@ -32,6 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", () => show(sections[0]));
   });
 
-  // Show the menu initially
+  // Show the menu first
   show(sections[0]);
 });
