@@ -1,3 +1,15 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Caprasimo&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Macondo&family=Quicksand:wght@300..700&display=swap');
+
+
+:root {
+    /* Colors */
+  --title-color: #73463a;
+
+  /* Fonts */
+  --font-title: 'Baloo 2', cursive;
+  --font-text: 'Quicksand', sans-serif;
+}
 
 /* RESET THE BASIC SETTINGS */
 * {
@@ -11,28 +23,56 @@ html, body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  font-family: sans-serif;
 }
 
-body{
+body {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    align-items: center;     /* center vertically */
+    height: 100vh;           /* full height of the screen */
+
     background-image: url('images/background/background-900px.png');
-    background-size: cover; /*cover the entire page*/
-    background-repeat: no-repeat; /*do not repeat the image*/
-    background-position: center; /*center the image*/
-    
-    width: 100%; /* full width */
-    height: 100%; /* full height */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+h1{
+    font-family: var(--font-title);
+    font-size: 3rem;
+    color: var(--title-color);
 }
 
 #menu {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
+    padding: 1rem; 
+}
+
+#start-btn, #how-to-play-btn {
+    font-weight: bold;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#start-btn {
+    background-color: #9a6086;
+    border: 3px solid #664059;
+    color: white; 
+}
+
+#how-to-play-btn {
+    background-color: #f6bb9d; 
+    border: 3px solid #ac7565;
+    color: var(--title-color);
 }
 
 #how-to-play-area, #game-area {
-    background-color: rgb(239, 55, 218);
     display: flex;
     flex-direction: column;
     align-items: center;
