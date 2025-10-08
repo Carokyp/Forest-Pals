@@ -1,8 +1,8 @@
-/* Google Fonts */
+/* Google Fonts & CSS Variables */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Caprasimo&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Macondo&family=Quicksand:wght@300..700&display=swap');
 
 
-:root {
+:root {   
     /* Colors */
   --title-color: #73463a;
 
@@ -11,14 +11,15 @@
   --font-text: 'Quicksand', sans-serif;
 }
 
-/* RESET THE BASIC SETTINGS */
+
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* FOR THE ALL PAGE*/
+/* Page layout */
 html, body {
   width: 100%;
   height: 100%;
@@ -37,12 +38,14 @@ body {
     background-position: center;
 }
 
+/* Titles */
 h1{
     font-family: var(--font-title);
     font-size: 3rem;
     color: var(--title-color);
 }
 
+/* Menu container */
 #menu {
     display: flex;
     flex-direction: column;
@@ -51,7 +54,15 @@ h1{
     padding: 1rem; 
 }
 
-#start-btn, #how-to-play-btn {
+#raccoon {
+  position: fixed;  
+  bottom: 0px;         
+  max-width: 220px;
+  z-index: 10;     
+}
+
+/* Buttons */
+#start-btn, #how-to-play-btn, #back-btn {
     font-weight: bold;
     padding: 0.8rem 1.5rem;
     font-size: 1.5rem;
@@ -60,7 +71,7 @@ h1{
     cursor: pointer;
 }
 
-#start-btn {
+#start-btn, #back-btn {
     background-color: #9a6086;
     border: 3px solid #664059;
     color: white; 
@@ -72,10 +83,20 @@ h1{
     color: var(--title-color);
 }
 
+ /* Game / How to Play Areas */
 #how-to-play-area, #game-area {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 2rem;
+}
+
+/* Instructions text */
+.instructions {
+    font-family: var(--font-text);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--title-color);
+    padding: 1.5rem 1rem 1.5rem 1rem;
 }
