@@ -1,18 +1,27 @@
 
-/* 🔹 RESET DE BASE */
+/* RESET THE BASIC SETTINGS */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* 🔹 POUR LA PAGE ENTIÈRE */
+/* FOR THE ALL PAGE*/
 html, body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
   font-family: sans-serif;
-  background: white;
+}
+
+body{
+    background-image: url('images/background/background-900px.png');
+    background-size: cover; /*cover the entire page*/
+    background-repeat: no-repeat; /*do not repeat the image*/
+    background-position: center; /*center the image*/
+    
+    width: 100%; /* full width */
+    height: 100%; /* full height */
 }
 
 #menu {
