@@ -61,6 +61,19 @@ h1{
   z-index: 10;     
 }
 
+#bushes {
+  position: fixed;  
+  bottom: 0px;
+  max-width: 500px;  
+  transform: translateX(-30px); /* optional fine-tune offset */
+}
+
+#clouds {
+  position: fixed;  
+  top: 0px;
+  max-width: 450px;  
+}
+
 /* Buttons */
 #start-btn, #how-to-play-btn, #back-btn {
     font-weight: bold;
