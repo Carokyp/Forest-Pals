@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Caprasimo&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Macondo&family=Quicksand:wght@300..700&display=swap');
 
 
-:root {   
-    /* Colors */
+:root {
+  /* Colors */
   --title-color: #73463a;
 
   /* Fonts */
@@ -20,96 +20,118 @@
 }
 
 /* Page layout */
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
 }
 
 body {
-    display: flex;
-    justify-content: center; /* center horizontally */
-    align-items: center;     /* center vertically */
-    height: 100vh;           /* full height of the screen */
+  display: flex;
+  justify-content: center;
+  /* center horizontally */
+  align-items: center;
+  /* center vertically */
+  height: 100vh;
+  /* full height of the screen */
 
-    background-image: url('images/background/background-900px.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  background-image: url('images/background/background-900px.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* Titles */
-h1{
-    font-family: var(--font-title);
-    font-size: 3rem;
-    color: var(--title-color);
+h1 {
+  font-family: var(--font-title);
+  font-size: 3rem;
+  color: var(--title-color);
 }
 
 /* Menu container */
 #menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1rem; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
 }
 
 #raccoon {
-  position: fixed;  
-  bottom: 0px;         
+  position: fixed;
+  bottom: 0px;
   max-width: 220px;
-  z-index: 10;     
+  z-index: 10;
 }
 
 #bushes {
-  position: fixed;  
+  position: fixed;
   bottom: 0px;
-  max-width: 500px;  
-  transform: translateX(-30px); /* optional fine-tune offset */
+  max-width: 500px;
+  transform: translateX(-30px);
+  /* optional fine-tune offset */
 }
 
 #clouds {
-  position: fixed;  
+  position: fixed;
   top: 0px;
-  max-width: 450px;  
+  max-width: 450px;
 }
 
 /* Buttons */
-#start-btn, #how-to-play-btn, #back-btn {
-    font-weight: bold;
-    padding: 0.8rem 1.5rem;
-    font-size: 1.5rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+#start-btn,
+#how-to-play-btn,
+.back-btn {
+  font-weight: bold;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-#start-btn, #back-btn {
-    background-color: #9a6086;
-    border: 3px solid #664059;
-    color: white; 
+#start-btn,
+.back-btn {
+  background-color: #9a6086;
+  border: 3px solid #664059;
+  color: white;
 }
 
-#how-to-play-btn {
-    background-color: #f6bb9d; 
-    border: 3px solid #ac7565;
-    color: var(--title-color);
+#how-to-play-btn,
+#player-form {
+  background-color: #f6bb9d;
+  border: 3px solid #ac7565;
+  color: var(--title-color);
 }
 
- /* Game / How to Play Areas */
-#how-to-play-area, #game-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
+#player-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-family: var(--font-text);
+  font-weight: bold;
+  padding: 5px;
+}
+
+
+/* Game / How to Play Areas */
+#how-to-play-area,
+#game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
 }
 
 /* Instructions text */
 .instructions {
-    font-family: var(--font-text);
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--title-color);
-    padding: 1.5rem 1rem 1.5rem 1rem;
+  font-family: var(--font-text);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--title-color);
+  padding: 1.5rem 1rem 1.5rem 1rem;
 }
