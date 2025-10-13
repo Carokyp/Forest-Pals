@@ -4,7 +4,11 @@
 
 :root {
   /* Colors */
-  --title-color: #73463a;
+  --text-color: #73463a;
+  --dark-violet: #664059;
+  --light-violet: #9a6086;
+  --dark-orange: #ac7565;
+  --light-orange: #f6bb9d;
 
   /* Fonts */
   --font-title: 'Baloo 2', cursive;
@@ -46,16 +50,19 @@ body {
 h1 {
   font-family: var(--font-title);
   font-size: 3rem;
-  color: var(--title-color);
+  color: var(--text-color);
 }
 
-/* Menu container */
-#menu {
+/* Menu container layouts */
+#menu, #how-to-play-area, #game-area {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
   padding: 1rem;
+}
+
+#menu {
+  gap: 1.5rem;
 }
 
 #raccoon {
@@ -69,8 +76,7 @@ h1 {
   position: fixed;
   bottom: 0px;
   max-width: 500px;
-  transform: translateX(-30px);
-  /* optional fine-tune offset */
+  transform: translateX(-30px); /* optional fine-tune offset */
 }
 
 #clouds {
@@ -79,52 +85,90 @@ h1 {
   max-width: 450px;
 }
 
-/* Buttons */
+/* Basic style for buttons */
 #start-btn,
 #how-to-play-btn,
 .back-btn {
   font-weight: bold;
   padding: 0.8rem 1.5rem;
   font-size: 1.5rem;
-  border: none;
   border-radius: 6px;
   cursor: pointer;
 }
 
+/* violets buttons */
 #start-btn,
-.back-btn {
-  background-color: #9a6086;
-  border: 3px solid #664059;
+.back-btn,
+.back-btn-form,
+.submit-btn {
+  background-color: var(--light-violet);
+  border: 3px solid var(--dark-violet);
   color: white;
 }
 
+/* orange buttons */
 #how-to-play-btn,
 #player-form {
-  background-color: #f6bb9d;
-  border: 3px solid #ac7565;
-  color: var(--title-color);
+  background-color: var(--light-orange);
+  border: 3px solid var(--dark-orange);
+  color: var(--text-color);
 }
 
 #player-form {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   border-radius: 6px;
-  font-family: var(--font-text);
-  font-weight: bold;
   padding: 5px;
 }
 
+#form-instruction {
+  font-family: var(--font-text);
+  text-align: center;
+  font-weight: bold;
+  padding: 7px;
+}
 
-/* Game / How to Play Areas */
-#how-to-play-area,
-#game-area {
+.player-input {
+  font-family: var(--font-text);
+  font-size: 1rem;
+  padding: 2px;
+  border-radius: 4px;
+  border: 2px solid var(--dark-orange);
+  margin-bottom: 7px;
+}
+
+.enterNameMsg {
+  font-family: var(--font-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  border: 2px solid var(--dark-orange);
+  border-radius: 4px;
+
+  padding: 3px 6px;
+  margin-top: 5px;
+
+  color: var(--text-color);
+  background-color: var(--light-orange);
+}
+
+/* Form buttons container */
+.submit-btn, .back-btn-form {
+  font-weight: bold;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.button-row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
-  padding: 2rem;
+  gap: 10px;
+  padding: 5px;
 }
 
 /* Instructions text */
@@ -132,6 +176,6 @@ h1 {
   font-family: var(--font-text);
   font-weight: 700;
   font-size: 1.1rem;
-  color: var(--title-color);
-  padding: 1.5rem 1rem 1.5rem 1rem;
+  color: var(--text-color);
+  padding: 1.5rem 1rem;
 }

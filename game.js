@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  // Prevent background scroll and drag
+  document.body.style.overflow = "hidden";
+  document.addEventListener("wheel", e => e.preventDefault(), { passive: false });
+  document.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
+  document.addEventListener("dragstart", e => e.preventDefault());
+
   // Get references to buttons and sections
   const startBtn = document.getElementById("start-btn");
   const howToPlayBtn = document.getElementById("how-to-play-btn");
@@ -36,35 +42,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const input = document.createElement("input");
     input.setAttribute("type", "text");
+    input.classList.add("player-input");
 
     const submit = document.createElement("input");
     submit.setAttribute("type", "submit");
     submit.setAttribute("value", "Start Game");
+    submit.classList.add("submit-btn");
 
     const backBtn = document.createElement("button");
     backBtn.setAttribute("type", "button");
     backBtn.textContent = "Back";
-    backBtn.classList.add("back-btn");
-    
+    backBtn.classList.add("back-btn-form");
+
+    // container for buttons
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("button-row");
+    buttonContainer.append(submit, backBtn);
+
+    // Add elements in the correct order
+    form.append(paragraph, input, buttonContainer);
+
+    // Manage back button
     backBtn.addEventListener("click", () => {
       startBtn.style.display = "block";
       howToPlayBtn.style.display = "block";
       gameTitle.style.display = "block";
-
       show(sections[0]);
 
-      const form = document.getElementById("player-form");
-      if (form) form.remove();
+      const existingForm = document.getElementById("player-form");
+      if (existingForm) existingForm.remove();
     });
 
-    form.appendChild(paragraph);
-    form.appendChild(input);
-    form.appendChild(submit);
-    form.appendChild(backBtn);
-
+    // manage form submission
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      show(sections[2]);
+      if (input.value.trim() === "") {
+        let existingMsg = document.querySelector(".enterNameMsg");
+
+        if (existingMsg) existingMsg.remove();
+
+        // Show message to enter name
+        const enterNameMsg = document.createElement("div");
+        enterNameMsg.textContent = "Please enter your name to start the game!";
+        enterNameMsg.classList.add("enterNameMsg");
+        form.appendChild(enterNameMsg);
+        
+      }else {
+        show(sections[2]);
+      }
     });
 
     return form;
@@ -108,5 +133,4 @@ document.addEventListener("DOMContentLoaded", () => {
       if (form) form.remove();
     });
   });
-
 });
