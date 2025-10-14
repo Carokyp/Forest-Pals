@@ -21,6 +21,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* Prevent text selection and dragging */
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* Page layout */
@@ -78,6 +81,38 @@ h1 {
   left: 9rem;
   max-width: 150px;
   z-index: 10;
+}
+
+#speech-bubble {
+  position: absolute;
+  bottom: 155px; 
+  background-color: var(--light-orange);
+  color: var(--text-color);
+  width: 90%;
+  border: 3px solid var(--dark-orange);
+  border-radius: 10px;
+  padding: 8px 8px;
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: 0.9rem;
+  z-index: 20;
+  animation: pop-in 0.2s ease-out;
+}
+
+@keyframes pop-in {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* Disable pointer events on raccoon images to avoid interference with button clicks */
+#raccoon,
+#raccoon-game-area {
+  pointer-events: none;
 }
 
 #bushes {

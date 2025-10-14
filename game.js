@@ -32,9 +32,39 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 6, name: "squirrel", image: "images/cards/squirrel.png" },
   ];
 
+const raccoonLines = {
+  bird: [
+    "You found the birds what a sweet tune!",
+    "Tweet tweet! You matched the birds!"
+  ],
+  deer: [
+    "Oh Deer! What a graceful match!",
+    "You did it! My Deer friends found each other!",
+  ],
+  fox: [
+    "Swift and smart the Fox is back together!",
+    "Quick as a flash! You found the Foxes!"
+  ],
+  hedgehog: [
+    "Aww! The Hedgehogs are rolling together again!",
+    "Watch your paws! The Hedgehogs are hugging again!",
+  ],
+  rabbit: [
+    "Hop hop hooray! The Rabbits are reunited!",
+    "Carrots for everyone! The Rabbits are home!"
+  ],
+  squirrel: [
+    "The Squirrels are nuts about this match!",
+    "The acorn team, the Squirrels are back together!",
+  ],
+};
+
   // To track flipped cards
   let flippedCards = [];
   let lockBoard = false; // To prevent clicking more than 2 cards at a time
+
+  // player score
+  let score = 0;
 
   /**
    * function to hide all sections and show a specific section
@@ -168,6 +198,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const hud = document.getElementById("bottom-hud");
       if (hud) hud.remove();
+
+      // Reset board, cards and score state
+      flippedCards = [];
+      lockBoard = false;
+      score = 0; 
+
       generateBoard();
     });
   });
@@ -180,13 +216,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function generateBoard() {
     const gameArea = document.getElementById("game-area");
-
+    // Bottom HUD for score and timer
     const bottomHUD = document.createElement("div");
     bottomHUD.setAttribute("id", "bottom-hud");
-
+    // Score and timer display
     const scoreDisplay = document.createElement("div");
     scoreDisplay.setAttribute("id", "score");
-    scoreDisplay.textContent = "Score: 0";
+    scoreDisplay.textContent = "Score: 0 / 6";
     bottomHUD.appendChild(scoreDisplay);
 
     const timerDisplay = document.createElement("div");
@@ -196,6 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gameArea.appendChild(bottomHUD);
 
+    // Grid container for cards
     const gridContainer = document.createElement("div");
     gridContainer.setAttribute("id", "grid-container");
     gameArea.appendChild(gridContainer);
@@ -214,6 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cardElement.classList.add("card");
       cardElement.setAttribute("data-id", cardData.id);
 
+      // Front and back images
       const front = document.createElement("img");
       front.src = cardData.image;
       front.alt = cardData.name;
@@ -233,6 +271,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   generateBoard();
+
+  /**
+   * --- CARD FLIPPING LOGIC ---
+   * Manages the flipping of cards, checking for matches,
+   * and resetting unmatched cards after a delay.
+   */
 
   function handleCardClick(cardElement) {
     // Prevent clicking more than 2 cards or clicking the same card
@@ -255,15 +299,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function checkForMatch() {
     const [firstCard, secondCard] = flippedCards;
+    const isMatch = firstCard.dataset.id === secondCard.dataset.id;
 
-    if (firstCard.dataset.id === secondCard.dataset.id) {
-      // It's a match!
+    lockBoard = true; // Lock the board while checking
+
+    if (isMatch) {
+      score++;
+      const scoreDisplay = document.getElementById("score");
+      scoreDisplay.textContent = `Score: ${score} / 6`;
+      // Show raccoon speech bubble with a random line for the matched animal
+      const animalName = firstCard.querySelector(".card-front").alt;
+
+      // Get a random line for the matched animal
+      const lines = raccoonLines[animalName];
+      const randomLine = lines[Math.floor(Math.random() * lines.length)];
+
+      raccoonSpeech(randomLine);
+
+      // It's a match - disable further clicks
+      firstCard.style.pointerEvents = "none";
+      secondCard.style.pointerEvents = "none";  
+      
       flippedCards = []; // Reset for next turn
-    }
-    else {
-      // Not a match - flip cards back after a short delay
-      lockBoard = true;
+      setTimeout(() => {
+        lockBoard = false;
+      }, 300);
 
+    } else {
+      // Not a match - flip cards back after a short delay
       setTimeout(() => {
         firstCard.classList.remove("flipped");
         secondCard.classList.remove("flipped");
@@ -272,4 +335,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 600); // 0.6s delay
     }
   }
+
+  function raccoonSpeech(message) {
+    const gameArea = document.getElementById("game-area");
+    // Remove existing speech bubble if any
+    const existingBubble = document.getElementById("speech-bubble");
+    if (existingBubble) existingBubble.remove();
+    // Create speech bubble
+    const speechBubble = document.createElement("div");
+    speechBubble.setAttribute("id", "speech-bubble");
+    speechBubble.textContent = message;
+
+    gameArea.appendChild(speechBubble);
+
+    // Remove speech bubble after 3 seconds
+   setTimeout(() => {
+    speechBubble.remove();
+   }, 3000);
+  }
+
+
 });
