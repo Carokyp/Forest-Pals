@@ -32,6 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 6, name: "squirrel", image: "images/cards/squirrel.png" },
   ];
 
+  // To track flipped cards
+  let flippedCards = [];
+  let lockBoard = false; // To prevent clicking more than 2 cards at a time
+
   /**
    * function to hide all sections and show a specific section
    */
@@ -161,6 +165,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const grid = document.getElementById("grid-container");
       if (grid) grid.remove();
+
+      const hud = document.getElementById("bottom-hud");
+      if (hud) hud.remove();
       generateBoard();
     });
   });
@@ -207,14 +214,62 @@ document.addEventListener("DOMContentLoaded", () => {
       cardElement.classList.add("card");
       cardElement.setAttribute("data-id", cardData.id);
 
-      const img = document.createElement("img");
-      img.src = cardData.image;
-      img.alt = cardData.name;
-      img.classList.add("card-img");
+      const front = document.createElement("img");
+      front.src = cardData.image;
+      front.alt = cardData.name;
+      front.classList.add("card-front");
 
-      cardElement.appendChild(img);
+      const back = document.createElement("img");
+      back.src = "images/cards/back.png";
+      back.alt = "Card back";
+      back.classList.add("card-back");
+
+      cardElement.appendChild(front);
+      cardElement.appendChild(back);
       gridContainer.appendChild(cardElement);
+
+      // Add flip effect on click
+      cardElement.addEventListener("click", () => handleCardClick(cardElement));
     });
   }
   generateBoard();
+
+  function handleCardClick(cardElement) {
+    // Prevent clicking more than 2 cards or clicking the same card
+    if (lockBoard || cardElement.classList.contains("flipped")) {
+      return;
+    }
+    // Prevent flipping more than 2 cards
+    if (flippedCards.length === 2) {
+      return;
+    }
+    cardElement.classList.add("flipped");
+    // Add card to flippedCards array
+    flippedCards.push(cardElement);
+
+    // If two cards are flipped, check for a match
+    if (flippedCards.length === 2) {
+      checkForMatch();
+    }
+  }
+
+  function checkForMatch() {
+    const [firstCard, secondCard] = flippedCards;
+
+    if (firstCard.dataset.id === secondCard.dataset.id) {
+      // It's a match!
+      flippedCards = []; // Reset for next turn
+    }
+    else {
+      // Not a match - flip cards back after a short delay
+      lockBoard = true;
+
+      setTimeout(() => {
+        firstCard.classList.remove("flipped");
+        secondCard.classList.remove("flipped");
+        flippedCards = []; // Reset for next turn
+        lockBoard = false;
+      }, 600); // 0.6s delay
+    }
+  }
 });
