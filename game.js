@@ -147,6 +147,7 @@ const raccoonLines = {
         form.appendChild(enterNameMsg);
       } else {
         show(sections[2]);
+        resetGame();
       }
     });
 
@@ -190,21 +191,6 @@ const raccoonLines = {
 
       show(sections[0]);
 
-      const form = document.getElementById("player-form");
-      if (form) form.remove();
-
-      const grid = document.getElementById("grid-container");
-      if (grid) grid.remove();
-
-      const hud = document.getElementById("bottom-hud");
-      if (hud) hud.remove();
-
-      // Reset board, cards and score state
-      flippedCards = [];
-      lockBoard = false;
-      score = 0; 
-
-      generateBoard();
     });
   });
 
@@ -352,6 +338,34 @@ const raccoonLines = {
    setTimeout(() => {
     speechBubble.remove();
    }, 3000);
+  }
+
+  function startTimer() {
+
+  }
+
+  function stopTimer() {
+  }
+
+  function resetGame() {
+  const grid = document.getElementById("grid-container");
+  if (grid) grid.remove();
+
+  const hud = document.getElementById("bottom-hud");
+  if (hud) hud.remove();
+
+  const speech = document.getElementById("speech-bubble");
+  if (speech) speech.remove();
+
+  const form = document.getElementById("player-form");
+  if (form) form.remove();
+
+  flippedCards = [];
+  lockBoard = false;
+  score = 0;
+
+  generateBoard();
+
   }
 
 
