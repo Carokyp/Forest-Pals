@@ -32,32 +32,35 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 6, name: "squirrel", image: "images/cards/squirrel.png" },
   ];
 
-const raccoonLines = {
-  bird: [
-    "You found the birds what a sweet tune!",
-    "Tweet tweet! You matched the birds!"
-  ],
-  deer: [
-    "Oh Deer! What a graceful match!",
-    "You did it! My Deer friends found each other!",
-  ],
-  fox: [
-    "Swift and smart the Fox is back together!",
-    "Quick as a flash! You found the Foxes!"
-  ],
-  hedgehog: [
-    "Aww! The Hedgehogs are rolling together again!",
-    "Watch your paws! The Hedgehogs are hugging again!",
-  ],
-  rabbit: [
-    "Hop hop hooray! The Rabbits are reunited!",
-    "Carrots for everyone! The Rabbits are home!"
-  ],
-  squirrel: [
-    "The Squirrels are nuts about this match!",
-    "The acorn team, the Squirrels are back together!",
-  ],
-};
+  const raccoonLines = {
+    bird: [
+      "You found the birds what a sweet tune!",
+      "Tweet tweet! You matched the birds!",
+    ],
+    deer: [
+      "Oh Deer! What a graceful match!",
+      "You did it! My Deer friends found each other!",
+    ],
+    fox: [
+      "Swift and smart the Fox is back together!",
+      "Quick as a flash! You found the Foxes!",
+    ],
+    hedgehog: [
+      "Aww! The Hedgehogs are rolling together again!",
+      "Watch your paws! The Hedgehogs are hugging again!",
+    ],
+    rabbit: [
+      "Hop hop hooray! The Rabbits are reunited!",
+      "Carrots for everyone! The Rabbits are home!",
+    ],
+    squirrel: [
+      "The Squirrels are nuts about this match!",
+      "The acorn team, the Squirrels are back together!",
+    ],
+  };
+
+  // Player name
+  let playerName = "";
 
   // To track flipped cards
   let flippedCards = [];
@@ -65,6 +68,10 @@ const raccoonLines = {
 
   // player score
   let score = 0;
+
+  // Timer variables
+  let timerInterval = null; // interval for the timer
+  let timeElapsed = 0; // time elapsed in seconds
 
   /**
    * function to hide all sections and show a specific section
@@ -146,6 +153,7 @@ const raccoonLines = {
         enterNameMsg.classList.add("enterNameMsg");
         form.appendChild(enterNameMsg);
       } else {
+        playerName = input.value.trim();
         show(sections[2]);
         resetGame();
       }
@@ -190,7 +198,6 @@ const raccoonLines = {
       gameTitle.style.display = "block";
 
       show(sections[0]);
-
     });
   });
 
@@ -255,6 +262,8 @@ const raccoonLines = {
       // Add flip effect on click
       cardElement.addEventListener("click", () => handleCardClick(cardElement));
     });
+
+    startTimer();
   }
   generateBoard();
 
@@ -304,13 +313,12 @@ const raccoonLines = {
 
       // It's a match - disable further clicks
       firstCard.style.pointerEvents = "none";
-      secondCard.style.pointerEvents = "none";  
-      
+      secondCard.style.pointerEvents = "none";
+
       flippedCards = []; // Reset for next turn
       setTimeout(() => {
         lockBoard = false;
       }, 300);
-
     } else {
       // Not a match - flip cards back after a short delay
       setTimeout(() => {
@@ -319,6 +327,11 @@ const raccoonLines = {
         flippedCards = []; // Reset for next turn
         lockBoard = false;
       }, 600); // 0.6s delay
+    }
+
+    if (score === 6) {
+      stopTimer();
+      raccoonSpeech(`You did it, ${playerName}! You found all my friends!`);
     }
   }
 
@@ -335,38 +348,50 @@ const raccoonLines = {
     gameArea.appendChild(speechBubble);
 
     // Remove speech bubble after 3 seconds
-   setTimeout(() => {
-    speechBubble.remove();
-   }, 3000);
+    setTimeout(() => {
+      speechBubble.remove();
+    }, 3000);
   }
 
   function startTimer() {
+    const timerDisplay = document.getElementById("timer");
+    timeElapsed = 0; // reset time elapsed
 
+    if (timerInterval) clearInterval(timerInterval); // clear any existing interval
+
+    timerInterval = setInterval(() => {
+      timeElapsed++;
+      const minutes = Math.floor(timeElapsed / 60);
+      const seconds = timeElapsed % 60;
+      timerDisplay.textContent = `Time: ${minutes
+        .toString()
+        .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    }, 1000);
   }
 
   function stopTimer() {
+    clearInterval(timerInterval);
+    timerInterval = null;
   }
 
   function resetGame() {
-  const grid = document.getElementById("grid-container");
-  if (grid) grid.remove();
+    const grid = document.getElementById("grid-container");
+    if (grid) grid.remove();
 
-  const hud = document.getElementById("bottom-hud");
-  if (hud) hud.remove();
+    const hud = document.getElementById("bottom-hud");
+    if (hud) hud.remove();
 
-  const speech = document.getElementById("speech-bubble");
-  if (speech) speech.remove();
+    const speech = document.getElementById("speech-bubble");
+    if (speech) speech.remove();
 
-  const form = document.getElementById("player-form");
-  if (form) form.remove();
+    const form = document.getElementById("player-form");
+    if (form) form.remove();
 
-  flippedCards = [];
-  lockBoard = false;
-  score = 0;
-
-  generateBoard();
-
+    flippedCards = [];
+    lockBoard = false;
+    score = 0;
+    stopTimer();
+    timeElapsed = 0;
+    generateBoard();
   }
-
-
 });

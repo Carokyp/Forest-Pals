@@ -98,7 +98,7 @@ h1 {
   z-index: 20;
   animation: pop-in 0.2s ease-out;
 }
-
+/* Pop-in animation for speech bubble */
 @keyframes pop-in {
   from {
     transform: scale(0.8);
@@ -295,11 +295,16 @@ h1 {
 
 #score,
 #timer {
+  display: inline-block;
   font-family: var(--font-text);
   font-weight: bold;
   position: static;
   font-size: 1.1rem;
-  padding: 0.7rem 0.8rem;
+  padding: 0.7rem 0rem;
   border-radius: 6px;
+  width: 130px;
+  text-align: center;
   cursor: default;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
 } 
