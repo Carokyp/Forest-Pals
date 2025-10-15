@@ -1,56 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Forest Pals</title>
-    <link rel="icon" type="image/png" href="images/favicon.png" />
-  </head>
 
-  <body>
-    <div id="menu">
-      <h1 id="game-title">Forest Pals</h1>
-      <button id="start-btn">Start</button>
-      <button id="how-to-play-btn">How to Play</button>
-      <img id="raccoon" src="images/raccoon/raccoon1.png" alt="Raccoon wearing glasses waving cheerfully to the player" />
-      <img id="bushes" src="images/background/bush-900px.png" alt="A row of green bushes spanning the width of the screen" />
-      <img id="clouds" src="images/background/cloud-900px.png" alt="A row of clouds in the sky" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Forest Pals</title>
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+</head>
+
+<body>
+  <div id="menu">
+    <h1 id="game-title">Forest Pals</h1>
+    <button id="start-btn">Start</button>
+    <button id="how-to-play-btn">How to Play</button>
+    <img id="raccoon" src="images/raccoon/raccoon1.png" alt="Raccoon wearing glasses waving cheerfully to the player" />
+    <img id="bushes" src="images/background/bush-900px.png"
+      alt="A row of green bushes spanning the width of the screen" />
+    <img id="clouds" src="images/background/cloud-900px.png" alt="A row of clouds in the sky" />
+  </div>
+
+  <div id="how-to-play-area">
+    <h1>How to Play</h1>
+    <div class="instructions">
+      <p>
+        Raccoon is looking for all his friends in the forest. But they are
+        hiding! It is your job to help him find them.
+      </p>
+      <br />
+      <ul>
+        <li>1. Flip over two cards each turn.</li>
+        <li>
+          2. If both cards show the same animal, great! You score a point.
+        </li>
+        <li>
+          3. If they are different animals, they will turn back face down
+          again.
+        </li>
+        <li>
+          4. Be quick! There is a timer that keeps getting faster as you go
+          through the level.
+        </li>
+        <li>5. Find all the pairs before time runs out to win the game!</li>
+      </ul>
+    </div>
+    <button class="back-btn">Back</button>
+  </div>
+
+  <div id="game-area">
+    <button class="back-btn">Back</button>
+    <img id="raccoon-game-area" src="images/raccoon/raccoon2.png"
+      alt="Raccoon wearing glasses waving cheerfully to the player" />
+    <img id="bushes" src="images/background/bush-900px.png"
+      alt="A row of green bushes spanning the width of the screen" />
+  </div>
+
+  <div id="end-screen">
+    <h1 id="end-title">Well done, <span id="player-name"></span>!</h1>
+    <div class="end-text">
+      <p>
+        Your time: <strong id="final-time">00:00</strong>
+      </p>
+      <p>Highscore: <strong id="best-time">00:00</strong></p>
     </div>
 
-    <div id="how-to-play-area">
-      <h1>How to Play</h1>
-      <div class="instructions">
-        <p>
-          Raccoon is looking for all his friends in the forest. But they are
-          hiding! It is your job to help him find them.
-        </p>
-        <br />
-        <ul>
-          <li>1. Flip over two cards each turn.</li>
-          <li>
-            2. If both cards show the same animal, great! You score a point.
-          </li>
-          <li>
-            3. If they are different animals, they will turn back face down
-            again.
-          </li>
-          <li>
-            4. Be quick! There is a timer that keeps getting faster as you go
-            through the level.
-          </li>
-          <li>5. Find all the pairs before time runs out to win the game!</li>
-        </ul>
-      </div>
-      <button class="back-btn">Back</button>
+    <div class="button-row">
+      <button id="retry-btn">Retry</button>
+      <button id="ok-btn">OK</button>
     </div>
 
-    <div id="game-area">
-      <button class="back-btn">Back</button>
-      <img id="raccoon-game-area" src="images/raccoon/raccoon2.png" alt="Raccoon wearing glasses waving cheerfully to the player" />
-      <img id="bushes" src="images/background/bush-900px.png" alt="A row of green bushes spanning the width of the screen" />
-    </div>
+    <img id="bushes" src="images/background/bush-900px.png" alt="A row of bushes at the bottom of the screen" />
+  </div>
 
-    <script src="game.js"></script>
-  </body>
+  <script src="game.js"></script>
+</body>
+
 </html>

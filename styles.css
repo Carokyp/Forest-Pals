@@ -144,6 +144,8 @@ h1 {
 #start-btn,
 #score,
 #timer,
+#retry-btn,
+#ok-btn,
 .back-btn,
 .back-btn-form,
 .submit-btn {
@@ -308,3 +310,44 @@ h1 {
   font-family: 'Poppins', sans-serif;
   letter-spacing: 0.5px;
 } 
+
+#end-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: var(--light-orange);
+  border: 3px solid var(--dark-orange);
+  border-radius: 10px;
+}
+
+#retry-btn,
+#ok-btn {
+  font-family: var(--font-text);
+  font-weight: bold;
+  padding: 0.8rem 0.8rem;
+  font-size: 1.2rem;
+  min-width: 120px;
+  border-radius: 6px;
+  cursor: pointer; 
+}
+
+.end-text {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-text);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  text-align: center;
+}
+
+#end-title {
+  font-size: 2rem;
+}
+
+

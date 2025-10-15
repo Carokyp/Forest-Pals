@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("menu"),
     document.getElementById("how-to-play-area"),
     document.getElementById("game-area"),
+    document.getElementById("end-screen"),
   ];
 
   /** Array of card objects, each with an id, name, and image path */
@@ -32,6 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 6, name: "squirrel", image: "images/cards/squirrel.png" },
   ];
 
+  // Raccoon speech lines for each animal
+  // Each animal has an array of possible lines to choose from
+  // when a match is found
   const raccoonLines = {
     bird: [
       "You found the birds what a sweet tune!",
@@ -332,6 +336,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (score === 6) {
       stopTimer();
       raccoonSpeech(`You did it, ${playerName}! You found all my friends!`);
+
+      setTimeout(() => {
+        showEndScreen();
+      }, 3000); // Wait that the speech bubble disappears
     }
   }
 
@@ -394,4 +402,42 @@ document.addEventListener("DOMContentLoaded", () => {
     timeElapsed = 0;
     generateBoard();
   }
+
+function showEndScreen() {
+  // Hide the game board and HUD
+  const grid = document.getElementById("grid-container");
+  if (grid) grid.remove();
+  const hud = document.getElementById("bottom-hud");
+  if (hud) hud.remove();
+
+  // Grab end screen elements
+  const endScreen = document.getElementById("end-screen");
+  const playerNameEl = document.getElementById("player-name");
+  const finalTimeEl = document.getElementById("final-time");
+  const bestTimeEl = document.getElementById("best-time");
+  const bestTimeText = document.getElementById("best-time-text");
+
+  // Display player name
+  playerNameEl.textContent = playerName;
+
+  // Display final time
+  const finalTime = document.getElementById("timer")
+    ? document.getElementById("timer").textContent.replace("Time: ", "")
+    : "00:00";
+  finalTimeEl.textContent = finalTime;
+
+  // Compare high scores
+  const bestTime = localStorage.getItem("highscore");
+  if (!bestTime || finalTime < bestTime) {
+    localStorage.setItem("highscore", finalTime);
+    bestTimeText.textContent = "New Highscore!";
+  } else {
+    bestTimeEl.textContent = bestTime;
+  }
+
+  // Show end screen
+  show(sections[3]);
+}
+
+show(sections[3]);
 });
