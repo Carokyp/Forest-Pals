@@ -471,8 +471,24 @@ document.addEventListener("DOMContentLoaded", () => {
       highscoresList.appendChild(li);
       console.log(`Position ${index + 1}: ${entry.name} - ${entry.time}`);
     });
+    
+    // Retry button 
+    retryBtn.addEventListener("click", () => {
+      // Go straight to the game area
+      show(sections[2]);
+      // Reset game
+      resetGame();
+    });
 
-    // Save to localStorage
+    // Back to main menu button
+    okBtn.addEventListener("click", () => {
+      // Back to main menu
+      show(sections[0]);
+      // Reset player name
+      playerName = "";
+    });
+
+     // Save to localStorage
     localStorage.setItem("forestPalsHighscores", JSON.stringify(top5));
   }
 });
