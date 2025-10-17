@@ -4,55 +4,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Votre CSS garde la priorité -->
   <link rel="stylesheet" href="styles.css">
   <title>Forest Pals</title>
   <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 
 <body>
-  <div id="menu">
-    <h1 id="game-title">Forest Pals</h1>
-    <button id="start-btn">Start</button>
-    <button id="how-to-play-btn">How to Play</button>
-    <img id="raccoon" src="images/raccoon/raccoon1.png" alt="Raccoon wearing glasses waving cheerfully to the player">
-    <img id="bushes" src="images/background/bush-900px.png"
-      alt="A row of green bushes spanning the width of the screen">
-    <img id="clouds" src="images/background/cloud-900px.png" alt="A row of clouds in the sky">
+  <!-- Menu-->
+  <div id="menu" class="container-fluid d-flex flex-column align-items-center justify-content-center min-vh-100">
+    <div class="text-center mb-5">
+      <h1 id="game-title" class="fw-bold">Forest Pals</h1>
+    </div>
+    
+    <div class="d-flex flex-column gap-4 mt-2">
+      <button id="start-btn">Start</button>
+      <button id="how-to-play-btn">How to Play</button>
+    </div>
+    
+    <!-- Images for the background-->
+    <img id="raccoon" 
+         src="images/raccoon/raccoon1.png" 
+         alt="Raccoon wearing glasses waving cheerfully to the player"
+         class="img-fluid">
+    <img id="bushes" 
+         src="images/background/bush-900px.png"
+         alt="A row of green bushes spanning the width of the screen"
+         class="img-fluid">
+    <img id="clouds" 
+         src="images/background/cloud-900px.png" 
+         alt="A row of clouds in the sky"
+         class="img-fluid">
   </div>
 
-  <div id="how-to-play-area">
-    <h1>How to Play</h1>
-    <div class="instructions">
-      <p>
-        Raccoon is looking for all his friends in the forest. But they are
-        hiding! It is your job to help him find them.
-      </p>
-      <br />
-      <ul>
-        <li>1. Flip over two cards each turn.</li>
-        <li>
-          2. If both cards show the same animal, great! You score a point.
-        </li>
-        <li>
-          3. If they are different animals, they will turn back face down
-          again.
-        </li>
-        <li>
-          4. Be quick! There is a timer that keeps getting faster as you go
-          through the level.
-        </li>
-        <li>5. Find all the pairs before time runs out to win the game!</li>
-      </ul>
+  <!-- How to Play -->
+  <div id="how-to-play-area" class="container-fluid d-none flex-column align-items-center justify-content-center min-vh-100">
+    <div class="justify-content-center">
+        <div class="text-center">
+          <h1 class="display-4 fw-bold">How to Play</h1>
+        </div>
+        
+        <div class="instructions fw-bold my-4 mx-2">
+          <p class="text-center">
+            Raccoon is looking for all his friends in the forest. But they are
+            hiding! It is your job to help him find them.
+          </p>
+          
+          <ol>
+            <li>Flip over two cards each turn.</li>
+            <li>
+              If both cards show the same animal, great! You score a point.
+            </li>
+            <li>
+              If they are different animals, they will turn back face down again.
+            </li>
+            <li>
+              Be quick! There is a timer that keeps getting faster as you go through the level.
+            </li>
+            <li>Find all the pairs before time runs out to win the game!</li>
+          </ol>
+        </div>
+        <div class="text-center">
+          <button class="back-btn btn">Back</button>
+        </div>
     </div>
-    <button class="back-btn">Back</button>
   </div>
 
   <div id="game-area">
     <button class="back-btn">Back</button>
-    <img id="raccoon-game-area" src="images/raccoon/raccoon2.png"
-      alt="Raccoon wearing glasses waving cheerfully to the player">
-    <img id="bushes" src="images/background/bush-900px.png"
-      alt="A row of green bushes spanning the width of the screen">
+    <img id="raccoon-game-area" 
+         src="images/raccoon/raccoon2.png"
+         alt="Raccoon wearing glasses waving cheerfully to the player"
+         class="img-fluid">
+    <img id="bushes" 
+         src="images/background/bush-900px.png"
+         alt="A row of green bushes spanning the width of the screen"
+         class="img-fluid">
   </div>
 
   <div id="end-screen">
@@ -73,14 +102,20 @@
 
     <div class="button-row">
       <button id="retry-btn">Retry</button>
-      <button id="main-menu-btn">Main Menu</button>
+      <button id="main-menu-btn">Main menu</button>
     </div>
 
-    <img id="bushes-end" src="images/background/bush-900px.png" alt="A row of bushes at the bottom of the screen">
+    <!-- Images for the end screen background-->
+    <img id="bushes-end" 
+         src="images/background/bush-900px.png" 
+         alt="A row of bushes at the bottom of the screen"
+         class="img-fluid">
   </div>
 
   <script src="game.js"></script>
   <script src="https://kit.fontawesome.com/e3247db897.js" crossorigin="anonymous"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

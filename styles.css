@@ -1,6 +1,17 @@
 /* Google Fonts & CSS Variables */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Caprasimo&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Macondo&family=Quicksand:wght@300..700&display=swap');
 
+/* Hidden sections by default */
+#how-to-play-area,
+#game-area,
+#end-screen {
+  display: none;
+}
+
+/* visible sections by default */
+#menu {
+  display: flex;
+}
 
 :root {
   /* Colors */
@@ -54,18 +65,6 @@ h1 {
   font-family: var(--font-title);
   font-size: 3rem;
   color: var(--text-color);
-}
-
-/* Menu container layouts */
-#menu, #how-to-play-area{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-}
-
-#menu {
-  gap: 1.5rem;
 }
 
 #raccoon {
@@ -230,10 +229,8 @@ h1 {
 /* Instructions text */
 .instructions {
   font-family: var(--font-text);
-  font-weight: 700;
   font-size: 1.1rem;
   color: var(--text-color);
-  padding: 1.5rem 1rem;
 }
 
 #game-area {
@@ -247,39 +244,48 @@ h1 {
 }
 
 #grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 80px);
-  grid-template-rows: repeat(4, 120px);
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+  padding: 1rem;
+  max-width: 400px; /* Limite la largeur sur grands écrans */
+  margin: 0 auto; /* Centre le container */
 }
 
-.card {
+#grid-container .game-card {
   position: relative;
   width: 80px;
-  height: 120px;
-  perspective: 600px; 
+  height: 120px; 
+  perspective: 1000px;
   cursor: pointer;
+  overflow: visible;
+  background: transparent !important;
+  border: none !important;
+  transform-style: preserve-3d;
 }
-.card img {
+
+#grid-container .game-card img {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 8px;
+  border-radius: 6px;
   backface-visibility: hidden;
   transition: transform 0.5s ease;
+  object-fit: cover;
+  border: none !important;
+  transform-style: preserve-3d;
 }
 
-.card-front {
+#grid-container .card-front {
   transform: rotateY(180deg); 
 }
 
-.card.flipped .card-front {
+#grid-container .card-back {
+  transform: rotateY(0); /* Visible par défaut */
+}
+
+#grid-container .game-card.flipped .card-front {
   transform: rotateY(0);
 }
 
-.card.flipped .card-back {
+#grid-container .game-card.flipped .card-back {
   transform: rotateY(180deg);
 }
 

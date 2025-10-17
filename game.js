@@ -79,10 +79,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /**
    * function to hide all sections and show a specific section
+   * Compatible with Bootstrap classes
    */
   function show(section) {
-    sections.forEach((element) => (element.style.display = "none"));
-    section.style.display = "flex";
+    // Hide all sections using Bootstrap classes
+    sections.forEach((element) => {
+      element.classList.add('d-none');
+      element.classList.remove('d-flex');
+      element.style.visibility = 'hidden';
+    });
+
+    // Show the selected section using Bootstrap classes
+    section.classList.remove('d-none');
+    section.classList.add('d-flex');
+    section.style.visibility = 'visible';
   }
 
   /**
@@ -216,12 +226,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Bottom HUD for score and timer
     const bottomHUD = document.createElement("div");
     bottomHUD.setAttribute("id", "bottom-hud");
+
     // Score and timer display
     const scoreDisplay = document.createElement("div");
     scoreDisplay.setAttribute("id", "score");
     scoreDisplay.textContent = "Score: 0 / 6";
     bottomHUD.appendChild(scoreDisplay);
 
+    // Timer display
     const timerDisplay = document.createElement("div");
     timerDisplay.setAttribute("id", "timer");
     timerDisplay.textContent = "Time: 00:00";
@@ -229,10 +241,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gameArea.appendChild(bottomHUD);
 
-    // Grid container for cards
+    // Grid container for cards avec Bootstrap
     const gridContainer = document.createElement("div");
     gridContainer.setAttribute("id", "grid-container");
+    gridContainer.classList.add("container-fluid");
     gameArea.appendChild(gridContainer);
+
+    // Row Bootstrap pour contenir les cartes
+    const row = document.createElement("div");
+    row.classList.add("row", "g-2");
+    gridContainer.appendChild(row);
 
     const cardsPairs = [...cards, ...cards];
 
@@ -244,8 +262,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Create card elements
     cardsPairs.forEach((cardData) => {
+      // Créer une colonne Bootstrap pour chaque carte
+      const colElement = document.createElement("div");
+      colElement.classList.add("col-4", "col-md-3", "col-lg-3"); // Responsivity mobile (3x4), tablet and laptop(4x3)
+
       const cardElement = document.createElement("div");
-      cardElement.classList.add("card");
+      cardElement.classList.add("game-card");
       cardElement.setAttribute("data-id", cardData.id);
 
       // Front and back images
@@ -261,7 +283,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       cardElement.appendChild(front);
       cardElement.appendChild(back);
-      gridContainer.appendChild(cardElement);
+      
+      // Ajouter la carte à la colonne, puis la colonne à la row
+      colElement.appendChild(cardElement);
+      row.appendChild(colElement);
 
       // Add flip effect on click
       cardElement.addEventListener("click", () => handleCardClick(cardElement));
@@ -476,12 +501,12 @@ document.addEventListener("DOMContentLoaded", () => {
     retryBtn.addEventListener("click", () => {
       // Go straight to the game area
       show(sections[2]);
-      // Reset game
+      // reset game
       resetGame();
     });
 
     // Back to main menu button
-    okBtn.addEventListener("click", () => {
+    mainMenuBtn.addEventListener("click", () => {
       // Back to main menu
       show(sections[0]);
       // Reset player name
