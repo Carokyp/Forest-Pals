@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Forest Pals</title>
-  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 
 <body>
@@ -14,10 +14,10 @@
     <h1 id="game-title">Forest Pals</h1>
     <button id="start-btn">Start</button>
     <button id="how-to-play-btn">How to Play</button>
-    <img id="raccoon" src="images/raccoon/raccoon1.png" alt="Raccoon wearing glasses waving cheerfully to the player" />
+    <img id="raccoon" src="images/raccoon/raccoon1.png" alt="Raccoon wearing glasses waving cheerfully to the player">
     <img id="bushes" src="images/background/bush-900px.png"
-      alt="A row of green bushes spanning the width of the screen" />
-    <img id="clouds" src="images/background/cloud-900px.png" alt="A row of clouds in the sky" />
+      alt="A row of green bushes spanning the width of the screen">
+    <img id="clouds" src="images/background/cloud-900px.png" alt="A row of clouds in the sky">
   </div>
 
   <div id="how-to-play-area">
@@ -50,18 +50,25 @@
   <div id="game-area">
     <button class="back-btn">Back</button>
     <img id="raccoon-game-area" src="images/raccoon/raccoon2.png"
-      alt="Raccoon wearing glasses waving cheerfully to the player" />
+      alt="Raccoon wearing glasses waving cheerfully to the player">
     <img id="bushes" src="images/background/bush-900px.png"
-      alt="A row of green bushes spanning the width of the screen" />
+      alt="A row of green bushes spanning the width of the screen">
   </div>
 
   <div id="end-screen">
     <h1 id="end-title">Well done, <span id="player-name"></span>!</h1>
     <div class="end-text">
-      <p>
-        Your time: <strong id="final-time">00:00</strong>
-      </p>
-      <p>Highscore: <strong id="best-time">00:00</strong></p>
+      <h2>Your time: <span id="player-time">00:00</span></h2>
+      <div id="highscores">
+        <h3><i class="fa-solid fa-trophy"></i> High Scores</h3>
+        <ol id="highscores-list">
+          <li><span class="hs-name">Caro</span> — <span class="hs-time">00:30</span></li>
+          <li><span class="hs-name">Ethan</span> — <span class="hs-time">00:50</span></li>
+          <li><span class="hs-name">Luna</span> — <span class="hs-time">01:20</span></li>
+          <li><span class="hs-name">Martin</span> — <span class="hs-time">01:30</span></li>
+          <li><span class="hs-name">Sam</span> — <span class="hs-time">01:40</span></li>
+        </ol>
+      </div>
     </div>
 
     <div class="button-row">
@@ -69,10 +76,11 @@
       <button id="ok-btn">OK</button>
     </div>
 
-    <img id="bushes" src="images/background/bush-900px.png" alt="A row of bushes at the bottom of the screen" />
+    <img id="bushes-end" src="images/background/bush-900px.png" alt="A row of bushes at the bottom of the screen">
   </div>
 
   <script src="game.js"></script>
+  <script src="https://kit.fontawesome.com/e3247db897.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -339,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         showEndScreen();
-      }, 3000); // Wait that the speech bubble disappears
+      }, 1000); // Wait that the speech bubble disappears
     }
   }
 
@@ -403,41 +403,76 @@ document.addEventListener("DOMContentLoaded", () => {
     generateBoard();
   }
 
-function showEndScreen() {
-  // Hide the game board and HUD
-  const grid = document.getElementById("grid-container");
-  if (grid) grid.remove();
-  const hud = document.getElementById("bottom-hud");
-  if (hud) hud.remove();
+  function showEndScreen() {
+    console.log("showEndScreen() function called!");
+    
+    // Get the final time BEFORE removing the timer element
+    const finalTime = document.getElementById("timer")
+      ? document.getElementById("timer").textContent.replace("Time: ", "")
+      : "00:00";
+    
+    console.log("Final time captured:", finalTime);
 
-  // Grab end screen elements
-  const endScreen = document.getElementById("end-screen");
-  const playerNameEl = document.getElementById("player-name");
-  const finalTimeEl = document.getElementById("final-time");
-  const bestTimeEl = document.getElementById("best-time");
-  const bestTimeText = document.getElementById("best-time-text");
+    // Hide the game board and HUD
+    const grid = document.getElementById("grid-container");
+    if (grid) grid.remove();
+    const hud = document.getElementById("bottom-hud");
+    if (hud) hud.remove();
 
-  // Display player name
-  playerNameEl.textContent = playerName;
+    // Grab end screen elements
+    const endScreen = document.getElementById("end-screen");
+    // Show end screen
+    show(sections[3]);
 
-  // Display final time
-  const finalTime = document.getElementById("timer")
-    ? document.getElementById("timer").textContent.replace("Time: ", "")
-    : "00:00";
-  finalTimeEl.textContent = finalTime;
+    const playerNameElement = document.getElementById("player-name");
+    const playerTimeElement = document.getElementById("player-time");
+    const highscoresList = document.getElementById("highscores-list");
 
-  // Compare high scores
-  const bestTime = localStorage.getItem("highscore");
-  if (!bestTime || finalTime < bestTime) {
-    localStorage.setItem("highscore", finalTime);
-    bestTimeText.textContent = "New Highscore!";
-  } else {
-    bestTimeEl.textContent = bestTime;
+    playerNameElement.textContent = playerName; // Player name
+    playerTimeElement.textContent = finalTime; // Player Time
+    
+    console.log("Player name set to:", playerName);
+    console.log("Player time set to:", finalTime);
+
+    const existingScores = Array.from(
+      highscoresList.querySelectorAll("li")
+    ).map((li) => {
+      const name = li.querySelector(".hs-name").textContent;
+      const time = li.querySelector(".hs-time").textContent;
+      return { name, time };
+    });
+
+    //Add Player Score
+    existingScores.push({ name: playerName, time: finalTime });
+
+    // Convert time to seconds for sorting
+    const toSeconds = (t) => {
+      const [m, s] = t.split(":").map(Number);
+      return m * 60 + s;
+    };
+    
+    // Sort scores by time (fastest first)
+    existingScores.sort((a, b) => toSeconds(a.time) - toSeconds(b.time));
+    
+    // Keep top 5 scores only AFTER sorting
+    const top5 = existingScores.slice(0, 5);
+
+    // rewriting the highscores list
+    highscoresList.innerHTML = "";
+    top5.forEach((entry, index) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<span class="hs-name">${entry.name}</span> — <span class="hs-time">${entry.time}</span>`;
+      
+      // Highlight the current player's score
+      if (entry.name === playerName && entry.time === finalTime) {
+        li.classList.add("highlight");
+      }
+      
+      highscoresList.appendChild(li);
+      console.log(`Position ${index + 1}: ${entry.name} - ${entry.time}`);
+    });
+
+    // Save to localStorage
+    localStorage.setItem("forestPalsHighscores", JSON.stringify(top5));
   }
-
-  // Show end screen
-  show(sections[3]);
-}
-
-show(sections[3]);
 });
