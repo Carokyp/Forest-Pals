@@ -102,34 +102,48 @@ document.addEventListener("DOMContentLoaded", () => {
    */
 
   function createForm() {
+
     const form = document.createElement("form");
     form.setAttribute("id", "player-form");
+    // Add Bootstrap classes to the form
+    form.classList.add("container", "my-4", "p-4", "rounded-4");
 
     // Text instruction
     const paragraph = document.createElement("p");
     paragraph.setAttribute("id", "form-instruction");
     paragraph.textContent = "Enter your name to start the game!";
+    // Add Bootstrap classes for the text
+    paragraph.classList.add("text-center", "fw-bold", "mb-3");
 
     // Input field
     const input = document.createElement("input");
     input.setAttribute("type", "text");
-    input.classList.add("player-input");
+    input.classList.add("player-input", "rounded-3", "mb-3", "px-2");
+    // Add Bootstrap classes for the input
+    input.classList.add("form-control", "form-control-lg", "rounded-2", "mb-3");
+    input.setAttribute("placeholder", "Your Name...");
 
     // Submit button
     const submit = document.createElement("input");
     submit.setAttribute("type", "submit");
     submit.setAttribute("value", "Start Game");
     submit.classList.add("submit-btn");
+    // Add Bootstrap classes for the submit button
+    submit.classList.add("btn","btn-secondary","py-2","px-3","fw-bold");
 
     // Back button
     const backBtn = document.createElement("button");
     backBtn.setAttribute("type", "button");
     backBtn.textContent = "Back";
     backBtn.classList.add("back-btn-form");
+    // Classes Bootstrap pour le bouton back
+    backBtn.classList.add("btn","btn-secondary","py-2","px-3","fw-bold");
 
-    // container both buttons
+    // Container for both buttons
     const buttonContainer = document.createElement("div");
     buttonContainer.classList.add("button-row");
+    // Classes Bootstrap pour le container des boutons
+    buttonContainer.classList.add("d-flex","justify-content-center", "gap-3", "mb-2");
     buttonContainer.append(submit, backBtn);
 
     // Add elements to the form
@@ -162,10 +176,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (existingMsg) existingMsg.remove();
 
         // Show message to enter name
+        const msgWrapper = document.createElement("div");
+        msgWrapper.classList.add("d-flex", "justify-content-center", "mt-3", "mb-0");
+        
         const enterNameMsg = document.createElement("div");
         enterNameMsg.textContent = "Please enter your name to start the game!";
-        enterNameMsg.classList.add("enterNameMsg");
-        form.appendChild(enterNameMsg);
+        enterNameMsg.classList.add("enterNameMsg", "px-3", "py-2", "text-center", "rounded-2", "fw-medium");
+        
+        msgWrapper.appendChild(enterNameMsg);
+        form.appendChild(msgWrapper);
       } else {
         playerName = input.value.trim();
         show(sections[2]);
