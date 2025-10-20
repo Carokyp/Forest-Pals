@@ -22,6 +22,7 @@
     <div class="d-flex flex-column gap-4 mt-2">
       <button id="start-btn" class="btn btn-primary rounded-3 fw-bold px-3 py-3">Start</button>
       <button id="how-to-play-btn" class="btn btn-secondary rounded-3 fw-bold px-3 py-3">How to Play</button>
+      <!--<button id="test-end-screen-btn" class="btn btn-warning rounded-3 fw-bold px-3 py-3">🧪 Test End Screen</button>-->
     </div>
     
     <!-- Images for the background-->
@@ -84,12 +85,12 @@
          class="img-fluid">
   </div>
 
-  <div id="end-screen">
-    <h1 id="end-title">Well done, <span id="player-name"></span>!</h1>
-    <div class="end-text">
-      <h2>Your time: <span id="player-time">00:00</span></h2>
+  <div id="end-screen" class="d-flex flex-column align-items-center justify-content-center max-vw-25">
+    <h1 id="end-title" class="text-center fw-bold">Well done, <span id="player-name"></span>!</h1>
+    <div class="end-text text-center">
+      <h2 class="fw-bold">Your time: <span id="player-time">00:00</span></h2>
       <div id="highscores">
-        <h3><i class="fa-solid fa-trophy"></i> High Scores</h3>
+        <h3 class="fw-bold mb-3"><i class="fa-solid fa-trophy"></i> High Scores</h3>
         <ol id="highscores-list">
           <li><span class="hs-name">Caro</span> — <span class="hs-time">00:30</span></li>
           <li><span class="hs-name">Ethan</span> — <span class="hs-time">00:50</span></li>
@@ -101,8 +102,8 @@
     </div>
 
     <div class="button-row d-flex justify-content-center gap-3">
-      <button id="retry-btn" class="btn btn-primary">Retry</button>
-      <button id="main-menu-btn" class="btn btn-secondary">Main menu</button>
+      <button id="retry-btn" class="btn btn-secondary fw-bold">Retry</button>
+      <button id="main-menu-btn" class="btn btn-secondary fw-bold">Main menu</button>
     </div>
 
     <!-- Images for the end screen background-->

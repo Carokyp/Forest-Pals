@@ -82,16 +82,12 @@ h1 {
 
 #speech-bubble {
   position: absolute;
-  bottom: 155px; 
+  bottom: 138px; 
   background-color: var(--light-orange);
   color: var(--text-color);
-  width: 90%;
   border: 3px solid var(--dark-orange);
-  border-radius: 10px;
-  padding: 8px 8px;
   font-family: var(--font-text);
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   z-index: 20;
   animation: pop-in 0.2s ease-out;
 }
@@ -146,6 +142,7 @@ h1 {
 #timer,
 #retry-btn,
 #ok-btn,
+#end-screen .btn-secondary,
 .back-btn,
 .back-btn-form,
 .submit-btn {

@@ -50,8 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
       "Quick as a flash! You found the Foxes!",
     ],
     hedgehog: [
-      "Aww! The Hedgehogs are rolling together again!",
-      "Watch your paws! The Hedgehogs are hugging again!",
+      "Aww! The Hedgehogs are rolling together",
+      "The Hedgehogs are hugging again!",
     ],
     rabbit: [
       "Hop hop hooray! The Rabbits are reunited!",
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
     squirrel: [
       "The Squirrels are nuts about this match!",
-      "The acorn team, the Squirrels are back together!",
+      "The acorn team, the Squirrels are here!",
     ],
   };
 
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let flippedCards = [];
   let lockBoard = false; // To prevent clicking more than 2 cards at a time
 
-  // player score
+  // Player score
   let score = 0;
 
   // Timer variables
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const backBtn = document.createElement("button");
     backBtn.setAttribute("type", "button");
     backBtn.textContent = "Back";
-    backBtn.classList.add("back-btn-form");
+    backBtn.classList.add("back-btn-form", "back-btn");
     // Classes Bootstrap pour le bouton back
     backBtn.classList.add("btn","btn-secondary","py-2","px-3","fw-bold");
 
@@ -148,20 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add elements to the form
     form.append(paragraph, input, buttonContainer);
-
-    /**
-     * Handles Back button click:
-     * returns user to main menu and removes the form.
-     */
-    backBtn.addEventListener("click", () => {
-      startBtn.style.display = "block";
-      howToPlayBtn.style.display = "block";
-      gameTitle.style.display = "block";
-      show(sections[0]);
-
-      const existingForm = document.getElementById("player-form");
-      if (existingForm) existingForm.remove();
-    });
 
     /**
      * Handles form submission:
@@ -195,44 +181,62 @@ document.addEventListener("DOMContentLoaded", () => {
     return form;
   }
 
-  /**
-   * Displays the player form when the Start button is clicked.
-   */
-  function showForm() {
-    startBtn.addEventListener("click", () => {
+  // Show the menu first
+  show(sections[0]);
+
+  // Universal click handler for all buttons using event delegation
+  document.addEventListener('click', (e) => {
+    // Start Game button
+    if (e.target && e.target.id === 'start-btn') {
+      console.log("Start button clicked!");
       howToPlayBtn.style.display = "none";
       gameTitle.style.display = "none";
       startBtn.style.display = "none";
 
       const form = createForm();
       menu.appendChild(form);
-    });
-  }
-
-  // Show the menu first
-  show(sections[0]);
-
-  // Enable form creation on Start button click
-  showForm();
-
-  // Show "How to Play" section
-  document
-    .getElementById("how-to-play-btn")
-    .addEventListener("click", () => show(sections[1]));
-
-  /**
-   * --- BACK BUTTONS (GENERAL) ---
-   * Allows any .back-btn element to return to the main menu.
-   */
-  document.querySelectorAll(".back-btn").forEach((button) => {
-    button.addEventListener("click", () => {
+    }
+    
+    // How to Play button
+    if (e.target && e.target.id === 'how-to-play-btn') {
+      console.log("How to Play button clicked!");
+      show(sections[1]); // Show how-to-play section
+    }
+    
+    // Back buttons (general class)
+    if (e.target && e.target.classList.contains('back-btn')) {
+      console.log("Back button clicked!");
       startBtn.style.display = "block";
       howToPlayBtn.style.display = "block";
       gameTitle.style.display = "block";
-
-      show(sections[0]);
-    });
+      show(sections[0]); // Go to main menu
+      
+      // If it's a form back button, also remove the form
+      if (e.target.classList.contains('back-btn-form')) {
+        const existingForm = document.getElementById("player-form");
+        if (existingForm) existingForm.remove();
+      }
+    }
+    
+    // End screen buttons
+    if (e.target && e.target.id === 'retry-btn') {
+      console.log("Retry button clicked!");
+      show(sections[2]); // Go to game area
+      resetGame();
+    }
+    
+    if (e.target && e.target.id === 'main-menu-btn') {
+      console.log("Main menu button clicked!");
+      // Restore menu button visibility
+      startBtn.style.display = "block";
+      howToPlayBtn.style.display = "block";
+      gameTitle.style.display = "block";
+      show(sections[0]); // Go to main menu
+      playerName = ""; // Reset player name
+    }
   });
+
+
 
   /**
    * --- GAME BOARD GENERATION ---
@@ -392,17 +396,31 @@ document.addEventListener("DOMContentLoaded", () => {
     // Remove existing speech bubble if any
     const existingBubble = document.getElementById("speech-bubble");
     if (existingBubble) existingBubble.remove();
-    // Create speech bubble
+    
+    // Create speech bubble with Bootstrap classes
     const speechBubble = document.createElement("div");
     speechBubble.setAttribute("id", "speech-bubble");
     speechBubble.textContent = message;
+    
+    // Base Bootstrap classes for styling
+    speechBubble.classList.add(
+      "alert", "alert-success",           // Bootstrap alert component with success styling
+      "text-center", "fw-bold",          // Center text and make it bold
+      "mx-1", "my-3",                 // Center horizontally and add vertical margin
+      "rounded-pill",                    // Rounded pill shape
+      "shadow-sm",                       // Subtle shadow
+      "border-0"                         // Remove default border
+    );
+    
+    // Add responsive width control
+    speechBubble.style.width = "fit-content";
 
     gameArea.appendChild(speechBubble);
 
     // Remove speech bubble after 3 seconds
     setTimeout(() => {
       speechBubble.remove();
-    }, 3000);
+    }, 10000);
   }
 
   function startTimer() {
@@ -516,21 +534,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(`Position ${index + 1}: ${entry.name} - ${entry.time}`);
     });
     
-    // Retry button 
-    retryBtn.addEventListener("click", () => {
-      // Go straight to the game area
-      show(sections[2]);
-      // reset game
-      resetGame();
-    });
 
-    // Back to main menu button
-    mainMenuBtn.addEventListener("click", () => {
-      // Back to main menu
-      show(sections[0]);
-      // Reset player name
-      playerName = "";
-    });
 
      // Save to localStorage
     localStorage.setItem("forestPalsHighscores", JSON.stringify(top5));
