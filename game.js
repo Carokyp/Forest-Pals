@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Show message to enter name
         const msgWrapper = document.createElement("div");
         msgWrapper.classList.add("d-flex", "justify-content-center", "mt-3", "mb-0");
-        
+
         const enterNameMsg = document.createElement("div");
         enterNameMsg.textContent = "Please enter your name to start the game!";
         enterNameMsg.classList.add("enterNameMsg", "px-3", "py-2", "text-center", "rounded-2", "fw-medium");
@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
       show(sections[1]); // Show how-to-play section
     }
     
-    // Back buttons (general class)
+    // Back buttons 
     if (e.target && e.target.classList.contains('back-btn')) {
       console.log("Back button clicked!");
       startBtn.style.display = "block";
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     
-    // End screen buttons
+    // End screen buttons, retry and main menu
     if (e.target && e.target.id === 'retry-btn') {
       console.log("Retry button clicked!");
       show(sections[2]); // Go to game area
@@ -235,8 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
       playerName = ""; // Reset player name
     }
   });
-
-
 
   /**
    * --- GAME BOARD GENERATION ---
@@ -285,10 +283,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Create card elements
     cardsPairs.forEach((cardData) => {
-      // Créer une colonne Bootstrap pour chaque carte
+      // Create a Bootstrap column for each card
       const colElement = document.createElement("div");
-      colElement.classList.add("col-4", "col-md-3", "col-lg-3"); // Responsivity mobile (3x4), tablet and laptop(4x3)
 
+      // Responsivity mobile (3x4), tablet and laptop(4x3)
+      colElement.classList.add("col-4", "col-md-3", "col-lg-3"); 
+
+      // Create card element
       const cardElement = document.createElement("div");
       cardElement.classList.add("game-card");
       cardElement.setAttribute("data-id", cardData.id);
@@ -307,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cardElement.appendChild(front);
       cardElement.appendChild(back);
       
-      // Ajouter la carte à la colonne, puis la colonne à la row
+      // Add the card to the column and then to the row
       colElement.appendChild(cardElement);
       row.appendChild(colElement);
 
@@ -347,8 +348,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function checkForMatch() {
     const [firstCard, secondCard] = flippedCards;
     const isMatch = firstCard.dataset.id === secondCard.dataset.id;
-
-    lockBoard = true; // Lock the board while checking
+    // Lock the board while checking
+    lockBoard = true;
 
     if (isMatch) {
       score++;
@@ -387,7 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         showEndScreen();
-      }, 1000); // Wait that the speech bubble disappears
+      }, 2000); // Wait that the speech bubble disappears
     }
   }
 
@@ -404,12 +405,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Base Bootstrap classes for styling
     speechBubble.classList.add(
-      "alert", "alert-success",           // Bootstrap alert component with success styling
-      "text-center", "fw-bold",          // Center text and make it bold
-      "mx-1", "my-3",                 // Center horizontally and add vertical margin
-      "rounded-pill",                    // Rounded pill shape
-      "shadow-sm",                       // Subtle shadow
-      "border-0"                         // Remove default border
+      "alert", // Bootstrap alert component with success styling
+      "text-center", "fw-bold", // Center text and make it bold
+      "mx-1", "my-3", 
+      "rounded-pill", // Rounded pill shape
+      "shadow-sm", // Subtle shadow
+      "border-0" // Remove default border
     );
     
     // Add responsive width control
@@ -420,7 +421,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Remove speech bubble after 3 seconds
     setTimeout(() => {
       speechBubble.remove();
-    }, 10000);
+    }, 3000);
   }
 
   function startTimer() {

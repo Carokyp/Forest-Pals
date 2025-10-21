@@ -52,10 +52,10 @@ body {
   height: 100vh;
   /* full height of the screen */
 
-  background-image: url('images/background/background-900px.png');
+  background-image: url('images/background/background-small-screen.png');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 50% center;
 }
 
 /* Titles */
@@ -68,6 +68,7 @@ h1 {
 #raccoon {
   position: fixed;
   bottom: 0px;
+  left: 18%;
   max-width: 220px;
   z-index: 10;
 }
@@ -82,7 +83,7 @@ h1 {
 
 #speech-bubble {
   position: absolute;
-  bottom: 138px; 
+  bottom: 138px;
   background-color: var(--light-orange);
   color: var(--text-color);
   border: 3px solid var(--dark-orange);
@@ -91,17 +92,20 @@ h1 {
   z-index: 20;
   animation: pop-in 0.2s ease-out;
 }
+
 /* Pop-in animation for speech bubble */
 @keyframes pop-in {
   from {
     transform: scale(0.8);
     opacity: 0;
   }
+
   to {
     transform: scale(1);
     opacity: 1;
   }
 }
+
 /* Disable pointer events on raccoon images to avoid interference with button clicks */
 #raccoon,
 #raccoon-game-area {
@@ -111,28 +115,30 @@ h1 {
 #bushes {
   position: fixed;
   bottom: 0px;
-  max-width: 500px;
-  transform: translateX(-30px); /* optional fine-tune offset */
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  z-index: 1;
 }
 
 #bushes-end {
   position: fixed;
   bottom: 0px;
-  max-width: 500px;
-  transform: translateX(-10px); /* optional fine-tune offset */
-}
-
-#clouds {
-  position: fixed;
-  top: 0px;
-  max-width: 450px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  z-index: 1;
 }
 
 /* Basic style for buttons */
 #start-btn,
-#how-to-play-btn{
+#how-to-play-btn {
   font-family: var(--font-text);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   cursor: pointer;
 }
 
@@ -173,7 +179,7 @@ h1 {
 #start-btn:hover,
 #player-form .btn-secondary:hover,
 #game-area .btn-secondary:hover,
-#end-screen .btn-secondary:hover{
+#end-screen .btn-secondary:hover {
   background-color: var(--dark-violet);
   border-color: var(--dark-violet);
   color: white;
@@ -197,9 +203,10 @@ h1 {
   font-size: 1rem;
   color: var(--dark-orange);
 }
+
 /* personaliser border in input text */
 #player-form input[type="text"] {
-border: 3px solid var(--dark-orange)
+  border: 3px solid var(--dark-orange)
 }
 
 /* Enlever le highlight au focus */
@@ -219,7 +226,8 @@ border: 3px solid var(--dark-orange)
 }
 
 /* Form buttons container */
-.submit-btn, .back-btn-form {
+.submit-btn,
+.back-btn-form {
   font-family: var(--font-text);
   cursor: pointer;
 }
@@ -243,14 +251,16 @@ border: 3px solid var(--dark-orange)
 
 #grid-container {
   padding: 1rem;
-  max-width: 400px; /* Limite la largeur sur grands écrans */
-  margin: 0 auto; /* Centre le container */
+  max-width: 400px;
+  /* Limite la largeur sur grands écrans */
+  margin: 0 auto;
+  /* Centre le container */
 }
 
 #grid-container .game-card {
   position: relative;
   width: 80px;
-  height: 120px; 
+  height: 120px;
   perspective: 1000px;
   cursor: pointer;
   overflow: visible;
@@ -272,11 +282,12 @@ border: 3px solid var(--dark-orange)
 }
 
 #grid-container .card-front {
-  transform: rotateY(180deg); 
+  transform: rotateY(180deg);
 }
 
 #grid-container .card-back {
-  transform: rotateY(0); /* Visible par défaut */
+  transform: rotateY(0);
+  /* Visible par défaut */
 }
 
 #grid-container .game-card.flipped .card-front {
@@ -320,7 +331,7 @@ border: 3px solid var(--dark-orange)
   cursor: default;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 0.5px;
-} 
+}
 
 #end-screen {
   display: flex;
@@ -343,12 +354,12 @@ border: 3px solid var(--dark-orange)
   font-size: 1.2rem;
   min-width: 120px;
   border-radius: 6px;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .end-text {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -372,22 +383,101 @@ border: 3px solid var(--dark-orange)
   margin-top: 0.5rem;
 }
 
-#highscores-list{
+#highscores-list {
   margin-top: 0.5rem;
   list-style-position: inside;
   text-align: left;
 }
 
 #highscores-list li {
-  padding-left: 0.8rem; 
+  padding-left: 0.8rem;
 }
 
 .highlight {
-    background-color: beige;
-    color: var(--text-color);
-    font-weight: bold;
-    border: 3px solid var(--dark-orange);
-    border-radius: 10px;
-    padding: 2px 12px;
+  background-color: beige;
+  color: var(--text-color);
+  font-weight: bold;
+  border: 3px solid var(--dark-orange);
+  border-radius: 10px;
+  padding: 2px 12px;
 }
 
+/*Large phone screens to tablet 576px to 768px */
+@media (min-width: 576px) and (max-width: 768px) {
+
+
+  body {
+    background-image: url('images/background/background-tablet.png') !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #start-btn,
+  #how-to-play-btn {
+    font-size: 1.4rem;
+  }
+
+  #grid-container .game-card {
+    width: 70px;
+    height: 105px;
+  }
+}
+
+
+/*Tablet screen to small laptop 769px to 992px */
+@media(min-width: 769px) and (max-width: 992px) {
+  body {
+    background-image: url('images/background/background-laptop.png') !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #grid-container .game-card {
+    width: 75px;
+    height: 112px;
+  }
+}
+/*Small laptop to large laptop 993px to 1200px */
+@media (min-width:993px) and (max-width: 1200px) {
+  body {
+    background-image: url('images/background/background-laptop.png') !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #grid-container .game-card {
+    width: 80px;
+    height: 120px;
+  }
+}
+/*Large laptop and up 1201px+ */
+@media (min-width:1200px) and (max-width: 1400px) {
+  body {
+    background-image: url('images/background/background-large-laptop.png') !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #grid-container .game-card {
+    width: 80px;
+    height: 120px;
+  }
+}
+/* Extra large screens 1400px+ */
+@media (min-width: 1400px) {
+  body {
+    background-image: url('images/background/background-large-laptop.png') !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #grid-container .game-card {
+    width: 80px;
+    height: 120px;
+  }
+}
