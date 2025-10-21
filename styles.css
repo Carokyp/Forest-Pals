@@ -68,7 +68,6 @@ h1 {
 #raccoon {
   position: fixed;
   bottom: 0px;
-  left: 18%;
   max-width: 220px;
   z-index: 10;
 }
@@ -159,10 +158,16 @@ h1 {
 
 /* orange button and form color styles */
 #how-to-play-btn,
-#player-form {
+#player-form, .htp-container {
   background-color: var(--light-orange);
   border: 3px solid var(--dark-orange);
   color: var(--text-color);
+}
+
+#player-form{
+  max-width: 400px;
+  position: relative;
+  top: -30px;
 }
 
 /* personalised button styles for all buttons */
@@ -237,6 +242,10 @@ h1 {
   font-family: var(--font-text);
   font-size: 1.1rem;
   color: var(--text-color);
+}
+
+.htp-container {
+  border-radius: 10px;
 }
 
 #game-area {
@@ -404,8 +413,6 @@ h1 {
 
 /*Large phone screens to tablet 576px to 768px */
 @media (min-width: 576px) and (max-width: 768px) {
-
-
   body {
     background-image: url('images/background/background-tablet.png') !important;
     background-size: cover;
