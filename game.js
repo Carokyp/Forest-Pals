@@ -262,16 +262,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gameArea.appendChild(bottomHUD);
 
-    // Grid container for cards avec Bootstrap
+    // Grid container for cards using CSS Grid
     const gridContainer = document.createElement("div");
     gridContainer.setAttribute("id", "grid-container");
-    gridContainer.classList.add("container-fluid");
+    gridContainer.classList.add("card-grid");
     gameArea.appendChild(gridContainer);
-
-    // Row Bootstrap pour contenir les cartes
-    const row = document.createElement("div");
-    row.classList.add("row", "g-2");
-    gridContainer.appendChild(row);
 
     const cardsPairs = [...cards, ...cards];
 
@@ -283,13 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Create card elements
     cardsPairs.forEach((cardData) => {
-      // Create a Bootstrap column for each card
-      const colElement = document.createElement("div");
-
-      // Responsivity mobile (3x4), tablet and laptop(4x3)
-      colElement.classList.add("col-4", "col-md-3", "col-lg-3"); 
-
-      // Create card element
+      // Create card element directly (no Bootstrap classes needed)
       const cardElement = document.createElement("div");
       cardElement.classList.add("game-card");
       cardElement.setAttribute("data-id", cardData.id);
@@ -308,9 +297,8 @@ document.addEventListener("DOMContentLoaded", () => {
       cardElement.appendChild(front);
       cardElement.appendChild(back);
       
-      // Add the card to the column and then to the row
-      colElement.appendChild(cardElement);
-      row.appendChild(colElement);
+      // Add the card directly to the CSS grid container
+      gridContainer.appendChild(cardElement);
 
       // Add flip effect on click
       cardElement.addEventListener("click", () => handleCardClick(cardElement));

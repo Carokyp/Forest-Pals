@@ -73,16 +73,16 @@ h1 {
 }
 
 #raccoon-game-area {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
-  left: 9rem;
-  max-width: 150px;
+  left: 10rem;
+  max-width: 140px;
   z-index: 10;
 }
 
 #speech-bubble {
-  position: absolute;
-  bottom: 138px;
+  position: fixed;
+  bottom: 135px;
   background-color: var(--light-orange);
   color: var(--text-color);
   border: 3px solid var(--dark-orange);
@@ -90,6 +90,8 @@ h1 {
   font-size: 0.8rem;
   z-index: 20;
   animation: pop-in 0.2s ease-out;
+  transform: translateX(0%); /* Ensure it stays positioned relative to raccoon */
+  margin-left: 75px; /* Half of raccoon width to center above raccoon */
 }
 
 /* Pop-in animation for speech bubble */
@@ -166,8 +168,7 @@ h1 {
 
 #player-form{
   max-width: 400px;
-  position: relative;
-  top: -30px;
+  margin-top: -80px;
 }
 
 /* personalised button styles for all buttons */
@@ -253,29 +254,33 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 100vh;
+  min-height: 105vh;
   position: relative;
   padding: 6rem 0.8rem 0.8rem 0.8rem;
 }
 
 #grid-container {
-  padding: 1rem;
-  max-width: 400px;
-  /* Limite la largeur sur grands écrans */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  justify-content: center;
   margin: 0 auto;
-  /* Centre le container */
+  padding: 1rem;
+  width: fit-content;
 }
 
 #grid-container .game-card {
   position: relative;
-  width: 80px;
-  height: 120px;
+  width: 70px;
+  height: 105px;
   perspective: 1000px;
   cursor: pointer;
   overflow: visible;
   background: transparent !important;
   border: none !important;
   transform-style: preserve-3d;
+  justify-self: center;
+  align-self: center;
 }
 
 #grid-container .game-card img {
@@ -295,8 +300,7 @@ h1 {
 }
 
 #grid-container .card-back {
-  transform: rotateY(0);
-  /* Visible par défaut */
+  transform: rotateY(0); /* Visible by default */
 }
 
 #grid-container .game-card.flipped .card-front {
@@ -309,15 +313,16 @@ h1 {
 
 
 #game-area .back-btn {
-  position: absolute;
+  position: fixed;
   top: 0.8rem;
   left: 0.8rem;
   font-size: 1.1rem;
   padding: 0.7rem 1.2rem;
+  z-index: 20;
 }
 
 #bottom-hud {
-  position: absolute;
+  position: fixed;
   bottom: 0.8rem;
   left: 0.8rem;
   display: flex;
@@ -396,6 +401,7 @@ h1 {
   margin-top: 0.5rem;
   list-style-position: inside;
   text-align: left;
+  padding-left: 0;
 }
 
 #highscores-list li {
@@ -425,9 +431,9 @@ h1 {
     font-size: 1.4rem;
   }
 
-  #grid-container .game-card {
-    width: 70px;
-    height: 105px;
+  #grid-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
   }
 }
 
@@ -441,9 +447,9 @@ h1 {
     background-position: center;
   }
 
-  #grid-container .game-card {
-    width: 75px;
-    height: 112px;
+  #grid-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
   }
 }
 /*Small laptop to large laptop 993px to 1200px */
@@ -455,10 +461,11 @@ h1 {
     background-position: center;
   }
 
-  #grid-container .game-card {
-    width: 80px;
-    height: 120px;
+  #grid-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
   }
+
 }
 /*Large laptop and up 1201px+ */
 @media (min-width:1200px) and (max-width: 1400px) {
@@ -469,10 +476,11 @@ h1 {
     background-position: center;
   }
 
-  #grid-container .game-card {
-    width: 80px;
-    height: 120px;
+  #grid-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
   }
+
 }
 /* Extra large screens 1400px+ */
 @media (min-width: 1400px) {
@@ -483,8 +491,9 @@ h1 {
     background-position: center;
   }
 
-  #grid-container .game-card {
-    width: 80px;
-    height: 120px;
+  #grid-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
   }
+
 }
