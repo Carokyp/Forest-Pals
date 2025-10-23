@@ -28,34 +28,34 @@
 
 /* Reset */
 * {
-  margin: 0;
+  margin: 0; /*Removes default browser spacing on all elements */
   padding: 0;
-  box-sizing: border-box;
-  /* Prevent text selection and dragging */
-  user-select: none;
-  -webkit-user-drag: none;
+  box-sizing: border-box; /* Prevent text selection and dragging */
+  user-select: none; /*Prevents text selection to be highlighted*/
+  -webkit-user-drag: none; /*Prevents dragging*/
 }
 
 /* Page layout */
-html,
 body {
-  width: 100%;
-  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  position: relative; /* For positioning background and other absolute elements */
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  /* center horizontally */
-  align-items: center;
-  /* center vertically */
-  height: 100vh;
-  /* full height of the screen */
-
+/* Universal background that respects 1800px constraint */
+body::before {
+  content: ''; /* Necessary for pseudo-element */
+  position: fixed; /* Creates an invisible element (pseudo-element) that acts as a background layer */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  max-width: 1800px; /* Maximum width for large screens */
   background-image: url('images/background/background-small-screen.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% center;
+  background-size: cover; /* Cover entire viewport */
+  background-repeat: no-repeat; /* Prevent tiling */
+  background-position: center; /* Center the background image */
+  z-index: -1; /* Place behind all content */
 }
 
 /* Titles */
@@ -66,30 +66,37 @@ h1 {
 }
 
 #raccoon {
-  position: fixed;
-  bottom: 0px;
-  max-width: 220px;
+  position: absolute;
+  bottom: 1.4rem;
+  max-width: 13.7rem;
   z-index: 10;
 }
 
 #raccoon-game-area {
-  position: fixed;
-  bottom: 0px;
-  left: 10rem;
-  max-width: 140px;
+  position: absolute;
+  bottom: 3.8rem;
+  left: 70%;
+  transform: translateX(-50%);
+  max-width: 8.75rem;
   z-index: 10;
 }
 
+/* Disable pointer events on raccoon images to avoid interference with button clicks */
+#raccoon,
+#raccoon-game-area {
+  pointer-events: none; /* Prevent interaction with raccoon images */
+}
+
 #speech-bubble {
-  position: fixed;
-  bottom: 135px;
+  position: absolute;
+  bottom: 11.8rem;
   background-color: var(--light-orange);
   color: var(--text-color);
   border: 3px solid var(--dark-orange);
   font-family: var(--font-text);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   z-index: 20;
-  animation: pop-in 0.2s ease-out;
+  animation: pop-in 0.2s ease-out; /* Apply pop-in animation */
   transform: translateX(0%); /* Ensure it stays positioned relative to raccoon */
   margin-left: 75px; /* Half of raccoon width to center above raccoon */
 }
@@ -107,15 +114,9 @@ h1 {
   }
 }
 
-/* Disable pointer events on raccoon images to avoid interference with button clicks */
-#raccoon,
-#raccoon-game-area {
-  pointer-events: none;
-}
-
-#bushes {
-  position: fixed;
-  bottom: 0px;
+#bushes, #bushes-end {
+  position: absolute;
+  bottom: 0;
   left: 0;
   right: 0;
   width: 100%;
@@ -124,16 +125,7 @@ h1 {
   z-index: 1;
 }
 
-#bushes-end {
-  position: fixed;
-  bottom: 0px;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  z-index: 1;
-}
+/* #region personalised button styles for all buttons */
 
 /* Basic style for buttons */
 #start-btn,
@@ -158,20 +150,6 @@ h1 {
   color: white;
 }
 
-/* orange button and form color styles */
-#how-to-play-btn,
-#player-form, .htp-container {
-  background-color: var(--light-orange);
-  border: 3px solid var(--dark-orange);
-  color: var(--text-color);
-}
-
-#player-form{
-  max-width: 400px;
-  margin-top: -80px;
-}
-
-/* personalised button styles for all buttons */
 #start-btn,
 #player-form .btn-secondary,
 #game-area .btn-secondary,
@@ -191,12 +169,26 @@ h1 {
   color: white;
 }
 
+/* orange button and form color styles */
+#how-to-play-btn,
+#player-form,
+.htp-container {
+  background-color: var(--light-orange);
+  border: 3px solid var(--dark-orange);
+  color: var(--text-color);
+}
+
 #how-to-play-btn:hover {
   background-color: var(--dark-orange);
   border-color: var(--dark-orange);
   color: white;
 }
+/* #endregion */
 
+/*#region player form styles */
+#player-form {
+  max-width: 25rem;
+}
 
 #form-instruction {
   font-family: var(--font-text);
@@ -237,6 +229,7 @@ h1 {
   font-family: var(--font-text);
   cursor: pointer;
 }
+/*#endregion*/
 
 /* Instructions text */
 .instructions {
@@ -249,6 +242,7 @@ h1 {
   border-radius: 10px;
 }
 
+/* #region Game area styles */
 #game-area {
   display: flex;
   flex-direction: column;
@@ -256,7 +250,10 @@ h1 {
   justify-content: flex-start;
   min-height: 105vh;
   position: relative;
-  padding: 6rem 0.8rem 0.8rem 0.8rem;
+  padding: 4rem 0.8rem 0.8rem 0.8rem;
+  max-width: 1800px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 #grid-container {
@@ -271,8 +268,8 @@ h1 {
 
 #grid-container .game-card {
   position: relative;
-  width: 70px;
-  height: 105px;
+  width: 4.3rem;
+  height: 6.5rem;
   perspective: 1000px;
   cursor: pointer;
   overflow: visible;
@@ -296,7 +293,7 @@ h1 {
 }
 
 #grid-container .card-front {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg); /* Hidden by default */
 }
 
 #grid-container .card-back {
@@ -304,17 +301,17 @@ h1 {
 }
 
 #grid-container .game-card.flipped .card-front {
-  transform: rotateY(0);
+  transform: rotateY(0); /* Visible when flipped */
 }
 
 #grid-container .game-card.flipped .card-back {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg); /* Hidden when flipped */
 }
 
 
 #game-area .back-btn {
-  position: fixed;
-  top: 0.8rem;
+  position: absolute;
+  top: 0.2rem;
   left: 0.8rem;
   font-size: 1.1rem;
   padding: 0.7rem 1.2rem;
@@ -322,13 +319,15 @@ h1 {
 }
 
 #bottom-hud {
-  position: fixed;
-  bottom: 0.8rem;
-  left: 0.8rem;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  left: 65%;
+  transform: translateX(-50%);
+  bottom: 5rem; /* Position column to the left of raccoon */
+  margin-left: -7.5rem; 
 }
 
 #score,
@@ -340,24 +339,32 @@ h1 {
   font-size: 1.1rem;
   padding: 0.7rem 0rem;
   border-radius: 6px;
-  width: 130px;
+  width: 8rem;
   text-align: center;
   cursor: default;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 0.5px;
 }
 
+/* #endregion */
+
+/*#region End screen styles */
 #end-screen {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  margin: 1rem;
+  padding: 2rem;
   gap: 1rem;
   background-color: var(--light-orange);
   border: 3px solid var(--dark-orange);
   border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18.7rem;
+  z-index: 100;
 }
 
 #retry-btn,
@@ -366,7 +373,7 @@ h1 {
   font-weight: bold;
   padding: 0.8rem 0.8rem;
   font-size: 1.2rem;
-  min-width: 120px;
+  min-width: 7.5rem;
   border-radius: 6px;
   cursor: pointer;
 }
@@ -417,83 +424,304 @@ h1 {
   padding: 2px 12px;
 }
 
+/*²#endregion End screen styles */
+
+
 /*Large phone screens to tablet 576px to 768px */
 @media (min-width: 576px) and (max-width: 768px) {
-  body {
-    background-image: url('images/background/background-tablet.png') !important;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  body::before {
+    background-image: url('images/background/background-tablet.png');
+  }
+
+  h1,
+  #game-title {
+    font-size: 3rem !important;
   }
 
   #start-btn,
   #how-to-play-btn {
-    font-size: 1.4rem;
+    font-size: 1em !important;
+    padding: 1.2rem 2rem !important;
   }
+
 
   #grid-container {
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
+    bottom: 20rem;
+    position: absolute;
+    margin: 0;
   }
+
+  #grid-container .game-card {
+    width: 85px;
+    height: 128px;
+  }
+
+  #speech-bubble {
+    font-size: 1.1rem;
+    padding: 0.8rem 1.2rem;
+    margin-left: 95px;
+    bottom: 12%;
+  }
+
+  #raccoon-game-area {
+    transform: none;
+    transform: scaleX(-1);
+    max-width: 190px;
+  }
+
+  #bottom-hud {
+    flex-direction: row;
+    left: 50%;
+    top: 1rem;
+    bottom: auto;
+    right: auto;
+    transform: translateX(-50%);
+    margin-left: 0;
+    gap: 15px;
+  }
+
+  #raccoon-game-area {
+    left: 0.1rem;
+    transform: none;
+    transform: scaleX(-1);
+    max-width: 190px;
+  }
+  
 }
 
 
 /*Tablet screen to small laptop 769px to 992px */
 @media(min-width: 769px) and (max-width: 992px) {
-  body {
-    background-image: url('images/background/background-laptop.png') !important;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  body::before {
+    background-image: url('images/background/background-laptop.png');
+  }
+
+   h1,
+  #game-title {
+    font-size: 3rem !important;
+  }
+
+  #start-btn,
+  #how-to-play-btn {
+    font-size: 1.2em !important;
+    padding: 1.2rem 2rem !important;
   }
 
   #grid-container {
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 1.2rem;
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+  }
+
+  #grid-container .game-card {
+    width: 95px;
+    height: 142px;
+  }
+
+  #raccoon-game-area {
+    left: 2rem;
+    transform: scaleX(-1);
+    max-width: 220px;
+  }
+
+  #bottom-hud {
+    flex-direction: row;
+    left: 66%;
+    top: 1rem;
+    bottom: auto;
+    right: auto;
+    transform: translateX(-50%);
+    margin-left: 0;
+    gap: 20px;
+  }
+
+  #speech-bubble {
+    font-size: 0.9rem;
+    padding: 1rem 1rem;
+    bottom: 30%;
+    left: auto;
+    right: 65%;
   }
 }
+
 /*Small laptop to large laptop 993px to 1200px */
 @media (min-width:993px) and (max-width: 1200px) {
-  body {
-    background-image: url('images/background/background-laptop.png') !important;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  body::before {
+    background-image: url('images/background/background-laptop.png');
+  }
+
+  h1,
+  #game-title {
+    font-size: 3.5rem !important;
+  }
+
+  #start-btn,
+  #how-to-play-btn {
+    font-size: 1.2em !important;
+    padding: 1.2rem 2rem !important;
   }
 
   #grid-container {
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 1.4rem;
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
   }
 
+  #grid-container .game-card {
+    width: 105px;
+    height: 158px;
+  }
+
+  #raccoon-game-area {
+    left: 5.5rem;
+    transform: scaleX(-1);
+    max-width: 250px;
+  }
+
+  #bottom-hud {
+    flex-direction: row;
+    left: 68%;
+    top: 1rem;
+    bottom: auto;
+    right: auto;
+    transform: translateX(-50%);
+    margin-left: 0;
+    gap: 20px;
+  }
+
+  #speech-bubble {
+    font-size: 1.2rem;
+    padding: 1rem 1rem;
+    bottom: 35%;
+    left: auto;
+    right: 57%;
+  }
 }
+
 /*Large laptop and up 1201px+ */
 @media (min-width:1200px) and (max-width: 1400px) {
-  body {
-    background-image: url('images/background/background-large-laptop.png') !important;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  body::before {
+    background-image: url('images/background/background-large-laptop.png');
+  }
+
+  h1,
+  #game-title {
+    font-size: 4rem !important;
+  }
+
+  #start-btn,
+  #how-to-play-btn {
+    font-size: 1.4rem !important;
+    padding: 1.2rem 2rem !important;
   }
 
   #grid-container {
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 1.6rem;
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
   }
 
+  #grid-container .game-card {
+    width: 115px;
+    height: 173px;
+  }
+
+  #raccoon-game-area {
+    left: 7rem;
+    transform: scaleX(-1);
+    max-width: 300px;
+  }
+
+  #bottom-hud {
+    flex-direction: row;
+    left: 70%;
+    top: 1rem;
+    bottom: auto;
+    right: auto;
+    transform: translateX(-50%);
+    margin-left: 0;
+    gap: 20px;
+  }
+
+  #speech-bubble {
+    font-size: 1.3rem;
+    padding: 1.2rem 1.8rem;
+    bottom: 300px;
+    left: 3rem;
+    right: auto;
+    margin-left: 75px;
+    transform: none;
+  }
 }
+
 /* Extra large screens 1400px+ */
 @media (min-width: 1400px) {
-  body {
-    background-image: url('images/background/background-large-laptop.png') !important;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  body::before {
+    background-image: url('images/background/background-large-laptop.png');
+  }
+
+  h1,
+  #game-title {
+    font-size: 4rem !important;
+  }
+
+  #start-btn,
+  #how-to-play-btn {
+    font-size: 1.4rem !important;
+    padding: 1.2rem 2rem !important;
   }
 
   #grid-container {
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
+    transform: translateX(40%);
   }
+
+  #grid-container .game-card {
+    width: 115px;
+    height: 173px;
+  }
+
+  #raccoon-game-area {
+    left: 8rem;
+    transform: scaleX(-1);
+    max-width: 400px;
+  }
+
+  #bottom-hud {
+    flex-direction: row;
+    left: 50%;
+    top: 1rem;
+    bottom: auto;
+    right: auto;
+    transform: translateX(25%);
+    margin-left: 0;
+    gap: 20px;
+  }
+
+  #speech-bubble {
+    font-size: 1.5rem;
+    padding: 1.2rem 1.8rem;
+    bottom: 60%;
+    left: 3.1rem;
+    right: auto;
+    margin-left: 75px;
+    transform: none;
+  }
+
 
 }

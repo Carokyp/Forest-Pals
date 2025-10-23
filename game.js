@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.createElement("form");
     form.setAttribute("id", "player-form");
     // Add Bootstrap classes to the form
-    form.classList.add("container", "my-4", "p-4", "rounded-4");
+    form.classList.add("container", "mb-4", "p-4", "rounded-4");
 
     // Text instruction
     const paragraph = document.createElement("p");
