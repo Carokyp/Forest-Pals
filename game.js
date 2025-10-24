@@ -244,6 +244,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function generateBoard() {
     const gameArea = document.getElementById("game-area");
+    
+    // clear game area but keep back button
+    const backBtn = gameArea.querySelector('.back-btn');
+    gameArea.innerHTML = '';
+    if (backBtn) gameArea.appendChild(backBtn);
+    
+    // Container flexbox pour raccoon + score + time
+    const uiContainer = document.createElement("div");
+    uiContainer.classList.add("ui-container");
+    
     // Bottom HUD for score and timer
     const bottomHUD = document.createElement("div");
     bottomHUD.setAttribute("id", "bottom-hud");
@@ -260,7 +270,19 @@ document.addEventListener("DOMContentLoaded", () => {
     timerDisplay.textContent = "Time: 00:00";
     bottomHUD.appendChild(timerDisplay);
 
-    gameArea.appendChild(bottomHUD);
+    // Raccoon image
+    const raccoonImage = document.createElement("img");
+    raccoonImage.setAttribute("id", "raccoon-game-area");
+    raccoonImage.src = "images/raccoon/raccoon2.png";
+    raccoonImage.alt = "Raccoon wearing glasses waving cheerfully to the player";
+    raccoonImage.classList.add("img-fluid");
+
+    // Ajouter score/time et raccoon au container flexbox
+    uiContainer.appendChild(bottomHUD);
+    uiContainer.appendChild(raccoonImage);
+    
+    // Ajouter le container au game-area
+    gameArea.appendChild(uiContainer);
 
     // Grid container for cards using CSS Grid
     const gridContainer = document.createElement("div");
