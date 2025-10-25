@@ -404,33 +404,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function raccoonSpeech(message) {
     const gameArea = document.getElementById("game-area");
-    // Remove existing speech bubble if any
-    const existingBubble = document.getElementById("speech-bubble");
-    if (existingBubble) existingBubble.remove();
-    
-    // Create speech bubble with Bootstrap classes
+    // Remove existing speech bubble container if any
+    const existingContainer = document.querySelector(".speech-bubble-container");
+    if (existingContainer) existingContainer.remove();
+
+    // Create container
+    const bubbleContainer = document.createElement("div");
+    bubbleContainer.className = "speech-bubble-container";
+
+    // Create speech bubble
     const speechBubble = document.createElement("div");
     speechBubble.setAttribute("id", "speech-bubble");
     speechBubble.textContent = message;
-    
-    // Base Bootstrap classes for styling
     speechBubble.classList.add(
-      "alert", // Bootstrap alert component with success styling
-      "text-center", "fw-bold", // Center text and make it bold
-      "mx-1", "my-3", 
-      "rounded-pill", // Rounded pill shape
-      "shadow-sm", // Subtle shadow
-      "border-0" // Remove default border
+      "alert",
+      "text-center", "fw-bold",
+      "mx-1", "my-3",
+      "rounded-pill",
+      "shadow-sm",
+      "border-0"
     );
-    
-    // Add responsive width control
     speechBubble.style.width = "fit-content";
 
-    gameArea.appendChild(speechBubble);
+    // Add bubble to container
+    bubbleContainer.appendChild(speechBubble);
+    // Add container to game area
+    gameArea.appendChild(bubbleContainer);
 
     // Remove speech bubble after 3 seconds
     setTimeout(() => {
-      speechBubble.remove();
+      bubbleContainer.remove();
     }, 3000);
   }
 
