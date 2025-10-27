@@ -580,7 +580,7 @@ h1 {
   .ui-container {
     position: absolute;
     bottom: 3.9rem;
-    left: 4rem;
+    left: 0;
     transform: none;
     display: block;
     width: auto;
@@ -591,11 +591,44 @@ h1 {
   #raccoon-game-area {
     position: static;
     pointer-events: none;
-    max-width: 300px;
+    max-width: 250px;
     width: 100%;
     height: auto;
     transform: scaleX(-1);
     transform-origin: center;
+  }
+
+  #bottom-hud {
+    position: fixed;
+    top: 1.80rem;
+    right: 10rem;
+    flex-direction: row;
+    justify-content: flex-end;
+    z-index: 20;
+  }
+
+  .speech-bubble-container {
+    bottom: 40%;
+    width: 16rem;
+    left: 16%;
+  }
+
+  #speech-bubble {
+    width: 16rem;
+    min-width: 16rem;
+    max-width: 25rem;
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  #score,
+  #timer {
+    font-size: 1.2rem;
+    width: 9rem;
+  }
+
+  #game-area .back-btn {
+    font-size: 1.2rem;
   }
 
 }
@@ -656,7 +689,7 @@ h1 {
   #bottom-hud {
     position: fixed;
     top: 1.75rem;
-    right: 10.5rem;
+    right: 9.5rem;
     flex-direction: row;
     justify-content: flex-end;
     z-index: 20;
@@ -665,7 +698,7 @@ h1 {
   .speech-bubble-container {
     bottom: 50%;
     width: 25rem;
-    left: 23%;
+    left: 15%;
   }
 
   #speech-bubble {
@@ -722,7 +755,7 @@ h1 {
   .ui-container {
     position: absolute;
     bottom: 3.9rem;
-    left: 10rem;
+    left: 6rem;
     transform: none;
     display: block;
     width: auto;
@@ -740,7 +773,7 @@ h1 {
     transform-origin: center;
   }
 
- #bottom-hud {
+  #bottom-hud {
     position: fixed;
     top: 1.80rem;
     right: 20rem;
@@ -772,8 +805,6 @@ h1 {
   #game-area .back-btn {
     font-size: 1.4rem;
   }
-
-  
 
 
 }
@@ -831,13 +862,16 @@ h1 {
     transform-origin: center;
   }
 
- #bottom-hud {
+  #game-area {
+    position: relative;
+  }
+
+  #bottom-hud {
     position: fixed;
-    top: 1.80rem;
-    right: 20rem;
+    top: 4%;
+    right: 23%;
     flex-direction: row;
-    justify-content: flex-end;
-    z-index: 20;
+    z-index: 10;
   }
 
   .speech-bubble-container {
