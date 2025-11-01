@@ -74,34 +74,43 @@ body::before {
 }
 
 /* Titles */
+
+#menu{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  place-items: center;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+#game-title {
+  font-family: var(--font-title);
+  font-size: clamp(3rem, 5vw, 4rem);
+  color: var(--text-color);
+  justify-items: center;
+}
+
+#menu-btn {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+#raccoon {
+  grid-row: 3;
+  align-self: end;
+  width: clamp(10rem, 25vw, 17rem);
+  height: auto;
+}
+
+
 h1 {
   font-family: var(--font-title);
   font-size: 3rem;
   color: var(--text-color);
 }
 
-#raccoon {
-  position: absolute;
-  bottom: 1.4rem;
-  max-width: 13.7rem;
-  z-index: 10;
-}
-
-.ui-container {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  bottom: 7%;
-  left: 50%;
-  transform: translateX(-50%);
-  gap: 0.3rem;
-  z-index: 10;
-  min-width: 20rem;
-  min-height: auto;
-  padding: 0rem 1rem;
-}
 
 #raccoon-game-area {
   width: 8rem;
@@ -111,30 +120,17 @@ h1 {
 
 #raccoon,
 #raccoon-game-area {
-  pointer-events: none;
-  /* Prevent interaction with raccoon images */
+  pointer-events: none; /* Prevent interaction with raccoon images */
 }
 
 .speech-bubble-container {
-  position: absolute;
-  left: 50%;
-  bottom: 22%;
-  transform: translateX(-50%);
-  width: 18rem;
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 30;
+
 }
 
 #speech-bubble {
   width: 18rem;
-  min-width: 18rem;
-  max-width: 18rem;
-  height: auto;
   text-align: center;
   word-break: break-word;
-  overflow-wrap: break-word;
   font-size: 0.8rem;
   padding: 1rem;
   pointer-events: auto;
@@ -173,7 +169,7 @@ h1 {
 #start-btn,
 #how-to-play-btn {
   font-family: var(--font-text);
-  font-size: 1.2rem;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
   cursor: pointer;
 }
 
@@ -485,64 +481,6 @@ h1 {
     font-size: 3rem !important;
   }
 
-  #start-btn,
-  #how-to-play-btn {
-    font-size: 1em !important;
-    padding: 1.2rem 2rem !important;
-  }
-
-
-  #grid-container {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    bottom: 20rem;
-    position: absolute;
-    margin: 0;
-  }
-
-  #grid-container .game-card {
-    width: 90px;
-    height: 135px;
-  }
-
-  .speech-bubble-container {
-    bottom: 31%;
-    width: 25rem;
-  }
-
-  #speech-bubble {
-    width: 25rem;
-    min-width: 25rem;
-    max-width: 28rem;
-    font-size: 1rem;
-  }
-
-  #bottom-hud {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    order: 1;
-    top: 2rem;
-  }
-
-  #score,
-  #timer {
-    font-size: 1rem;
-    width: 8rem;
-  }
-
-  #raccoon-game-area {
-    width: 12rem;
-    height: auto;
-    order: 2;
-  }
-
-  .ui-container {
-    min-width: 30rem;
-  }
-
 }
 
 /*Tablet screen to small laptop 769px to 992px */
@@ -551,85 +489,7 @@ h1 {
     background-image: url('images/background/background-laptop.png');
   }
 
-  h1,
-  #game-title {
-    font-size: 3rem !important;
-  }
 
-  #start-btn,
-  #how-to-play-btn {
-    font-size: 1.2em !important;
-    padding: 1.2rem 2rem !important;
-  }
-
-  #grid-container {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-    position: absolute;
-    right: 4rem;
-    top: 45%;
-    transform: translateY(-50%);
-    margin: 0;
-  }
-
-  #grid-container .game-card {
-    width: 95px;
-    height: 142px;
-  }
-
-  .ui-container {
-    position: absolute;
-    bottom: 3.9rem;
-    left: 0;
-    transform: none;
-    display: block;
-    width: auto;
-    height: auto;
-    pointer-events: none;
-  }
-
-  #raccoon-game-area {
-    position: static;
-    pointer-events: none;
-    max-width: 250px;
-    width: 100%;
-    height: auto;
-    transform: scaleX(-1);
-    transform-origin: center;
-  }
-
-  #bottom-hud {
-    position: fixed;
-    top: 1.80rem;
-    right: 10rem;
-    flex-direction: row;
-    justify-content: flex-end;
-    z-index: 20;
-  }
-
-  .speech-bubble-container {
-    bottom: 40%;
-    width: 16rem;
-    left: 16%;
-  }
-
-  #speech-bubble {
-    width: 16rem;
-    min-width: 16rem;
-    max-width: 25rem;
-    font-size: 1rem;
-    padding: 1rem;
-  }
-
-  #score,
-  #timer {
-    font-size: 1.2rem;
-    width: 9rem;
-  }
-
-  #game-area .back-btn {
-    font-size: 1.2rem;
-  }
 
 }
 
@@ -642,81 +502,6 @@ h1 {
   h1,
   #game-title {
     font-size: 3.5rem !important;
-  }
-
-  #start-btn,
-  #how-to-play-btn {
-    font-size: 1.2em !important;
-    padding: 1.2rem 2rem !important;
-  }
-
-  #grid-container {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-    position: absolute;
-    right: 4rem;
-    top: 45%;
-    transform: translateY(-50%);
-    margin: 0;
-  }
-
-  #grid-container .game-card {
-    width: 95px;
-    height: 142px;
-  }
-
-  .ui-container {
-    position: absolute;
-    bottom: 3.9rem;
-    left: 4rem;
-    transform: none;
-    display: block;
-    width: auto;
-    height: auto;
-    pointer-events: none;
-  }
-
-  #raccoon-game-area {
-    position: static;
-    pointer-events: none;
-    max-width: 300px;
-    width: 100%;
-    height: auto;
-    transform: scaleX(-1);
-    transform-origin: center;
-  }
-
-  #bottom-hud {
-    position: fixed;
-    top: 1.75rem;
-    right: 9.5rem;
-    flex-direction: row;
-    justify-content: flex-end;
-    z-index: 20;
-  }
-
-  .speech-bubble-container {
-    bottom: 50%;
-    width: 25rem;
-    left: 15%;
-  }
-
-  #speech-bubble {
-    width: 25rem;
-    min-width: 25rem;
-    max-width: 32rem;
-    font-size: 1.3rem;
-  }
-
-  #score,
-  #timer {
-    font-size: 1.2rem;
-    width: 9rem;
-  }
-
-  #game-area .back-btn {
-    font-size: 1.1rem;
-
   }
 }
 
@@ -731,82 +516,7 @@ h1 {
     font-size: 4rem !important;
   }
 
-  #start-btn,
-  #how-to-play-btn {
-    font-size: 1.4rem !important;
-    padding: 1.2rem 2rem !important;
-  }
-
-  #grid-container {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-    position: absolute;
-    right: 16rem;
-    top: 47%;
-    transform: translateY(-50%);
-    margin: 0;
-  }
-
-  #grid-container .game-card {
-    width: 95px;
-    height: 142px;
-  }
-
-  .ui-container {
-    position: absolute;
-    bottom: 3.9rem;
-    left: 6rem;
-    transform: none;
-    display: block;
-    width: auto;
-    height: auto;
-    pointer-events: none;
-  }
-
-  #raccoon-game-area {
-    position: static;
-    pointer-events: none;
-    max-width: 350px;
-    width: 100%;
-    height: auto;
-    transform: scaleX(-1);
-    transform-origin: center;
-  }
-
-  #bottom-hud {
-    position: fixed;
-    top: 1.80rem;
-    right: 20rem;
-    flex-direction: row;
-    justify-content: flex-end;
-    z-index: 20;
-  }
-
-  .speech-bubble-container {
-    bottom: 55%;
-    width: 30rem;
-    left: 25%;
-  }
-
-  #speech-bubble {
-    width: 30rem;
-    min-width: 30rem;
-    max-width: 32rem;
-    font-size: 1.5rem;
-    padding: 1rem;
-  }
-
-  #score,
-  #timer {
-    font-size: 1.5rem;
-    width: 11rem;
-  }
-
-  #game-area .back-btn {
-    font-size: 1.4rem;
-  }
-
-
+  
 }
 
 /* Extra large screens 1400px+ */
@@ -820,82 +530,5 @@ h1 {
     font-size: 4rem !important;
   }
 
-  #start-btn,
-  #how-to-play-btn {
-    font-size: 1.4rem !important;
-    padding: 1.2rem 2rem !important;
-  }
-
-  #grid-container {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-    position: absolute;
-    right: 16rem;
-    top: 48%;
-    transform: translateY(-50%);
-    margin: 0;
-  }
-
-  #grid-container .game-card {
-    width: 95px;
-    height: 142px;
-  }
-
-  .ui-container {
-    position: absolute;
-    bottom: 3.9rem;
-    left: 10rem;
-    transform: none;
-    display: block;
-    width: auto;
-    height: auto;
-    pointer-events: none;
-  }
-
-  #raccoon-game-area {
-    position: static;
-    pointer-events: none;
-    max-width: 350px;
-    width: 100%;
-    height: auto;
-    transform: scaleX(-1);
-    transform-origin: center;
-  }
-
-  #game-area {
-    position: relative;
-  }
-
-  #bottom-hud {
-    position: fixed;
-    top: 4%;
-    right: 23%;
-    flex-direction: row;
-    z-index: 10;
-  }
-
-  .speech-bubble-container {
-    bottom: 55%;
-    width: 30rem;
-    left: 25%;
-  }
-
-  #speech-bubble {
-    width: 30rem;
-    min-width: 30rem;
-    max-width: 32rem;
-    font-size: 1.5rem;
-    padding: 1rem;
-  }
-
-  #score,
-  #timer {
-    font-size: 1.5rem;
-    width: 11rem;
-  }
-
-  #game-area .back-btn {
-    font-size: 1.4rem;
-  }
-
+  
 }
