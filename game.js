@@ -82,17 +82,17 @@ document.addEventListener("DOMContentLoaded", () => {
    * Compatible with Bootstrap classes
    */
   function show(section) {
-    // Hide all sections using Bootstrap classes
+    // Hide all sections
     sections.forEach((element) => {
-      element.classList.add('d-none');
-      element.classList.remove('d-flex');
-      element.style.visibility = 'hidden';
+      element.classList.add("d-none");
+      element.style.visibility = "hidden";
+      element.style.display = "none";
     });
 
-    // Show the selected section using Bootstrap classes
-    section.classList.remove('d-none');
-    section.classList.add('d-flex');
-    section.style.visibility = 'visible';
+    // Show the selected section
+    section.classList.remove("d-none");
+    section.style.visibility = "visible";
+    section.style.display = "grid";
   }
 
   /**

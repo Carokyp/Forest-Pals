@@ -8,11 +8,6 @@
   display: none;
 }
 
-/* visible sections by default */
-#menu {
-  display: flex;
-}
-
 :root {
   /* Colors */
   --text-color: #73463a;
@@ -28,60 +23,44 @@
 
 /* Reset */
 * {
-  margin: 0;
-  /*Removes default browser spacing on all elements */
+  margin: 0; /*Removes default browser spacing on all elements */
   padding: 0;
-  box-sizing: border-box;
-  /* Prevent text selection and dragging */
-  user-select: none;
-  /*Prevents text selection to be highlighted*/
-  -webkit-user-drag: none;
-  /*Prevents dragging*/
+  box-sizing: border-box; /* Prevent text selection and dragging */
+  user-select: none; /*Prevents text selection to be highlighted*/
+  -webkit-user-drag: none; /*Prevents dragging*/
 }
 
 /* Page layout */
 body {
-  overflow-x: hidden;
-  /* Prevent horizontal scroll */
-  position: relative;
-  /* For positioning background and other absolute elements */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  position: relative; /* For positioning background and other absolute elements */
 }
 
 /* Universal background that respects 1800px constraint */
 body::before {
-  content: '';
-  /* Necessary for pseudo-element */
-  position: fixed;
-  /* Creates an invisible element (pseudo-element) that acts as a background layer */
+  content: ''; /* Necessary for pseudo-element */
+  position: fixed; /* Creates an invisible element (pseudo-element) that acts as a background layer */
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100vw;
-  /* Full viewport width */
-  height: 100vh;
-  /* Full viewport height */
-  max-width: 1800px;
-  /* Maximum width for large screens */
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  max-width: 1800px; /* Maximum width for large screens */
   background-image: url('images/background/background-small-screen.png');
-  background-size: cover;
-  /* Cover entire viewport */
-  background-repeat: no-repeat;
-  /* Prevent tiling */
-  background-position: center;
-  /* Center the background image */
-  z-index: -1;
-  /* Place behind all content */
+  background-size: cover; /* Cover entire viewport */
+  background-repeat: no-repeat; /* Prevent tiling */
+  background-position: center; /* Center the background image */
+  z-index: -1; /* Place behind all content */
 }
 
-/* Titles */
+/* #region Menu styles */
 
-#menu{
+#menu {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
   place-items: center;
   min-height: 100dvh;
-  width: 100%;
 }
 
 #game-title {
@@ -89,6 +68,7 @@ body::before {
   font-size: clamp(3rem, 5vw, 4rem);
   color: var(--text-color);
   justify-items: center;
+  margin-top: 4rem;
 }
 
 #menu-btn {
@@ -100,55 +80,14 @@ body::before {
 #raccoon {
   grid-row: 3;
   align-self: end;
-  width: clamp(10rem, 25vw, 17rem);
-  height: auto;
-}
-
-
-h1 {
-  font-family: var(--font-title);
-  font-size: 3rem;
-  color: var(--text-color);
-}
-
-
-#raccoon-game-area {
-  width: 8rem;
-  height: auto;
-  order: 2;
+  width: clamp(12rem, 25vw, 17rem);
 }
 
 #raccoon,
 #raccoon-game-area {
-  pointer-events: none; /* Prevent interaction with raccoon images */
-}
-
-.speech-bubble-container {
-
-}
-
-#speech-bubble {
-  width: 18rem;
-  text-align: center;
-  word-break: break-word;
-  font-size: 0.8rem;
-  padding: 1rem;
-  pointer-events: auto;
-  animation: pop-in 0.2s ease-out;
-  font-family: var(--font-text);
-}
-
-/* Pop-in animation for speech bubble */
-@keyframes pop-in {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+  display: block;
+  pointer-events: none;
+  user-select: none;
 }
 
 #bushes,
@@ -162,6 +101,54 @@ h1 {
   object-fit: cover;
   z-index: 1;
 }
+
+#raccoon-game-area {
+  width: 8rem;
+  height: auto;
+  order: 2;
+}
+
+#bushes,
+#bushes-end {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  z-index: 1;
+}
+/* #endregion Menu styles */
+
+
+/* #region How to play area styles */
+#how-to-play-area {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  place-items: center;
+  min-height: 100dvh;
+}
+
+.htp-title {
+  font-family: var(--font-title);
+  font-size: 3rem;
+  color: var(--text-color);
+}
+
+.instructions-text {
+  font-family: var(--font-text);
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+.htp-container {
+  border-radius: 10px;
+  margin: 1rem;
+}
+/* #endregion How to play area styles */
+
 
 /* #region personalised button styles for all buttons */
 
@@ -272,17 +259,6 @@ h1 {
 
 /*#endregion*/
 
-/* Instructions text */
-.instructions {
-  font-family: var(--font-text);
-  font-size: 1.1rem;
-  color: var(--text-color);
-}
-
-.htp-container {
-  border-radius: 10px;
-}
-
 /* #region Game area styles */
 #game-area {
   display: flex;
@@ -388,6 +364,35 @@ h1 {
   border-radius: 6px;
   width: 7rem;
 }
+
+.speech-bubble-container {
+
+}
+
+#speech-bubble {
+  width: 18rem;
+  text-align: center;
+  word-break: break-word;
+  font-size: 0.8rem;
+  padding: 1rem;
+  pointer-events: auto;
+  animation: pop-in 0.2s ease-out;
+  font-family: var(--font-text);
+}
+
+/* Pop-in animation for speech bubble */
+@keyframes pop-in {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 
 /* #endregion */
 
