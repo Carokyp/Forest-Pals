@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,42 +31,42 @@
           How to Play
         </button>
       </div>
-      <!-- Images for the background-->
+      <!-- Images of the raccoon-->
       <img id="raccoon" src="images/raccoon/raccoon1.png" alt="Raccoon wearing glasses waving cheerfully to the player"
         class="img-fluid">
     </section>
 
     <!-- How to Play area-->
-   <section id="how-to-play-area">
-        <div>
-          <h1 class="htp-title mt-3 mb-3 fw-bold">How to Play</h1>
-        </div>
-        <!-- Instructions -->
+    <section id="how-to-play-area">
+      <div>
+        <h1 class="htp-title mt-3 mb-3 fw-bold">How to Play</h1>
+      </div>
+      <!-- Instructions -->
       <div class="instructions-text htp-container fw-bold p-3">
-          <p>
-            Raccoon is looking for all his friends in the forest. But they are
-            hiding! It is your job to help him find them.
-          </p>
+        <p>
+          Raccoon is looking for all his friends in the forest. But they are
+          hiding! It is your job to help him find them.
+        </p>
 
-          <ol>
-            <li>Flip over two cards each turn.</li>
-            <li>
-              If both cards show the same animal, great! You score a point.
-            </li>
-            <li>
-              If they are different animals, they will turn back face down
-              again.
-            </li>
-            <li>
-              Be quick! There is a timer that keeps getting faster as you go
-              through the level.
-            </li>
-            <li>Find all the pairs before time runs out to win the game!</li>
-          </ol>
-        </div>
-        <div class="mt-3 mb-3">
-          <button class="back-btn btn btn-secondary fw-bold">Back</button>
-        </div>
+        <ol>
+          <li>Flip over two cards each turn.</li>
+          <li>
+            If both cards show the same animal, great! You score a point.
+          </li>
+          <li>
+            If they are different animals, they will turn back face down
+            again.
+          </li>
+          <li>
+            Be quick! There is a timer that keeps getting faster as you go
+            through the level.
+          </li>
+          <li>Find all the pairs before time runs out to win the game!</li>
+        </ol>
+      </div>
+      <div class="mt-3 mb-3">
+        <button class="back-btn btn btn-secondary fw-bold">Back</button>
+      </div>
       </div>
     </section>
 
@@ -74,52 +75,56 @@
       <button class="back-btn btn btn-secondary fw-bold">Back</button>
     </div>
 
-    <!-- End Screen-->
-   <section id="end-screen">
-      <h1 id="end-title">
-        Well done, <span id="player-name"></span>!
-      </h1>
-      <div class="end-text">
-        <h2 class="fw-bold">
-          Your time: <span id="player-time">00:00</span>
-        </h2>
-        <div id="highscores">
-          <h3 class="fw-bold mb-3">
-            <i class="fa-solid fa-trophy"></i> High Scores
-          </h3>
-          <ol id="highscores-list">
-            <li>
-              <span class="hs-name">Caro</span> —
-              <span class="hs-time">00:30</span>
-            </li>
-            <li>
-              <span class="hs-name">Ethan</span> —
-              <span class="hs-time">00:50</span>
-            </li>
-            <li>
-              <span class="hs-name">Luna</span> —
-              <span class="hs-time">01:20</span>
-            </li>
-            <li>
-              <span class="hs-name">Martin</span> —
-              <span class="hs-time">01:30</span>
-            </li>
-            <li>
-              <span class="hs-name">Sam</span> —
-              <span class="hs-time">01:40</span>
-            </li>
-          </ol>
-        </div>
-      </div>
+    <!-- Player Form-->
+    <section id="player-form-area">
+      <img id="raccoon" src="images/raccoon/raccoon1.png" alt="Raccoon wearing glasses waving cheerfully to the player"
+        class="img-fluid">
+    </section>
 
-      <!-- End Screen buttons -->
-      <div>
-        <button id="retry-btn" class="btn btn-secondary fw-bold">
-          Retry
-        </button>
-        <button id="main-menu-btn" class="btn btn-secondary fw-bold">
-          Main menu
-        </button>
+    <!-- End Screen-->
+    <section id="end-screen">
+      <div class="end-screen-container">
+        <h1 id="end-title">
+          Well done, <span id="player-name"></span>!
+        </h1>
+        <div class="end-text">
+          <h2 class="fw-bold">
+            Your time: <span id="player-time">00:00</span>
+          </h2>
+          <div id="highscores">
+            <h3 class="fw-bold mb-3">
+              <i class="fa-solid fa-trophy"></i> High Scores
+            </h3>
+            <ol id="highscores-list">
+              <li>
+                <span class="hs-name">Caro</span> —
+                <span class="hs-time">00:30</span>
+              </li>
+              <li>
+                <span class="hs-name">Ethan</span> —
+                <span class="hs-time">00:50</span>
+              </li>
+              <li>
+                <span class="hs-name">Luna</span> —
+                <span class="hs-time">01:20</span>
+              </li>
+              <li>
+                <span class="hs-name">Martin</span> —
+                <span class="hs-time">01:30</span>
+              </li>
+              <li>
+                <span class="hs-name">Sam</span> —
+                <span class="hs-time">01:40</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- End Screen buttons -->
+        <div class="end-buttons">
+          <button id="retry-btn" class="btn btn-secondary fw-bold">Retry</button>
+          <button id="main-menu-btn" class="btn btn-secondary fw-bold">Main menu</button>
+        </div>
       </div>
     </section>
   </main>
@@ -127,8 +132,9 @@
   <!-- JS-->
   <script src="game.js"></script>
   <script src="https://kit.fontawesome.com/e3247db897.js" crossorigin="anonymous"></script>
-  
+
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sections = [
     document.getElementById("menu"),
     document.getElementById("how-to-play-area"),
+    document.getElementById("player-form-area"),
     document.getElementById("game-area"),
     document.getElementById("end-screen"),
   ];
@@ -82,14 +83,12 @@ document.addEventListener("DOMContentLoaded", () => {
    * Compatible with Bootstrap classes
    */
   function show(section) {
-    // Hide all sections
     sections.forEach((element) => {
       element.classList.add("d-none");
       element.style.visibility = "hidden";
       element.style.display = "none";
     });
 
-    // Show the selected section
     section.classList.remove("d-none");
     section.style.visibility = "visible";
     section.style.display = "grid";
@@ -102,24 +101,20 @@ document.addEventListener("DOMContentLoaded", () => {
    */
 
   function createForm() {
-
     const form = document.createElement("form");
     form.setAttribute("id", "player-form");
-    // Add Bootstrap classes to the form
-    form.classList.add("container", "mb-4", "p-4", "rounded-4");
+    form.classList.add("p-4", "rounded-4");
 
     // Text instruction
     const paragraph = document.createElement("p");
     paragraph.setAttribute("id", "form-instruction");
     paragraph.textContent = "Enter your name to start the game!";
-    // Add Bootstrap classes for the text
     paragraph.classList.add("text-center", "fw-bold", "mb-3");
 
     // Input field
     const input = document.createElement("input");
     input.setAttribute("type", "text");
-    input.classList.add("player-input", "rounded-3", "mb-3", "px-2");
-    // Add Bootstrap classes for the input
+    input.classList.add("player-input", "rounded-3", "px-2");
     input.classList.add("form-control", "form-control-lg", "rounded-2", "mb-3");
     input.setAttribute("placeholder", "Your Name...");
 
@@ -128,22 +123,24 @@ document.addEventListener("DOMContentLoaded", () => {
     submit.setAttribute("type", "submit");
     submit.setAttribute("value", "Start Game");
     submit.classList.add("submit-btn");
-    // Add Bootstrap classes for the submit button
-    submit.classList.add("btn","btn-secondary","py-2","px-3","fw-bold");
+    submit.classList.add("btn", "btn-secondary", "py-2", "px-3", "fw-bold");
 
     // Back button
     const backBtn = document.createElement("button");
     backBtn.setAttribute("type", "button");
     backBtn.textContent = "Back";
     backBtn.classList.add("back-btn-form", "back-btn");
-    // Classes Bootstrap pour le bouton back
-    backBtn.classList.add("btn","btn-secondary","py-2","px-3","fw-bold");
+    backBtn.classList.add("btn", "btn-secondary", "py-2", "px-3", "fw-bold");
 
     // Container for both buttons
     const buttonContainer = document.createElement("div");
     buttonContainer.classList.add("button-row");
-    // Classes Bootstrap pour le container des boutons
-    buttonContainer.classList.add("d-flex","justify-content-center", "gap-3", "mb-2");
+    buttonContainer.classList.add(
+      "d-flex",
+      "justify-content-center",
+      "gap-3",
+      "mb-2"
+    );
     buttonContainer.append(submit, backBtn);
 
     // Add elements to the form
@@ -163,17 +160,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Show message to enter name
         const msgWrapper = document.createElement("div");
-        msgWrapper.classList.add("d-flex", "justify-content-center", "mt-3", "mb-0");
+        msgWrapper.classList.add("d-flex", "justify-content-center", "mb-0");
 
         const enterNameMsg = document.createElement("div");
         enterNameMsg.textContent = "Please enter your name to start the game!";
-        enterNameMsg.classList.add("enterNameMsg", "px-3", "py-2", "text-center", "rounded-2", "fw-medium");
-        
+        enterNameMsg.classList.add(
+          "enterNameMsg",
+          "px-3",
+          "mb-3",
+          "py-2",
+          "text-center",
+          "rounded-2",
+          "fw-medium"
+        );
+
         msgWrapper.appendChild(enterNameMsg);
-        form.appendChild(msgWrapper);
+        form.insertBefore(msgWrapper, buttonContainer);
       } else {
         playerName = input.value.trim();
-        show(sections[2]);
+        show(sections[3]);
         resetGame();
       }
     });
@@ -185,47 +190,55 @@ document.addEventListener("DOMContentLoaded", () => {
   show(sections[0]);
 
   // Universal click handler for all buttons using event delegation
-  document.addEventListener('click', (e) => {
+  document.addEventListener("click", (e) => {
     // Start Game button
-    if (e.target && e.target.id === 'start-btn') {
-      console.log("Start button clicked!");
+    if (e.target && e.target.id === "start-btn") {
       howToPlayBtn.style.display = "none";
       gameTitle.style.display = "none";
       startBtn.style.display = "none";
 
       const form = createForm();
-      menu.appendChild(form);
+      const playerFormArea = document.getElementById("player-form-area");
+      const raccoon = document.getElementById("raccoon");
+
+      const existingForm = document.getElementById("player-form");
+      if (existingForm) existingForm.remove();
+      if (raccoon && playerFormArea.contains(raccoon)) {
+        playerFormArea.insertBefore(form, raccoon);
+      } else {
+        playerFormArea.appendChild(form);
+      }
+      show(sections[2]); // Show player form section
     }
-    
+
     // How to Play button
-    if (e.target && e.target.id === 'how-to-play-btn') {
+    if (e.target && e.target.id === "how-to-play-btn") {
       console.log("How to Play button clicked!");
       show(sections[1]); // Show how-to-play section
     }
-    
-    // Back buttons 
-    if (e.target && e.target.classList.contains('back-btn')) {
-      console.log("Back button clicked!");
+
+    // Back buttons
+    if (e.target && e.target.classList.contains("back-btn")) {
       startBtn.style.display = "block";
       howToPlayBtn.style.display = "block";
       gameTitle.style.display = "block";
       show(sections[0]); // Go to main menu
-      
+
       // If it's a form back button, also remove the form
-      if (e.target.classList.contains('back-btn-form')) {
+      if (e.target.classList.contains("back-btn-form")) {
         const existingForm = document.getElementById("player-form");
         if (existingForm) existingForm.remove();
       }
     }
-    
+
     // End screen buttons, retry and main menu
-    if (e.target && e.target.id === 'retry-btn') {
+    if (e.target && e.target.id === "retry-btn") {
       console.log("Retry button clicked!");
-      show(sections[2]); // Go to game area
+      show(sections[3]); // Go to game area
       resetGame();
     }
-    
-    if (e.target && e.target.id === 'main-menu-btn') {
+
+    if (e.target && e.target.id === "main-menu-btn") {
       console.log("Main menu button clicked!");
       // Restore menu button visibility
       startBtn.style.display = "block";
@@ -244,45 +257,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function generateBoard() {
     const gameArea = document.getElementById("game-area");
-    
-    // clear game area but keep back button
-    const backBtn = gameArea.querySelector('.back-btn');
-    gameArea.innerHTML = '';
-    if (backBtn) gameArea.appendChild(backBtn);
-    
-    // Container flexbox pour raccoon + score + time
-    const uiContainer = document.createElement("div");
-    uiContainer.classList.add("ui-container");
-    
-    // Bottom HUD for score and timer
-    const bottomHUD = document.createElement("div");
-    bottomHUD.setAttribute("id", "bottom-hud");
 
-    // Score and timer display
+    gameArea.innerHTML = "";
+
+    // Top HUD for score and timer
+    const topHUD = document.createElement("div");
+    topHUD.setAttribute("id", "top-hud");
+
+    // clear game area but keep back button
+    const backBtn = document.createElement("button");
+    backBtn.classList.add("back-btn", "btn", "btn-secondary", "fw-bold");
+    backBtn.textContent = "Back";
+    topHUD.appendChild(backBtn);
+
+    // Score
     const scoreDisplay = document.createElement("div");
     scoreDisplay.setAttribute("id", "score");
     scoreDisplay.textContent = "Score: 0 / 6";
-    bottomHUD.appendChild(scoreDisplay);
+    topHUD.appendChild(scoreDisplay);
 
-    // Timer display
+    // Timer
     const timerDisplay = document.createElement("div");
     timerDisplay.setAttribute("id", "timer");
     timerDisplay.textContent = "Time: 00:00";
-    bottomHUD.appendChild(timerDisplay);
+    topHUD.appendChild(timerDisplay);
 
-    // Raccoon image
-    const raccoonImage = document.createElement("img");
-    raccoonImage.setAttribute("id", "raccoon-game-area");
-    raccoonImage.src = "images/raccoon/raccoon2.png";
-    raccoonImage.alt = "Raccoon wearing glasses waving cheerfully to the player";
-    raccoonImage.classList.add("img-fluid");
-
-    // Ajouter score/time et raccoon au container flexbox
-    uiContainer.appendChild(bottomHUD);
-    uiContainer.appendChild(raccoonImage);
-    
-    // Ajouter le container au game-area
-    gameArea.appendChild(uiContainer);
+    // Add top HUD to game area
+    gameArea.appendChild(topHUD);
 
     // Grid container for cards using CSS Grid
     const gridContainer = document.createElement("div");
@@ -318,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       cardElement.appendChild(front);
       cardElement.appendChild(back);
-      
+
       // Add the card directly to the CSS grid container
       gridContainer.appendChild(cardElement);
 
@@ -404,36 +405,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function raccoonSpeech(message) {
     const gameArea = document.getElementById("game-area");
-    // Remove existing speech bubble container if any
-    const existingContainer = document.querySelector(".speech-bubble-container");
-    if (existingContainer) existingContainer.remove();
 
-    // Create container
-    const bubbleContainer = document.createElement("div");
-    bubbleContainer.className = "speech-bubble-container";
+    // Récupère ou crée la zone fixe en bas du grid
+    let bubbleContainer = document.querySelector(".speech-bubble-container");
+    if (!bubbleContainer) {
+      bubbleContainer = document.createElement("div");
+      bubbleContainer.className = "speech-bubble-container";
+      gameArea.appendChild(bubbleContainer);
+    }
 
-    // Create speech bubble
+    // Vide le contenu précédent
+    bubbleContainer.innerHTML = "";
+
+    // Crée la bulle
     const speechBubble = document.createElement("div");
-    speechBubble.setAttribute("id", "speech-bubble");
+    speechBubble.id = "speech-bubble";
     speechBubble.textContent = message;
     speechBubble.classList.add(
       "alert",
-      "text-center", "fw-bold",
-      "mx-1", "my-3",
+      "text-center",
+      "fw-bold",
       "rounded-pill",
       "shadow-sm",
       "border-0"
     );
-    speechBubble.style.width = "fit-content";
 
-    // Add bubble to container
+    // Ajoute la bulle au conteneur
     bubbleContainer.appendChild(speechBubble);
-    // Add container to game area
-    gameArea.appendChild(bubbleContainer);
 
-    // Remove speech bubble after 3 seconds
+    // Efface la bulle après 3s, mais garde la zone (pour éviter tout mouvement)
     setTimeout(() => {
-      bubbleContainer.remove();
+      speechBubble.remove();
     }, 3000);
   }
 
@@ -462,7 +464,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const grid = document.getElementById("grid-container");
     if (grid) grid.remove();
 
-    const hud = document.getElementById("bottom-hud");
+    const hud = document.querySelector(".end-buttons");
     if (hud) hud.remove();
 
     const speech = document.getElementById("speech-bubble");
@@ -480,25 +482,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showEndScreen() {
-    console.log("showEndScreen() function called!");
-    
     // Get the final time BEFORE removing the timer element
     const finalTime = document.getElementById("timer")
       ? document.getElementById("timer").textContent.replace("Time: ", "")
       : "00:00";
-    
-    console.log("Final time captured:", finalTime);
 
     // Hide the game board and HUD
     const grid = document.getElementById("grid-container");
     if (grid) grid.remove();
-    const hud = document.getElementById("bottom-hud");
+    const hud = document.getElementsByClassName("end-buttons");
     if (hud) hud.remove();
 
     // Grab end screen elements
     const endScreen = document.getElementById("end-screen");
     // Show end screen
-    show(sections[3]);
+    show(sections[4]);
 
     const playerNameElement = document.getElementById("player-name");
     const playerTimeElement = document.getElementById("player-time");
@@ -506,7 +504,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     playerNameElement.textContent = playerName; // Player name
     playerTimeElement.textContent = finalTime; // Player Time
-    
+
     console.log("Player name set to:", playerName);
     console.log("Player time set to:", finalTime);
 
@@ -526,10 +524,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const [m, s] = t.split(":").map(Number);
       return m * 60 + s;
     };
-    
+
     // Sort scores by time (fastest first)
     existingScores.sort((a, b) => toSeconds(a.time) - toSeconds(b.time));
-    
+
     // Keep top 5 scores only AFTER sorting
     const top5 = existingScores.slice(0, 5);
 
@@ -538,19 +536,17 @@ document.addEventListener("DOMContentLoaded", () => {
     top5.forEach((entry, index) => {
       const li = document.createElement("li");
       li.innerHTML = `<span class="hs-name">${entry.name}</span> — <span class="hs-time">${entry.time}</span>`;
-      
+
       // Highlight the current player's score
       if (entry.name === playerName && entry.time === finalTime) {
         li.classList.add("highlight");
       }
-      
+
       highscoresList.appendChild(li);
       console.log(`Position ${index + 1}: ${entry.name} - ${entry.time}`);
     });
-    
 
-
-     // Save to localStorage
+    // Save to localStorage
     localStorage.setItem("forestPalsHighscores", JSON.stringify(top5));
   }
 });
