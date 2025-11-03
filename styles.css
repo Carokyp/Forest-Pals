@@ -105,6 +105,10 @@ body::before {
   user-select: none;
 }
 
+#raccoon-game-area {
+  display: none;
+}
+
 #bushes,
 #bushes-end {
   position: absolute;
@@ -306,9 +310,10 @@ body::before {
 #game-area {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.2fr 0.6fr 0.2fr; 
+  grid-template-rows: 0.2fr 0.6fr;
   place-items: center;
   min-height: 100dvh;
+  max-width: 1800px;
   position: relative;
 }
 
@@ -318,6 +323,17 @@ body::before {
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
+}
+
+.left-hud {
+  display: flex;
+  align-items: center;
+}
+
+.right-hud {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 #grid-container {
@@ -357,10 +373,21 @@ body::before {
   transform-style: preserve-3d;
 }
 
-#grid-container .card-front { transform: rotateY(180deg); }
-#grid-container .card-back { transform: rotateY(0); }
-#grid-container .game-card.flipped .card-front { transform: rotateY(0); }
-#grid-container .game-card.flipped .card-back { transform: rotateY(180deg); }
+#grid-container .card-front {
+  transform: rotateY(180deg);
+}
+
+#grid-container .card-back {
+  transform: rotateY(0);
+}
+
+#grid-container .game-card.flipped .card-front {
+  transform: rotateY(0);
+}
+
+#grid-container .game-card.flipped .card-back {
+  transform: rotateY(180deg);
+}
 
 #game-area .back-btn {
   font-size: 0.9rem;
@@ -380,11 +407,14 @@ body::before {
 }
 
 .speech-bubble-container {
+  position: absolute; /* <-- ajoute ceci */
+  bottom: 1rem;           /* colle la bulle au bas du jeu */
+  left: 0;
+  width: 100%;
+  height: 5rem;
   display: flex;
   justify-content: center;
-  align-items: flex-end; 
-  width: 100%;
-  height: 5rem; 
+  align-items: flex-end;
   pointer-events: none;
 }
 
@@ -509,8 +539,8 @@ body::before {
 /* #endregion End screen styles */
 
 
-/*Large phone screens to tablet 576px to 768px */
-@media (min-width: 576px) and (max-width: 768px) {
+/*Large phone screens to tablet*/
+@media (min-width: 481px) and (max-width: 767px) {
   body::before {
     background-image: url('images/background/background-tablet.png');
   }
@@ -520,20 +550,136 @@ body::before {
     font-size: 3rem !important;
   }
 
+  #grid-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  #game-area .back-btn {
+    font-size: 1.2rem;
+  }
+
+  #score,
+  #timer {
+    font-size: 1.2rem;
+  }
+
+  #grid-container .game-card {
+    width: 5.7rem;
+    height: 8.5rem;
+  }
+
+  #speech-bubble {
+    font-size: 1.2rem;
+  }
+
 }
 
-/*Tablet screen to small laptop 769px to 992px */
-@media(min-width: 769px) and (max-width: 992px) {
+/*Tablet screen to small laptop*/
+@media(min-width: 768px) and (max-width: 1023px) {
   body::before {
     background-image: url('images/background/background-laptop.png');
   }
 
+  h1,
+  #game-title {
+    font-size: 3rem !important;
+  }
 
+#game-area {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+      grid-template-areas:
+      "back-btn score-time"
+      "raccoon grid";
+  place-items: center;
+  min-height: 100dvh;
+  position: relative;
+  }
+
+  #speech-bubble {
+    font-size: 1.1rem;
+    max-width: 14rem;
+  }
+
+  #raccoon-game-area, .speech-bubble-container {
+    grid-area: raccoon;
+  }
+
+  #raccoon-game-area {
+    display: block;
+    width: clamp(10rem, 30vw, 18rem);
+    align-self: end;
+    justify-self: center;
+    position: relative; 
+    z-index: 1;
+    transform: scaleX(-1); 
+  }
+
+  .speech-bubble-container {
+    grid-area: raccoon;
+    position: absolute;
+    bottom: 50%; 
+    left: 15%;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  #speech-bubble {
+  min-width: fit-content;
+}
+
+#top-hud {
+  display: contents;
+}
+
+.left-hud {
+  grid-area: back-btn;
+  display: flex;
+  align-items: start;
+  justify-self: start;
+  padding: 1rem 0 0 2rem;
+}
+
+.right-hud {
+  grid-area: score-time;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  gap: 1rem;
+  padding: 1rem 0 0 0;
+}
+
+  #game-area .back-btn {
+    font-size: 1.4rem;
+  }
+
+  #score,
+  #timer {
+    font-size: 1.4rem;
+  }
+
+  #grid-container {
+    grid-area: grid;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    justify-content: center;
+    align-content: center;
+  }
+
+  #grid-container .game-card {
+    width: 5.7rem;
+    height: 8.5rem;
+  }
 
 }
 
-/*Small laptop to large laptop 993px to 1200px */
-@media (min-width:993px) and (max-width: 1200px) {
+/*Small laptop to large laptop*/
+@media (min-width: 1024px) and (max-width: 1439px) {
   body::before {
     background-image: url('images/background/background-laptop.png');
   }
@@ -542,10 +688,103 @@ body::before {
   #game-title {
     font-size: 3.5rem !important;
   }
+
+  #game-area {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+      grid-template-areas:
+      "back-btn score-time"
+      "raccoon grid";
+  place-items: center;
+  min-height: 100dvh;
+  position: relative;
+  }
+
+  #speech-bubble {
+    font-size: 1.1rem;
+    max-width: 14rem;
+  }
+
+  #raccoon-game-area, .speech-bubble-container {
+    grid-area: raccoon;
+  }
+
+  #raccoon-game-area {
+    display: block;
+    width: clamp(10rem, 30vw, 18rem);
+    align-self: end;
+    justify-self: center;
+    position: relative; /* contexte pour la bulle */
+    z-index: 1;
+    transform: scaleX(-1); /* flip horizontalement */
+  }
+
+  .speech-bubble-container {
+    grid-area: raccoon;
+    position: absolute;
+    bottom: 55%; 
+    left: 15%;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  #speech-bubble {
+  min-width: fit-content;
 }
 
-/*Large laptop and up 1201px+ */
-@media (min-width:1200px) and (max-width: 1400px) {
+#top-hud {
+  display: contents;
+}
+
+.left-hud {
+  grid-area: back-btn;
+  display: flex;
+  align-items: start;
+  justify-self: start;
+  padding: 1rem 0 0 2rem;
+}
+
+.right-hud {
+  grid-area: score-time;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  gap: 1rem;
+  padding: 1rem 0 0 0;
+}
+
+  #game-area .back-btn {
+    font-size: 1.4rem;
+  }
+
+  #score,
+  #timer {
+    font-size: 1.4rem;
+  }
+
+  #grid-container {
+    grid-area: grid;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    justify-content: center;
+    align-content: center;
+  }
+
+  #grid-container .game-card {
+    width: 5.7rem;
+    height: 8.5rem;
+  }
+
+}
+
+
+/*Large laptop and up*/
+@media (min-width: 1440px) {
   body::before {
     background-image: url('images/background/background-large-laptop.png');
   }
@@ -555,19 +794,96 @@ body::before {
     font-size: 4rem !important;
   }
 
+  #game-area {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+      grid-template-areas:
+      "back-btn score-time"
+      "raccoon grid";
+  place-items: center;
+  min-height: 100dvh;
+  margin: 0 auto;
+  position: relative;
+  }
 
+  #speech-bubble {
+    font-size: 1.1rem;
+    max-width: 14rem;
+  }
+
+  #raccoon-game-area, .speech-bubble-container {
+    grid-area: raccoon;
+  }
+
+  #raccoon-game-area {
+    display: block;
+    width: clamp(10rem, 30vw, 25rem);
+    align-self: end;
+    justify-self: center;
+    position: relative; /* contexte pour la bulle */
+    z-index: 1;
+    transform: scaleX(-1); /* flip horizontalement */
+  }
+
+  .speech-bubble-container {
+    grid-area: raccoon;
+    position: absolute;
+    bottom: 65%; 
+    left: 15%;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  #speech-bubble {
+  min-width: fit-content;
 }
 
-/* Extra large screens 1400px+ */
-@media (min-width: 1400px) {
-  body::before {
-    background-image: url('images/background/background-large-laptop.png');
+#top-hud {
+  display: contents;
+}
+
+.left-hud {
+  grid-area: back-btn;
+  display: flex;
+  align-items: start;
+  justify-self: start;
+  padding: 1rem 0 0 2rem;
+}
+
+.right-hud {
+  grid-area: score-time;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  gap: 1rem;
+  padding: 1rem 0 0 0;
+}
+
+  #game-area .back-btn {
+    font-size: 1.4rem;
   }
 
-  h1,
-  #game-title {
-    font-size: 4rem !important;
+  #score,
+  #timer {
+    font-size: 1.4rem;
   }
 
+  #grid-container {
+    grid-area: grid;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    justify-content: center;
+    align-content: center;
+  }
+
+  #grid-container .game-card {
+    width: 7rem;
+    height: 10.5rem;
+  }
 
 }

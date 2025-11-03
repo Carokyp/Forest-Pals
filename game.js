@@ -260,29 +260,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gameArea.innerHTML = "";
 
-    // Top HUD for score and timer
+    // --- TOP HUD ---
     const topHUD = document.createElement("div");
     topHUD.setAttribute("id", "top-hud");
 
-    // clear game area but keep back button
+    // --- LEFT side (back button) ---
+    const leftHUD = document.createElement("div");
+    leftHUD.classList.add("left-hud");
+
     const backBtn = document.createElement("button");
     backBtn.classList.add("back-btn", "btn", "btn-secondary", "fw-bold");
     backBtn.textContent = "Back";
-    topHUD.appendChild(backBtn);
 
-    // Score
+    // ajoute le bouton dans la partie gauche
+    leftHUD.appendChild(backBtn);
+
+    // --- RIGHT side (score + timer) ---
+    const rightHUD = document.createElement("div");
+    rightHUD.classList.add("right-hud");
+
     const scoreDisplay = document.createElement("div");
     scoreDisplay.setAttribute("id", "score");
     scoreDisplay.textContent = "Score: 0 / 6";
-    topHUD.appendChild(scoreDisplay);
 
-    // Timer
     const timerDisplay = document.createElement("div");
     timerDisplay.setAttribute("id", "timer");
     timerDisplay.textContent = "Time: 00:00";
-    topHUD.appendChild(timerDisplay);
 
-    // Add top HUD to game area
+    // ajoute score et timer à la partie droite
+    rightHUD.append(scoreDisplay, timerDisplay);
+
+    // assemble tout dans le HUD principal
+    topHUD.append(leftHUD, rightHUD);
     gameArea.appendChild(topHUD);
 
     // Grid container for cards using CSS Grid
@@ -290,6 +299,13 @@ document.addEventListener("DOMContentLoaded", () => {
     gridContainer.setAttribute("id", "grid-container");
     gridContainer.classList.add("card-grid");
     gameArea.appendChild(gridContainer);
+
+    const raccoon = document.createElement("img");
+    raccoon.id = "raccoon-game-area";
+    raccoon.src = "images/raccoon/raccoon1.png";
+    raccoon.alt = "Raccoon wearing glasses waving cheerfully to the player";
+    raccoon.classList.add("img-fluid");
+    gameArea.appendChild(raccoon);
 
     const cardsPairs = [...cards, ...cards];
 
@@ -436,7 +452,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Efface la bulle après 3s, mais garde la zone (pour éviter tout mouvement)
     setTimeout(() => {
       speechBubble.remove();
-    }, 3000);
+    }, 30000);
   }
 
   function startTimer() {
