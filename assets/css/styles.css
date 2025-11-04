@@ -55,10 +55,8 @@
 
 /* Page layout */
 body {
-  overflow-x: hidden;
-  /* Prevent horizontal scroll */
-  position: relative;
-  /* For positioning background and other absolute elements */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  position: relative; /* For positioning background and other absolute elements */
 }
 /* #endregion Reset & Base */
 
@@ -67,9 +65,9 @@ body {
 body::before {
   content: ''; /* Necessary for pseudo-element */
   position: fixed; /* Creates an invisible element (pseudo-element) that acts as a background layer */
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 0; 
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
   width: 100vw; /* Full viewport width */
   height: 100vh; /* Full viewport height */
   max-width: 1800px; /* Maximum width for large screens */
@@ -84,11 +82,11 @@ body::before {
 /* #region Menu styles */
 
 #menu {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
-  place-items: center;
-  min-height: 100dvh;
+  display: grid; /* Menu layout */
+  grid-template-columns: 1fr; /* Single column */
+  grid-template-rows: auto 1fr auto; /* Title, buttons, raccoon */
+  place-items: center; /* Center items */
+  min-height: 100dvh; /* Full viewport height */
 }
 
 #game-title {
@@ -100,14 +98,14 @@ body::before {
 }
 
 #menu-btn {
-  display: grid;
+  display: grid; /* Buttons layout */
   gap: 1.5rem;
   justify-items: center;
 }
 
 #raccoon,
 #raccoon-menu {
-  grid-row: 3;
+  grid-row: 3; /* Place raccoon in the third row */
   align-self: end;
   width: clamp(13rem, 30vw, 20rem);
 }
@@ -115,31 +113,19 @@ body::before {
 #raccoon,
 #raccoon-menu,
 #raccoon-game-area {
-  display: block;
-  pointer-events: none;
-  user-select: none;
+  display: block; /* Ensure raccoon images are block-level for proper sizing */
+  pointer-events: none; /* Prevent interaction */
+  user-select: none; /* Prevent text selection */
 }
 
 #raccoon-game-area {
-  display: none;
+  display: none; /* Hidden in menu */
 }
 
 #raccoon-game-area {
   width: 8rem;
   height: auto;
   order: 2;
-}
-
-#bushes,
-#bushes-end {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  z-index: 1;
 }
 
 /* #endregion Menu styles */
@@ -259,7 +245,8 @@ body::before {
 }
 
 #player-form {
-  width: 90%;
+  /* Responsive width that caps at ~40% of 1400px (560px) */
+  width: min(80dvw, 560px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -304,6 +291,8 @@ body::before {
 .back-btn-form {
   font-family: var(--font-text);
   cursor: pointer;
+  font-weight: 700; /* match visual weight */
+  font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
 /* #endregion Player form styles */
@@ -570,6 +559,9 @@ body::before {
   #speech-bubble {
     font-size: 1.2rem;
   }
+  #player-form {
+    width: min(70dvw, 560px);
+  }
 
 }
 /* #endregion Media: Large phone screens to tablet */
@@ -583,6 +575,10 @@ body::before {
   h1,
   #game-title {
     font-size: 3rem !important;
+  }
+
+  #player-form {
+    width: min(50dvw, 560px);
   }
 
 #game-area {
@@ -691,6 +687,10 @@ body::before {
     font-size: 3.5rem !important;
   }
 
+  #player-form {
+    width: min(40dvw, 560px);
+  }
+
   #game-area {
   display: grid;
   grid-template-columns: auto auto;
@@ -796,6 +796,10 @@ body::before {
   h1,
   #game-title {
     font-size: 4rem !important;
+  }
+
+  #player-form {
+    width: min(40dvw, 560px);
   }
 
   #game-area {

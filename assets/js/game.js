@@ -459,7 +459,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ============================================================================
-  // RACCOON SPEECH BUBBLE
+  // RACCOON SPEECH BUBBLES
   // ============================================================================
 
   /**
@@ -756,10 +756,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ============================================================================
-  // INITIALIZATION
+  // INITIALIZATION (NAKED CODE)
   // ============================================================================
 
-  /** Initialization (naked code) */
   // Prevent background scroll and drag on the whole page
   document.body.style.overflow = "hidden";
   // Show initial menu and prepare a board (board remains hidden until shown)
