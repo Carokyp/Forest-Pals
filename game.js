@@ -1,31 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /** Prevent background scroll and drag on the whole page */
-  document.body.style.overflow = "hidden";
-  document.addEventListener("wheel", (e) => e.preventDefault(), {
-    passive: false,
-  });
-  document.addEventListener("touchmove", (e) => e.preventDefault(), {
-    passive: false,
-  });
-  document.addEventListener("dragstart", (e) => e.preventDefault());
-
-  // Get references to buttons and sections
-  const startBtn = document.getElementById("start-btn");
-  const howToPlayBtn = document.getElementById("how-to-play-btn");
-  const gameTitle = document.getElementById("game-title");
-  const menu = document.getElementById("menu");
-
-  /** Array to hold references to different sections of the game */
-  const sections = [
-    document.getElementById("menu"),
-    document.getElementById("how-to-play-area"),
-    document.getElementById("player-form-area"),
-    document.getElementById("game-area"),
-    document.getElementById("end-screen"),
-  ];
+  // ============================================================================
+  // CONFIGURATION & CONSTANTS
+  // ============================================================================
 
   /** Array of card objects, each with an id, name, and image path */
-  const cards = [
+  const CARDS = [
     { id: 1, name: "bird", image: "images/cards/bird.png" },
     { id: 2, name: "deer", image: "images/cards/deer.png" },
     { id: 3, name: "fox", image: "images/cards/fox.png" },
@@ -34,10 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 6, name: "squirrel", image: "images/cards/squirrel.png" },
   ];
 
-  // Raccoon speech lines for each animal
-  // Each animal has an array of possible lines to choose from
-  // when a match is found
-  const raccoonLines = {
+  /** Raccoon speech lines for each animal */
+  const RACCOON_LINES = {
     bird: [
       "You found the birds what a sweet tune!",
       "Tweet tweet! You matched the birds!",
@@ -64,25 +41,51 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
   };
 
-  // Player name
+  const TOTAL_PAIRS = 6;
+  const MATCH_DELAY = 300;
+  const NO_MATCH_DELAY = 600;
+  const SPEECH_DURATION = 30000;
+  const END_SCREEN_DELAY = 2000;
+  const MAX_HIGHSCORES = 5;
+
+  // ============================================================================
+  // DOM REFERENCES
+  // ============================================================================
+
+  const startBtn = document.getElementById("start-btn");
+  const howToPlayBtn = document.getElementById("how-to-play-btn");
+  const gameTitle = document.getElementById("game-title");
+  const menu = document.getElementById("menu");
+
+  /** Array to hold references to different sections of the game */
+  const sections = [
+    document.getElementById("menu"),
+    document.getElementById("how-to-play-area"),
+    document.getElementById("player-form-area"),
+    document.getElementById("game-area"),
+    document.getElementById("end-screen"),
+  ];
+
+  // ============================================================================
+  // STATE VARIABLES
+  // ============================================================================
+
   let playerName = "";
-
-  // To track flipped cards
   let flippedCards = [];
-  let lockBoard = false; // To prevent clicking more than 2 cards at a time
-
-  // Player score
+  let lockBoard = false;
   let score = 0;
+  let timerInterval = null;
+  let timeElapsed = 0;
 
-  // Timer variables
-  let timerInterval = null; // interval for the timer
-  let timeElapsed = 0; // time elapsed in seconds
+  // ============================================================================
+  // UTILITY FUNCTIONS
+  // ============================================================================
 
   /**
-   * function to hide all sections and show a specific section
+   * Hide all sections and show a specific section
    * Compatible with Bootstrap classes
    */
-  function show(section) {
+  function showSection(section) {
     sections.forEach((element) => {
       element.classList.add("d-none");
       element.style.visibility = "hidden";
@@ -94,13 +97,15 @@ document.addEventListener("DOMContentLoaded", () => {
     section.style.display = "grid";
   }
 
+  // ============================================================================
+  // FORM CREATION
+  // ============================================================================
+
   /**
-   * --- CREATE PLAYER FORM ---
    * Dynamically generates the form where the player enters their name
    * before starting the game.
    */
-
-  function createForm() {
+  function createPlayerNameForm() {
     const form = document.createElement("form");
     form.setAttribute("id", "player-form");
     form.classList.add("p-4", "rounded-4");
@@ -178,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
         form.insertBefore(msgWrapper, buttonContainer);
       } else {
         playerName = input.value.trim();
-        show(sections[3]);
+        showSection(sections[3]);
         resetGame();
       }
     });
@@ -186,75 +191,14 @@ document.addEventListener("DOMContentLoaded", () => {
     return form;
   }
 
-  // Show the menu first
-  show(sections[0]);
-
-  // Universal click handler for all buttons using event delegation
-  document.addEventListener("click", (e) => {
-    // Start Game button
-    if (e.target && e.target.id === "start-btn") {
-      howToPlayBtn.style.display = "none";
-      gameTitle.style.display = "none";
-      startBtn.style.display = "none";
-
-      const form = createForm();
-      const playerFormArea = document.getElementById("player-form-area");
-      const raccoon = document.getElementById("raccoon");
-
-      const existingForm = document.getElementById("player-form");
-      if (existingForm) existingForm.remove();
-      if (raccoon && playerFormArea.contains(raccoon)) {
-        playerFormArea.insertBefore(form, raccoon);
-      } else {
-        playerFormArea.appendChild(form);
-      }
-      show(sections[2]); // Show player form section
-    }
-
-    // How to Play button
-    if (e.target && e.target.id === "how-to-play-btn") {
-      console.log("How to Play button clicked!");
-      show(sections[1]); // Show how-to-play section
-    }
-
-    // Back buttons
-    if (e.target && e.target.classList.contains("back-btn")) {
-      startBtn.style.display = "block";
-      howToPlayBtn.style.display = "block";
-      gameTitle.style.display = "block";
-      show(sections[0]); // Go to main menu
-
-      // If it's a form back button, also remove the form
-      if (e.target.classList.contains("back-btn-form")) {
-        const existingForm = document.getElementById("player-form");
-        if (existingForm) existingForm.remove();
-      }
-    }
-
-    // End screen buttons, retry and main menu
-    if (e.target && e.target.id === "retry-btn") {
-      console.log("Retry button clicked!");
-      show(sections[3]); // Go to game area
-      resetGame();
-    }
-
-    if (e.target && e.target.id === "main-menu-btn") {
-      console.log("Main menu button clicked!");
-      // Restore menu button visibility
-      startBtn.style.display = "block";
-      howToPlayBtn.style.display = "block";
-      gameTitle.style.display = "block";
-      show(sections[0]); // Go to main menu
-      playerName = ""; // Reset player name
-    }
-  });
+  // ============================================================================
+  // GAME BOARD GENERATION
+  // ============================================================================
 
   /**
-   * --- GAME BOARD GENERATION ---
    * Duplicates all cards to create pairs,
    * shuffles them, and displays them inside the grid container.
    */
-
   function generateBoard() {
     const gameArea = document.getElementById("game-area");
 
@@ -307,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
     raccoon.classList.add("img-fluid");
     gameArea.appendChild(raccoon);
 
-    const cardsPairs = [...cards, ...cards];
+    const cardsPairs = [...CARDS, ...CARDS];
 
     // Shuffle card
     for (let i = cardsPairs.length - 1; i > 0; i--) {
@@ -345,14 +289,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     startTimer();
   }
-  generateBoard();
+
+  // ============================================================================
+  // CARD FLIPPING LOGIC
+  // ============================================================================
 
   /**
-   * --- CARD FLIPPING LOGIC ---
    * Manages the flipping of cards, checking for matches,
    * and resetting unmatched cards after a delay.
    */
-
   function handleCardClick(cardElement) {
     // Prevent clicking more than 2 cards or clicking the same card
     if (lockBoard || cardElement.classList.contains("flipped")) {
@@ -375,54 +320,65 @@ document.addEventListener("DOMContentLoaded", () => {
   function checkForMatch() {
     const [firstCard, secondCard] = flippedCards;
     const isMatch = firstCard.dataset.id === secondCard.dataset.id;
-    // Lock the board while checking
+    
     lockBoard = true;
 
     if (isMatch) {
-      score++;
-      const scoreDisplay = document.getElementById("score");
-      scoreDisplay.textContent = `Score: ${score} / 6`;
-      // Show raccoon speech bubble with a random line for the matched animal
-      const animalName = firstCard.querySelector(".card-front").alt;
-
-      // Get a random line for the matched animal
-      const lines = raccoonLines[animalName];
-      const randomLine = lines[Math.floor(Math.random() * lines.length)];
-
-      raccoonSpeech(randomLine);
-
-      // It's a match - disable further clicks
-      firstCard.style.pointerEvents = "none";
-      secondCard.style.pointerEvents = "none";
-
-      flippedCards = []; // Reset for next turn
-      setTimeout(() => {
-        lockBoard = false;
-      }, 300);
+      handleMatch(firstCard, secondCard);
     } else {
-      // Not a match - flip cards back after a short delay
-      setTimeout(() => {
-        firstCard.classList.remove("flipped");
-        secondCard.classList.remove("flipped");
-        flippedCards = []; // Reset for next turn
-        lockBoard = false;
-      }, 600); // 0.6s delay
+      handleNoMatch(firstCard, secondCard);
     }
 
-    if (score === 6) {
-      stopTimer();
-      raccoonSpeech(`You did it, ${playerName}! You found all my friends!`);
-
-      setTimeout(() => {
-        showEndScreen();
-      }, 2000); // Wait that the speech bubble disappears
+    if (score === TOTAL_PAIRS) {
+      completeGame();
     }
   }
 
-  function raccoonSpeech(message) {
+  function handleMatch(firstCard, secondCard) {
+    score++;
+    const scoreDisplay = document.getElementById("score");
+    scoreDisplay.textContent = `Score: ${score} / ${TOTAL_PAIRS}`;
+
+    const animalName = firstCard.querySelector(".card-front").alt;
+    const lines = RACCOON_LINES[animalName];
+    const randomLine = lines[Math.floor(Math.random() * lines.length)];
+
+    showRaccoonSpeech(randomLine);
+
+    firstCard.style.pointerEvents = "none";
+    secondCard.style.pointerEvents = "none";
+
+    flippedCards = [];
+    setTimeout(() => {
+      lockBoard = false;
+    }, MATCH_DELAY);
+  }
+
+  function handleNoMatch(firstCard, secondCard) {
+    setTimeout(() => {
+      firstCard.classList.remove("flipped");
+      secondCard.classList.remove("flipped");
+      flippedCards = [];
+      lockBoard = false;
+    }, NO_MATCH_DELAY);
+  }
+
+  function completeGame() {
+    stopTimer();
+    showRaccoonSpeech(`You did it, ${playerName}! You found all my friends!`);
+
+    setTimeout(() => {
+      showEndScreen();
+    }, END_SCREEN_DELAY);
+  }
+
+  // ============================================================================
+  // RACCOON SPEECH BUBBLE
+  // ============================================================================
+
+  function showRaccoonSpeech(message) {
     const gameArea = document.getElementById("game-area");
 
-    // Récupère ou crée la zone fixe en bas du grid
     let bubbleContainer = document.querySelector(".speech-bubble-container");
     if (!bubbleContainer) {
       bubbleContainer = document.createElement("div");
@@ -430,10 +386,8 @@ document.addEventListener("DOMContentLoaded", () => {
       gameArea.appendChild(bubbleContainer);
     }
 
-    // Vide le contenu précédent
     bubbleContainer.innerHTML = "";
 
-    // Crée la bulle
     const speechBubble = document.createElement("div");
     speechBubble.id = "speech-bubble";
     speechBubble.textContent = message;
@@ -446,20 +400,22 @@ document.addEventListener("DOMContentLoaded", () => {
       "border-0"
     );
 
-    // Ajoute la bulle au conteneur
     bubbleContainer.appendChild(speechBubble);
 
-    // Efface la bulle après 3s, mais garde la zone (pour éviter tout mouvement)
     setTimeout(() => {
       speechBubble.remove();
-    }, 30000);
+    }, SPEECH_DURATION);
   }
+
+  // ============================================================================
+  // TIMER FUNCTIONS
+  // ============================================================================
 
   function startTimer() {
     const timerDisplay = document.getElementById("timer");
-    timeElapsed = 0; // reset time elapsed
+    timeElapsed = 0;
 
-    if (timerInterval) clearInterval(timerInterval); // clear any existing interval
+    if (timerInterval) clearInterval(timerInterval);
 
     timerInterval = setInterval(() => {
       timeElapsed++;
@@ -475,6 +431,10 @@ document.addEventListener("DOMContentLoaded", () => {
     clearInterval(timerInterval);
     timerInterval = null;
   }
+
+  // ============================================================================
+  // GAME RESET & END SCREEN
+  // ============================================================================
 
   function resetGame() {
     const grid = document.getElementById("grid-container");
@@ -498,32 +458,32 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showEndScreen() {
-    // Get the final time BEFORE removing the timer element
     const finalTime = document.getElementById("timer")
       ? document.getElementById("timer").textContent.replace("Time: ", "")
       : "00:00";
 
-    // Hide the game board and HUD
     const grid = document.getElementById("grid-container");
     if (grid) grid.remove();
+    
     const hud = document.getElementsByClassName("end-buttons");
     if (hud) hud.remove();
 
-    // Grab end screen elements
-    const endScreen = document.getElementById("end-screen");
-    // Show end screen
-    show(sections[4]);
+    showSection(sections[4]);
 
     const playerNameElement = document.getElementById("player-name");
     const playerTimeElement = document.getElementById("player-time");
     const highscoresList = document.getElementById("highscores-list");
 
-    playerNameElement.textContent = playerName; // Player name
-    playerTimeElement.textContent = finalTime; // Player Time
+    playerNameElement.textContent = playerName;
+    playerTimeElement.textContent = finalTime;
 
     console.log("Player name set to:", playerName);
     console.log("Player time set to:", finalTime);
 
+    saveAndDisplayHighscores(playerName, finalTime, highscoresList);
+  }
+
+  function saveAndDisplayHighscores(name, time, highscoresList) {
     const existingScores = Array.from(
       highscoresList.querySelectorAll("li")
     ).map((li) => {
@@ -532,29 +492,23 @@ document.addEventListener("DOMContentLoaded", () => {
       return { name, time };
     });
 
-    //Add Player Score
-    existingScores.push({ name: playerName, time: finalTime });
+    existingScores.push({ name, time });
 
-    // Convert time to seconds for sorting
     const toSeconds = (t) => {
       const [m, s] = t.split(":").map(Number);
       return m * 60 + s;
     };
 
-    // Sort scores by time (fastest first)
     existingScores.sort((a, b) => toSeconds(a.time) - toSeconds(b.time));
 
-    // Keep top 5 scores only AFTER sorting
-    const top5 = existingScores.slice(0, 5);
+    const top5 = existingScores.slice(0, MAX_HIGHSCORES);
 
-    // rewriting the highscores list
     highscoresList.innerHTML = "";
     top5.forEach((entry, index) => {
       const li = document.createElement("li");
       li.innerHTML = `<span class="hs-name">${entry.name}</span> — <span class="hs-time">${entry.time}</span>`;
 
-      // Highlight the current player's score
-      if (entry.name === playerName && entry.time === finalTime) {
+      if (entry.name === name && entry.time === time) {
         li.classList.add("highlight");
       }
 
@@ -562,7 +516,92 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(`Position ${index + 1}: ${entry.name} - ${entry.time}`);
     });
 
-    // Save to localStorage
     localStorage.setItem("forestPalsHighscores", JSON.stringify(top5));
   }
+
+  // ============================================================================
+  // EVENT HANDLERS
+  // ============================================================================
+
+  /**
+   * Universal click handler for all buttons using event delegation
+   */
+  function handleButtonClick(e) {
+    // Start Game button
+    if (e.target && e.target.id === "start-btn") {
+      howToPlayBtn.style.display = "none";
+      gameTitle.style.display = "none";
+      startBtn.style.display = "none";
+
+      const form = createPlayerNameForm();
+      const playerFormArea = document.getElementById("player-form-area");
+      const raccoon = document.getElementById("raccoon");
+
+      const existingForm = document.getElementById("player-form");
+      if (existingForm) existingForm.remove();
+      
+      if (raccoon && playerFormArea.contains(raccoon)) {
+        playerFormArea.insertBefore(form, raccoon);
+      } else {
+        playerFormArea.appendChild(form);
+      }
+      showSection(sections[2]);
+    }
+
+    // How to Play button
+    if (e.target && e.target.id === "how-to-play-btn") {
+      console.log("How to Play button clicked!");
+      showSection(sections[1]);
+    }
+
+    // Back buttons
+    if (e.target && e.target.classList.contains("back-btn")) {
+      startBtn.style.display = "block";
+      howToPlayBtn.style.display = "block";
+      gameTitle.style.display = "block";
+      showSection(sections[0]);
+
+      if (e.target.classList.contains("back-btn-form")) {
+        const existingForm = document.getElementById("player-form");
+        if (existingForm) existingForm.remove();
+      }
+    }
+
+    // End screen buttons
+    if (e.target && e.target.id === "retry-btn") {
+      console.log("Retry button clicked!");
+      showSection(sections[3]);
+      resetGame();
+    }
+
+    if (e.target && e.target.id === "main-menu-btn") {
+      console.log("Main menu button clicked!");
+      startBtn.style.display = "block";
+      howToPlayBtn.style.display = "block";
+      gameTitle.style.display = "block";
+      showSection(sections[0]);
+      playerName = "";
+    }
+  }
+
+  // ============================================================================
+  // INITIALIZATION
+  // ============================================================================
+
+  /** Prevent background scroll and drag on the whole page */
+  document.body.style.overflow = "hidden";
+  document.addEventListener("wheel", (e) => e.preventDefault(), {
+    passive: false,
+  });
+  document.addEventListener("touchmove", (e) => e.preventDefault(), {
+    passive: false,
+  });
+  document.addEventListener("dragstart", (e) => e.preventDefault());
+
+  /** Event Listeners */
+  document.addEventListener("click", handleButtonClick);
+
+  /** Initialize game */
+  showSection(sections[0]);
+  generateBoard();
 });
