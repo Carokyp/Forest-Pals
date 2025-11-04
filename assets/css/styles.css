@@ -57,7 +57,7 @@ body::before {
   /* Full viewport height */
   max-width: 1800px;
   /* Maximum width for large screens */
-  background-image: url('images/background/background-small-screen.png');
+  background-image: url('../images/background/background-small-screen.png');
   background-size: cover;
   /* Cover entire viewport */
   background-repeat: no-repeat;
@@ -542,7 +542,7 @@ body::before {
 /*Large phone screens to tablet*/
 @media (min-width: 481px) and (max-width: 767px) {
   body::before {
-    background-image: url('images/background/background-tablet.png');
+    background-image: url('../images/background/background-tablet.png');
   }
 
   h1,
@@ -577,7 +577,7 @@ body::before {
 /*Tablet screen to small laptop*/
 @media(min-width: 768px) and (max-width: 1023px) {
   body::before {
-    background-image: url('images/background/background-laptop.png');
+    background-image: url('../images/background/background-laptop.png');
   }
 
   h1,
@@ -681,7 +681,7 @@ body::before {
 /*Small laptop to large laptop*/
 @media (min-width: 1024px) and (max-width: 1439px) {
   body::before {
-    background-image: url('images/background/background-laptop.png');
+    background-image: url('../images/background/background-laptop.png');
   }
 
   h1,
@@ -786,7 +786,7 @@ body::before {
 /*Large laptop and up*/
 @media (min-width: 1440px) {
   body::before {
-    background-image: url('images/background/background-large-laptop.png');
+    background-image: url('../images/background/background-large-laptop.png');
   }
 
   h1,

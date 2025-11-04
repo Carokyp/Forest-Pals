@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /** Array of card objects, each with an id, name, and image path */
   const CARDS = [
-    { id: 1, name: "bird", image: "images/cards/bird.png" },
-    { id: 2, name: "deer", image: "images/cards/deer.png" },
-    { id: 3, name: "fox", image: "images/cards/fox.png" },
-    { id: 4, name: "hedgehog", image: "images/cards/hedgehog.png" },
-    { id: 5, name: "rabbit", image: "images/cards/rabbit.png" },
-    { id: 6, name: "squirrel", image: "images/cards/squirrel.png" },
+    { id: 1, name: "bird", image: "assets/images/cards/bird.png" },
+    { id: 2, name: "deer", image: "assets/images/cards/deer.png" },
+    { id: 3, name: "fox", image: "assets/images/cards/fox.png" },
+    { id: 4, name: "hedgehog", image: "assets/images/cards/hedgehog.png" },
+    { id: 5, name: "rabbit", image: "assets/images/cards/rabbit.png" },
+    { id: 6, name: "squirrel", image: "assets/images/cards/squirrel.png" },
   ];
 
   /** Raccoon speech lines for each animal */
@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const raccoon = document.createElement("img");
     raccoon.id = "raccoon-game-area";
-    raccoon.src = "images/raccoon/raccoon1.png";
+    raccoon.src = "assets/images/raccoon/raccoon1.png";
     raccoon.alt = "Raccoon wearing glasses waving cheerfully to the player";
     raccoon.classList.add("img-fluid");
     gameArea.appendChild(raccoon);
@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
       front.classList.add("card-front");
 
       const back = document.createElement("img");
-      back.src = "images/cards/back.png";
+      back.src = "assets/images/cards/back.png";
       back.alt = "Card back";
       back.classList.add("card-back");
 
