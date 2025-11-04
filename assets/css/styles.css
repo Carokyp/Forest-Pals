@@ -18,7 +18,7 @@
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Caprasimo&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Macondo&family=Quicksand:wght@300..700&display=swap');
 
-/* Hidden sections by default */
+/* Hidden sections by default — JS switches them via showSection(section) */
 #how-to-play-area,
 #game-area,
 #end-screen {
@@ -27,6 +27,10 @@
 
 /* CSS Variables */
 :root {
+  /* Palette roles:
+     - --light-violet/--dark-violet: primary actions (buttons, HUD)
+     - --light-orange/--dark-orange: surfaces (forms, speech bubble)
+     - --text-color: general text */
   /* Colors */
   --text-color: #73463a;
   --dark-violet: #664059;
@@ -612,6 +616,7 @@ body::before {
   transform: scaleX(-1); 
   }
 
+  /* Position bubble near raccoon keep above background via z-index */
   .speech-bubble-container {
     grid-area: raccoon;
     position: absolute;
@@ -707,6 +712,7 @@ body::before {
     grid-area: raccoon;
   }
 
+  /* Flip the raccoon horizontally to face the grid also acts as context for bubble */
   #raccoon-game-area {
     display: block;
     width: clamp(10rem, 30vw, 18rem);
@@ -717,6 +723,7 @@ body::before {
   transform: scaleX(-1); /* flip horizontally */
   }
 
+  /* Position bubble near raccoon; keep above background via z-index */
   .speech-bubble-container {
     grid-area: raccoon;
     position: absolute;

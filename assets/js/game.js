@@ -87,6 +87,16 @@ document.addEventListener("DOMContentLoaded", () => {
   let timeElapsed = 0;
 
   // ============================================================================
+  // EVENT LISTENER REGISTRATION
+  // ============================================================================
+  // Global event delegation for buttons/controls
+  document.addEventListener("click", handleButtonClick);
+  // Prevent background scroll/drag interactions across the app
+  document.addEventListener("wheel", (e) => e.preventDefault(), { passive: false });
+  document.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
+  document.addEventListener("dragstart", (e) => e.preventDefault());
+
+  // ============================================================================
   // UTILITY FUNCTIONS
   // ============================================================================
 
@@ -749,20 +759,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // INITIALIZATION
   // ============================================================================
 
-  /** Prevent background scroll and drag on the whole page */
+  /** Initialization (naked code) */
+  // Prevent background scroll and drag on the whole page
   document.body.style.overflow = "hidden";
-  document.addEventListener("wheel", (e) => e.preventDefault(), {
-    passive: false,
-  });
-  document.addEventListener("touchmove", (e) => e.preventDefault(), {
-    passive: false,
-  });
-  document.addEventListener("dragstart", (e) => e.preventDefault());
-
-  /** Event Listeners */
-  document.addEventListener("click", handleButtonClick);
-
-  /** Initialize game */
+  // Show initial menu and prepare a board (board remains hidden until shown)
   showSection(sections[0]);
   generateBoard();
 });
