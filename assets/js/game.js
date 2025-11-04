@@ -1,3 +1,9 @@
+/**
+ * Application bootstrap: runs once the DOM is fully parsed.
+ * - Declares configuration/constants and shared state
+ * - Defines all UI and game-logic functions
+ * - Wires up global event listeners and shows the initial screen
+ */
 document.addEventListener("DOMContentLoaded", () => {
   // ============================================================================
   // CONFIGURATION & CONSTANTS
@@ -13,7 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 6, name: "squirrel", image: "assets/images/cards/squirrel.png" },
   ];
 
-  /** Raccoon speech lines for each animal */
+  /** Raccoon speech lines for each time the player makes a match
+   * It tells different lines depending on the animal matched
+   * And informs the player with the animal he just matched
+   */
   const RACCOON_LINES = {
     bird: [
       "You found the birds what a sweet tune!",
@@ -82,19 +91,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================================
 
   /**
-   * Hide all sections and show a specific section
-   * Compatible with Bootstrap classes
+   * Shows one section and hides the rest.
+   *
+   * Behavior:
+   * - Applies Bootstrap-compatible hiding (adds d-none) and also sets
+   *   inline style properties (visibility/display) to ensure sections are
+   *   completely hidden from layout and accessibility trees.
+   * - Displays the requested section as a CSS grid to match the layout.
+   *
+   * @param {HTMLElement} sectionEl - The section element to show.
+   * @returns {void}
    */
-  function showSection(section) {
+  function showSection(sectionEl) {
     sections.forEach((element) => {
       element.classList.add("d-none");
       element.style.visibility = "hidden";
       element.style.display = "none";
     });
 
-    section.classList.remove("d-none");
-    section.style.visibility = "visible";
-    section.style.display = "grid";
+    sectionEl.classList.remove("d-none");
+    sectionEl.style.visibility = "visible";
+    sectionEl.style.display = "grid";
   }
 
   // ============================================================================
@@ -102,74 +119,87 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================================
 
   /**
-   * Dynamically generates the form where the player enters their name
-   * before starting the game.
+   * Creates and returns the player-name form UI.
+   *
+   * Structure:
+   * - Instruction text, a text input for the player's name,
+   *   and two action buttons (Start, Back).
+   *
+   * Submission behavior:
+   * - Empty input → injects a friendly inline message prompting for a name.
+   * - Non-empty input → stores the name, navigates to the game area,
+   *   and triggers a fresh game via resetGame().
+   *
+   * @returns {HTMLFormElement} The newly created player form element (detached).
    */
   function createPlayerNameForm() {
-    const form = document.createElement("form");
-    form.setAttribute("id", "player-form");
-    form.classList.add("p-4", "rounded-4");
+    const playerNameForm = document.createElement("form");
+    playerNameForm.setAttribute("id", "player-form");
+    playerNameForm.classList.add("p-4", "rounded-4");
 
-    // Text instruction
-    const paragraph = document.createElement("p");
-    paragraph.setAttribute("id", "form-instruction");
-    paragraph.textContent = "Enter your name to start the game!";
-    paragraph.classList.add("text-center", "fw-bold", "mb-3");
+    // Instruction text above the input
+    const nameInstructionParagraph = document.createElement("p");
+    nameInstructionParagraph.setAttribute("id", "form-instruction");
+    nameInstructionParagraph.textContent = "Enter your name to start the game!";
+    nameInstructionParagraph.classList.add("text-center", "fw-bold", "mb-3");
 
-    // Input field
-    const input = document.createElement("input");
-    input.setAttribute("type", "text");
-    input.classList.add("player-input", "rounded-3", "px-2");
-    input.classList.add("form-control", "form-control-lg", "rounded-2", "mb-3");
-    input.setAttribute("placeholder", "Your Name...");
+    // Player name input field
+    const playerNameInput = document.createElement("input");
+    playerNameInput.setAttribute("type", "text");
+    playerNameInput.classList.add("player-input", "rounded-3", "px-2");
+    playerNameInput.classList.add("form-control", "form-control-lg", "rounded-2", "mb-3");
+    playerNameInput.setAttribute("placeholder", "Your Name...");
 
-    // Submit button
-    const submit = document.createElement("input");
-    submit.setAttribute("type", "submit");
-    submit.setAttribute("value", "Start Game");
-    submit.classList.add("submit-btn");
-    submit.classList.add("btn", "btn-secondary", "py-2", "px-3", "fw-bold");
+    // Start button (submit)
+    const startGameSubmitInput = document.createElement("input");
+    startGameSubmitInput.setAttribute("type", "submit");
+    startGameSubmitInput.setAttribute("value", "Start Game");
+    startGameSubmitInput.classList.add("submit-btn");
+    startGameSubmitInput.classList.add("btn", "btn-secondary", "py-2", "px-3", "fw-bold");
 
-    // Back button
-    const backBtn = document.createElement("button");
-    backBtn.setAttribute("type", "button");
-    backBtn.textContent = "Back";
-    backBtn.classList.add("back-btn-form", "back-btn");
-    backBtn.classList.add("btn", "btn-secondary", "py-2", "px-3", "fw-bold");
+    // Back to menu button
+    const backToMenuButton = document.createElement("button");
+    backToMenuButton.setAttribute("type", "button");
+    backToMenuButton.textContent = "Back";
+    backToMenuButton.classList.add("back-btn-form", "back-btn");
+    backToMenuButton.classList.add("btn", "btn-secondary", "py-2", "px-3", "fw-bold");
 
-    // Container for both buttons
-    const buttonContainer = document.createElement("div");
-    buttonContainer.classList.add("button-row");
-    buttonContainer.classList.add(
+    // Row container for action buttons
+    const formButtonsRow = document.createElement("div");
+    formButtonsRow.classList.add("button-row");
+    formButtonsRow.classList.add(
       "d-flex",
       "justify-content-center",
       "gap-3",
       "mb-2"
     );
-    buttonContainer.append(submit, backBtn);
+    formButtonsRow.append(startGameSubmitInput, backToMenuButton);
 
-    // Add elements to the form
-    form.append(paragraph, input, buttonContainer);
+    // Compose the form
+    playerNameForm.append(nameInstructionParagraph, playerNameInput, formButtonsRow);
 
-    /**
-     * Handles form submission:
-     * - if input is empty → show message
-     * - if name is entered → go to game area
-     */
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (input.value.trim() === "") {
-        let existingMsg = document.querySelector(".enterNameMsg");
+  /**
+   * Handle player-name form submission.
+   * - Validates input; shows inline prompt if empty.
+   * - On success, stores player name and transitions to game screen.
+   *
+   * @param {SubmitEvent} event - The form submission event.
+   * @returns {void}
+   */
+    playerNameForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (playerNameInput.value.trim() === "") {
+        const existingEnterNameMessage = document.querySelector(".enterNameMsg");
 
-        if (existingMsg) existingMsg.remove();
+        if (existingEnterNameMessage) existingEnterNameMessage.remove();
 
-        // Show message to enter name
-        const msgWrapper = document.createElement("div");
-        msgWrapper.classList.add("d-flex", "justify-content-center", "mb-0");
+        // Show message prompting the player to enter a name
+        const enterNameMessageWrapper = document.createElement("div");
+        enterNameMessageWrapper.classList.add("d-flex", "justify-content-center", "mb-0");
 
-        const enterNameMsg = document.createElement("div");
-        enterNameMsg.textContent = "Please enter your name to start the game!";
-        enterNameMsg.classList.add(
+        const enterNameMessage = document.createElement("div");
+        enterNameMessage.textContent = "Please enter your name to start the game!";
+        enterNameMessage.classList.add(
           "enterNameMsg",
           "px-3",
           "mb-3",
@@ -179,16 +209,16 @@ document.addEventListener("DOMContentLoaded", () => {
           "fw-medium"
         );
 
-        msgWrapper.appendChild(enterNameMsg);
-        form.insertBefore(msgWrapper, buttonContainer);
+        enterNameMessageWrapper.appendChild(enterNameMessage);
+        playerNameForm.insertBefore(enterNameMessageWrapper, formButtonsRow);
       } else {
-        playerName = input.value.trim();
+        playerName = playerNameInput.value.trim();
         showSection(sections[3]);
         resetGame();
       }
     });
 
-    return form;
+    return playerNameForm;
   }
 
   // ============================================================================
@@ -196,95 +226,101 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================================
 
   /**
-   * Duplicates all cards to create pairs,
-   * shuffles them, and displays them inside the grid container.
+   * Builds the in-game UI (HUD, grid, raccoon mascot) and renders a shuffled deck.
+   *
+   * Steps:
+   * 1) Clears the game area and adds a top HUD with a Back button, score, and timer.
+   * 2) Duplicates the base card set to create pairs and shuffles them using the Fisher–Yates algorithm.
+   * 3) Renders each card tile into the grid and wires up click handlers.
+   * 4) Starts the game timer from 00:00.
+   *
+   * @returns {void}
    */
   function generateBoard() {
-    const gameArea = document.getElementById("game-area");
+    const gameAreaEl = document.getElementById("game-area");
 
-    gameArea.innerHTML = "";
+    gameAreaEl.innerHTML = "";
 
     // --- TOP HUD ---
-    const topHUD = document.createElement("div");
-    topHUD.setAttribute("id", "top-hud");
+    const topHudContainer = document.createElement("div");
+    topHudContainer.setAttribute("id", "top-hud");
 
     // --- LEFT side (back button) ---
-    const leftHUD = document.createElement("div");
-    leftHUD.classList.add("left-hud");
+    const leftHud = document.createElement("div");
+    leftHud.classList.add("left-hud");
 
-    const backBtn = document.createElement("button");
-    backBtn.classList.add("back-btn", "btn", "btn-secondary", "fw-bold");
-    backBtn.textContent = "Back";
+    const backButton = document.createElement("button");
+    backButton.classList.add("back-btn", "btn", "btn-secondary", "fw-bold");
+    backButton.textContent = "Back";
 
-    // ajoute le bouton dans la partie gauche
-    leftHUD.appendChild(backBtn);
+    leftHud.appendChild(backButton);
 
     // --- RIGHT side (score + timer) ---
-    const rightHUD = document.createElement("div");
-    rightHUD.classList.add("right-hud");
+    const rightHud = document.createElement("div");
+    rightHud.classList.add("right-hud");
 
-    const scoreDisplay = document.createElement("div");
-    scoreDisplay.setAttribute("id", "score");
-    scoreDisplay.textContent = "Score: 0 / 6";
+    const scoreDisplayEl = document.createElement("div");
+    scoreDisplayEl.setAttribute("id", "score");
+    scoreDisplayEl.textContent = "Score: 0 / 6";
 
-    const timerDisplay = document.createElement("div");
-    timerDisplay.setAttribute("id", "timer");
-    timerDisplay.textContent = "Time: 00:00";
+    const timerDisplayEl = document.createElement("div");
+    timerDisplayEl.setAttribute("id", "timer");
+    timerDisplayEl.textContent = "Time: 00:00";
 
     // ajoute score et timer à la partie droite
-    rightHUD.append(scoreDisplay, timerDisplay);
+    rightHud.append(scoreDisplayEl, timerDisplayEl);
 
     // assemble tout dans le HUD principal
-    topHUD.append(leftHUD, rightHUD);
-    gameArea.appendChild(topHUD);
+    topHudContainer.append(leftHud, rightHud);
+    gameAreaEl.appendChild(topHudContainer);
 
     // Grid container for cards using CSS Grid
-    const gridContainer = document.createElement("div");
-    gridContainer.setAttribute("id", "grid-container");
-    gridContainer.classList.add("card-grid");
-    gameArea.appendChild(gridContainer);
+    const cardsGridContainer = document.createElement("div");
+    cardsGridContainer.setAttribute("id", "grid-container");
+    cardsGridContainer.classList.add("card-grid");
+    gameAreaEl.appendChild(cardsGridContainer);
 
-    const raccoon = document.createElement("img");
-    raccoon.id = "raccoon-game-area";
-    raccoon.src = "assets/images/raccoon/raccoon1.png";
-    raccoon.alt = "Raccoon wearing glasses waving cheerfully to the player";
-    raccoon.classList.add("img-fluid");
-    gameArea.appendChild(raccoon);
+    const raccoonImage = document.createElement("img");
+    raccoonImage.id = "raccoon-game-area";
+    raccoonImage.src = "assets/images/raccoon/raccoon1.png";
+    raccoonImage.alt = "Raccoon wearing glasses waving cheerfully to the player";
+    raccoonImage.classList.add("img-fluid");
+    gameAreaEl.appendChild(raccoonImage);
 
-    const cardsPairs = [...CARDS, ...CARDS];
+    const shuffledCards = [...CARDS, ...CARDS];
 
     // Shuffle card
-    for (let i = cardsPairs.length - 1; i > 0; i--) {
+    for (let i = shuffledCards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [cardsPairs[i], cardsPairs[j]] = [cardsPairs[j], cardsPairs[i]];
+      [shuffledCards[i], shuffledCards[j]] = [shuffledCards[j], shuffledCards[i]];
     }
 
     // Create card elements
-    cardsPairs.forEach((cardData) => {
+    shuffledCards.forEach((cardData) => {
       // Create card element directly (no Bootstrap classes needed)
-      const cardElement = document.createElement("div");
-      cardElement.classList.add("game-card");
-      cardElement.setAttribute("data-id", cardData.id);
+      const cardTile = document.createElement("div");
+      cardTile.classList.add("game-card");
+      cardTile.setAttribute("data-id", cardData.id);
 
       // Front and back images
-      const front = document.createElement("img");
-      front.src = cardData.image;
-      front.alt = cardData.name;
-      front.classList.add("card-front");
+      const cardFrontImg = document.createElement("img");
+      cardFrontImg.src = cardData.image;
+      cardFrontImg.alt = cardData.name;
+      cardFrontImg.classList.add("card-front");
 
-      const back = document.createElement("img");
-      back.src = "assets/images/cards/back.png";
-      back.alt = "Card back";
-      back.classList.add("card-back");
+      const cardBackImg = document.createElement("img");
+      cardBackImg.src = "assets/images/cards/back.png";
+      cardBackImg.alt = "Card back";
+      cardBackImg.classList.add("card-back");
 
-      cardElement.appendChild(front);
-      cardElement.appendChild(back);
+      cardTile.appendChild(cardFrontImg);
+      cardTile.appendChild(cardBackImg);
 
       // Add the card directly to the CSS grid container
-      gridContainer.appendChild(cardElement);
+      cardsGridContainer.appendChild(cardTile);
 
       // Add flip effect on click
-      cardElement.addEventListener("click", () => handleCardClick(cardElement));
+      cardTile.addEventListener("click", () => handleCardClick(cardTile));
     });
 
     startTimer();
@@ -295,8 +331,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================================
 
   /**
-   * Manages the flipping of cards, checking for matches,
-   * and resetting unmatched cards after a delay.
+   * Handles a click on a single card tile.
+   *
+   * Rules:
+   * - Ignores clicks while the board is locked or on already flipped cards.
+   * - Flips up to two cards, when two are flipped, evaluates for a match.
+   *
+   * @param {HTMLElement} cardElement - The clicked card tile element (.game-card).
+   * @returns {void}
    */
   function handleCardClick(cardElement) {
     // Prevent clicking more than 2 cards or clicking the same card
@@ -334,6 +376,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /**
+   * Resolves a successful match between two cards.
+   *
+   * Effects:
+   * - Increments the score and updates the HUD display.
+   * - Selects a random raccoon congratulatory line for the matched animal and shows it.
+   * - Disables pointer events on the matched cards to keep them revealed.
+   * - Releases the board lock shortly after, readying it for the next turn.
+   *
+   * @param {HTMLElement} firstCard - First matched card element.
+   * @param {HTMLElement} secondCard - Second matched card element.
+   * @returns {void}
+   */
   function handleMatch(firstCard, secondCard) {
     score++;
     const scoreDisplay = document.getElementById("score");
@@ -354,6 +409,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }, MATCH_DELAY);
   }
 
+  /**
+   * Resolves a failed match attempt.
+   *
+   * Effects:
+   * - After a brief delay, un-flips both cards and clears the selection.
+   * - Unlocks the board to allow further interaction.
+   *
+   * @param {HTMLElement} firstCard - First non-matching card element.
+   * @param {HTMLElement} secondCard - Second non-matching card element.
+   * @returns {void}
+   */
   function handleNoMatch(firstCard, secondCard) {
     setTimeout(() => {
       firstCard.classList.remove("flipped");
@@ -363,6 +429,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }, NO_MATCH_DELAY);
   }
 
+  /**
+   * Finalizes the game flow when all pairs are matched.
+   *
+   * Effects:
+   * - Stops the timer.
+   * - Shows a raccoon celebration line personalized with the player's name.
+   * - After a short delay, transitions to the end screen.
+   *
+   * @returns {void}
+   */
   function completeGame() {
     stopTimer();
     showRaccoonSpeech(`You did it, ${playerName}! You found all my friends!`);
@@ -376,6 +452,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // RACCOON SPEECH BUBBLE
   // ============================================================================
 
+  /**
+   * Displays a temporary raccoon speech bubble within the game area.
+   *
+   * Behavior:
+   * - Ensures a single speech-bubble container exists, then injects content.
+   * - Automatically removes the bubble after SPEECH_DURATION milliseconds.
+   *
+   * @param {string} message - The text to display inside the bubble.
+   * @returns {void}
+   */
   function showRaccoonSpeech(message) {
     const gameArea = document.getElementById("game-area");
 
@@ -411,6 +497,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // TIMER FUNCTIONS
   // ============================================================================
 
+  /**
+   * Starts or restarts the game timer at 00:00 and updates the HUD every second.
+   *
+   * Details:
+   * - Clears a previous interval if present, then schedules a new setInterval.
+   * - Updates the #timer textContent in mm:ss format.
+   * - Tracks elapsed seconds in the shared timeElapsed variable.
+   *
+   * @returns {void}
+   */
   function startTimer() {
     const timerDisplay = document.getElementById("timer");
     timeElapsed = 0;
@@ -427,6 +523,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
 
+  /**
+   * Stops the running timer interval if any and clears the handle.
+   *
+   * @returns {void}
+   */
   function stopTimer() {
     clearInterval(timerInterval);
     timerInterval = null;
@@ -436,12 +537,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // GAME RESET & END SCREEN
   // ============================================================================
 
+  /**
+   * Resets transient game state and rebuilds the board.
+   *
+   * Steps:
+   * - Removes the current grid, any speech bubble, and a stray player form (if present).
+   * - Resets flipped/lock/score/time variables and stops the timer.
+   * - Calls generateBoard() to create a fresh round.
+   *
+   * @returns {void}
+   */
   function resetGame() {
     const grid = document.getElementById("grid-container");
     if (grid) grid.remove();
-
-    const hud = document.querySelector(".end-buttons");
-    if (hud) hud.remove();
 
     const speech = document.getElementById("speech-bubble");
     if (speech) speech.remove();
@@ -457,6 +565,16 @@ document.addEventListener("DOMContentLoaded", () => {
     generateBoard();
   }
 
+  /**
+   * Transitions to the end screen, shows the player's name and time, and updates highscores.
+   *
+   * Steps:
+   * - Reads the final time from the HUD timer.
+   * - Removes the grid, shows the end screen section, and populates name/time fields.
+   * - Ensures a highscores list element exists, then saves and renders top scores.
+   *
+   * @returns {void}
+   */
   function showEndScreen() {
     const finalTime = document.getElementById("timer")
       ? document.getElementById("timer").textContent.replace("Time: ", "")
@@ -464,26 +582,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const grid = document.getElementById("grid-container");
     if (grid) grid.remove();
-    
-    const hud = document.getElementsByClassName("end-buttons");
-    if (hud) hud.remove();
-
+    // Show end screen first
     showSection(sections[4]);
 
     const playerNameElement = document.getElementById("player-name");
     const playerTimeElement = document.getElementById("player-time");
-    const highscoresList = document.getElementById("highscores-list");
+    let highscoresList = document.getElementById("highscores-list");
 
-    playerNameElement.textContent = playerName;
+    playerNameElement.textContent = playerName || "";
     playerTimeElement.textContent = finalTime;
+    
+  const endButtons = document.querySelector(".end-buttons");
 
-    console.log("Player name set to:", playerName);
-    console.log("Player time set to:", finalTime);
+    if (!highscoresList) {
+      // If the highscores list is missing, create a fallback container to avoid crashes
+      console.warn("Highscores list not found — creating fallback list element.");
+      highscoresList = document.createElement("ol");
+      highscoresList.id = "highscores-list";
+      const highscoreWrapper = document.querySelector("#highscores");
+      if (highscoreWrapper) highscoreWrapper.appendChild(highscoresList);
+    }
+  
 
     saveAndDisplayHighscores(playerName, finalTime, highscoresList);
   }
 
+  /**
+   * Saves the provided score, re-renders the highscores list, and persists to localStorage.
+   *
+   * Input contract:
+   * - name: player's display name.
+   * - time: mm:ss formatted string (e.g., "01:23").
+   * - highscoresList: reference to the <ol> that will be populated.
+   *
+   * Behavior:
+   * - Reads existing <li> entries into an array of {name,time}.
+   * - Adds the new entry and sorts ascending by time using a mm:ss → seconds converter.
+   * - Keeps only the fastest MAX_HIGHSCORES entries and re-renders the list.
+   * - Highlights the just-added score in the DOM and persists the top list in localStorage.
+   *
+   * @param {string} name
+   * @param {string} time
+   * @param {HTMLOListElement|HTMLElement} highscoresList
+   * @returns {void}
+   */
   function saveAndDisplayHighscores(name, time, highscoresList) {
+    if (!highscoresList) {
+      console.warn('saveAndDisplayHighscores: highscoresList is null or undefined — aborting to avoid errors.');
+      return;
+    }
     const existingScores = Array.from(
       highscoresList.querySelectorAll("li")
     ).map((li) => {
@@ -494,7 +641,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     existingScores.push({ name, time });
 
-    const toSeconds = (t) => {
+  /**
+   * Converts a mm:ss string into total seconds.
+   * @param {string} t - A time string like "03:07".
+   * @returns {number} Total seconds (e.g., 187).
+   */
+  const toSeconds = (t) => {
       const [m, s] = t.split(":").map(Number);
       return m * 60 + s;
     };
@@ -513,7 +665,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       highscoresList.appendChild(li);
-      console.log(`Position ${index + 1}: ${entry.name} - ${entry.time}`);
+  
     });
 
     localStorage.setItem("forestPalsHighscores", JSON.stringify(top5));
@@ -524,7 +676,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================================
 
   /**
-   * Universal click handler for all buttons using event delegation
+   * Universal click handler using event delegation.
+   *
+   * Handles:
+   * - Start button: hides menu header items, builds and shows the player form.
+   * - How To Play button: navigates to instructional section.
+   * - Back buttons (from form/HUD): returns to main menu and cleans up form if needed.
+   * - End screen buttons: Retry (restarts game) and Main Menu (resets UI/state).
+   *
+   * @param {MouseEvent} e - The click event captured at the document level.
+   * @returns {void}
    */
   function handleButtonClick(e) {
     // Start Game button
@@ -550,7 +711,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // How to Play button
     if (e.target && e.target.id === "how-to-play-btn") {
-      console.log("How to Play button clicked!");
+  
       showSection(sections[1]);
     }
 
@@ -569,13 +730,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // End screen buttons
     if (e.target && e.target.id === "retry-btn") {
-      console.log("Retry button clicked!");
+  
       showSection(sections[3]);
       resetGame();
     }
 
     if (e.target && e.target.id === "main-menu-btn") {
-      console.log("Main menu button clicked!");
+  
       startBtn.style.display = "block";
       howToPlayBtn.style.display = "block";
       gameTitle.style.display = "block";

@@ -1,4 +1,21 @@
-/* Google Fonts & CSS Variables */
+/* =============================================================================
+  Forest Pals — Global Stylesheet
+  Structure overview:
+  1) Imports & CSS variables
+  2) Resets & base layout
+  3) Background layer
+  4) Sections
+    4.1) Menu
+    4.2) How to Play
+    4.3) Buttons (shared)
+    4.4) Player Form
+    4.5) Game Area
+    4.6) End Screen
+  5) Media Queries (responsive backgrounds + layout tuning)
+  ============================================================================= */
+
+/* 1) Imports & CSS Variables */
+/* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Caprasimo&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Macondo&family=Quicksand:wght@300..700&display=swap');
 
 /* Hidden sections by default */
@@ -8,6 +25,7 @@
   display: none;
 }
 
+/* CSS Variables */
 :root {
   /* Colors */
   --text-color: #73463a;
@@ -21,17 +39,14 @@
   --font-text: 'Quicksand', sans-serif;
 }
 
-/* Reset */
+/* #region Reset & Base */
+/* 2) Reset & Base */
 * {
-  margin: 0;
-  /*Removes default browser spacing on all elements */
+  margin: 0; /*Removes default browser spacing on all elements */
   padding: 0;
-  box-sizing: border-box;
-  /* Prevent text selection and dragging */
-  user-select: none;
-  /*Prevents text selection to be highlighted*/
-  -webkit-user-drag: none;
-  /*Prevents dragging*/
+  box-sizing: border-box; /* Prevent text selection and dragging */
+  user-select: none; /*Prevents text selection to be highlighted*/
+  -webkit-user-drag: none; /*Prevents dragging*/
 }
 
 /* Page layout */
@@ -41,32 +56,26 @@ body {
   position: relative;
   /* For positioning background and other absolute elements */
 }
+/* #endregion Reset & Base */
 
+/* #region Background layer */
 /* Universal background that respects 1800px constraint */
 body::before {
-  content: '';
-  /* Necessary for pseudo-element */
-  position: fixed;
-  /* Creates an invisible element (pseudo-element) that acts as a background layer */
+  content: ''; /* Necessary for pseudo-element */
+  position: fixed; /* Creates an invisible element (pseudo-element) that acts as a background layer */
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100vw;
-  /* Full viewport width */
-  height: 100vh;
-  /* Full viewport height */
-  max-width: 1800px;
-  /* Maximum width for large screens */
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  max-width: 1800px; /* Maximum width for large screens */
   background-image: url('../images/background/background-small-screen.png');
-  background-size: cover;
-  /* Cover entire viewport */
-  background-repeat: no-repeat;
-  /* Prevent tiling */
-  background-position: center;
-  /* Center the background image */
-  z-index: -1;
-  /* Place behind all content */
+  background-size: cover; /* Cover entire viewport */
+  background-repeat: no-repeat; /* Prevent tiling */
+  background-position: center; /* Center the background image */
+  z-index: -1; /* Place behind all content */
 }
+/* #endregion Background layer */
 
 /* #region Menu styles */
 
@@ -92,13 +101,15 @@ body::before {
   justify-items: center;
 }
 
-#raccoon {
+#raccoon,
+#raccoon-menu {
   grid-row: 3;
   align-self: end;
   width: clamp(13rem, 30vw, 20rem);
 }
 
 #raccoon,
+#raccoon-menu,
 #raccoon-game-area {
   display: block;
   pointer-events: none;
@@ -107,18 +118,6 @@ body::before {
 
 #raccoon-game-area {
   display: none;
-}
-
-#bushes,
-#bushes-end {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  z-index: 1;
 }
 
 #raccoon-game-area {
@@ -182,8 +181,7 @@ body::before {
 
 /* #endregion How to play area styles */
 
-
-/* #region personalised button styles for all buttons */
+/* #region Shared button styles */
 
 /* Basic style for buttons */
 #start-btn,
@@ -193,7 +191,7 @@ body::before {
   cursor: pointer;
 }
 
-/* violets buttons color styles */
+/* Violet button color styles */
 #start-btn,
 #score,
 #timer,
@@ -227,7 +225,7 @@ body::before {
   color: white;
 }
 
-/* orange button and form color styles */
+/* Orange button and form color styles */
 #how-to-play-btn,
 #player-form,
 #speech-bubble,
@@ -243,9 +241,9 @@ body::before {
   color: white;
 }
 
-/* #endregion */
+/* #endregion Shared button styles */
 
-/*#region player form styles */
+/* #region Player form styles */
 
 #player-form-area {
   display: grid;
@@ -269,19 +267,19 @@ body::before {
   font-size: 1.2rem;
 }
 
-/* personalised placeholder */
+/* Custom placeholder */
 #player-form input::placeholder {
   font-family: var(--font-text);
   font-size: 1rem;
   color: var(--dark-orange);
 }
 
-/* personaliser border in input text */
+/* Custom border on text input */
 #player-form input[type="text"] {
   border: 3px solid var(--dark-orange)
 }
 
-/* Enlever le highlight au focus */
+/* Remove highlight on focus */
 #player-form input[type="text"]:focus {
   border-color: var(--dark-orange);
   box-shadow: none;
@@ -304,7 +302,7 @@ body::before {
   cursor: pointer;
 }
 
-/*#endregion*/
+/* #endregion Player form styles */
 
 /* #region Game area styles */
 #game-area {
@@ -407,8 +405,8 @@ body::before {
 }
 
 .speech-bubble-container {
-  position: absolute; /* <-- ajoute ceci */
-  bottom: 1rem;           /* colle la bulle au bas du jeu */
+  position: absolute;
+  bottom: 1rem;
   left: 0;
   width: 100%;
   height: 5rem;
@@ -444,9 +442,10 @@ body::before {
 }
 
 
-/* #endregion */
+/* #endregion Game area styles */
 
 /* #region End screen styles */
+
 #end-screen {
   display: grid;
   place-items: center;
@@ -533,13 +532,9 @@ body::before {
   border-radius: 10px;
   padding: 2px 12px;
 }
-
-
-
 /* #endregion End screen styles */
 
-
-/*Large phone screens to tablet*/
+/* #region Media: Large phone screens to tablet */
 @media (min-width: 481px) and (max-width: 767px) {
   body::before {
     background-image: url('../images/background/background-tablet.png');
@@ -573,8 +568,9 @@ body::before {
   }
 
 }
+/* #endregion Media: Large phone screens to tablet */
 
-/*Tablet screen to small laptop*/
+/* #region Media: Tablet screen to small laptop */
 @media(min-width: 768px) and (max-width: 1023px) {
   body::before {
     background-image: url('../images/background/background-laptop.png');
@@ -611,9 +607,9 @@ body::before {
     width: clamp(10rem, 30vw, 18rem);
     align-self: end;
     justify-self: center;
-    position: relative; 
+  position: relative; 
     z-index: 1;
-    transform: scaleX(-1); 
+  transform: scaleX(-1); 
   }
 
   .speech-bubble-container {
@@ -677,8 +673,9 @@ body::before {
   }
 
 }
+/* #endregion Media: Tablet screen to small laptop */
 
-/*Small laptop to large laptop*/
+/* #region Media: Small laptop to large laptop */
 @media (min-width: 1024px) and (max-width: 1439px) {
   body::before {
     background-image: url('../images/background/background-laptop.png');
@@ -715,9 +712,9 @@ body::before {
     width: clamp(10rem, 30vw, 18rem);
     align-self: end;
     justify-self: center;
-    position: relative; /* contexte pour la bulle */
+  position: relative; /* context for the bubble */
     z-index: 1;
-    transform: scaleX(-1); /* flip horizontalement */
+  transform: scaleX(-1); /* flip horizontally */
   }
 
   .speech-bubble-container {
@@ -781,9 +778,9 @@ body::before {
   }
 
 }
+/* #endregion Media: Small laptop to large laptop */
 
-
-/*Large laptop and up*/
+/* #region Media: Large laptop and up */
 @media (min-width: 1440px) {
   body::before {
     background-image: url('../images/background/background-large-laptop.png');
@@ -821,9 +818,9 @@ body::before {
     width: clamp(10rem, 30vw, 25rem);
     align-self: end;
     justify-self: center;
-    position: relative; /* contexte pour la bulle */
+  position: relative; /* context for the bubble */
     z-index: 1;
-    transform: scaleX(-1); /* flip horizontalement */
+  transform: scaleX(-1); /* flip horizontally */
   }
 
   .speech-bubble-container {
@@ -887,3 +884,4 @@ body::before {
   }
 
 }
+ /* #endregion Media: Large laptop and up */

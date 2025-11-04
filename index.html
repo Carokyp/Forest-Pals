@@ -4,17 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap CSS (layout + components) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- CSS-->
+  <!-- App CSS -->
   <link rel="stylesheet" href="assets/css/styles.css">
   <title>Forest Pals</title>
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <meta name="description" content="Forest Pals is a cute memory game: flip cards, match animal friends, and set a high score!">
 </head>
 
 <body>
   <main>
-    <!-- Menu-->
+  <!-- #region Menu -->
     <section id="menu">
       <!-- Title-->
       <div>
@@ -31,12 +32,13 @@
           How to Play
         </button>
       </div>
-      <!-- Images of the raccoon-->
-      <img id="raccoon" src="assets/images/raccoon/raccoon1.png" alt="Raccoon wearing glasses waving cheerfully to the player"
-        class="img-fluid">
+      <!-- Raccoon mascot used on the menu and player form -->
+      <img id="raccoon-menu" src="assets/images/raccoon/raccoon1.png"
+        alt="Raccoon wearing glasses waving cheerfully to the player" class="img-fluid">
     </section>
+    <!-- #endregion Menu -->
 
-    <!-- How to Play area-->
+    <!-- #region How to Play area -->
     <section id="how-to-play-area">
       <div>
         <h1 class="htp-title mt-3 mb-3 fw-bold">How to Play</h1>
@@ -67,21 +69,21 @@
       <div class="mt-3 mb-3">
         <button class="back-btn btn btn-secondary fw-bold">Back</button>
       </div>
-      </div>
     </section>
+    <!-- #endregion How to Play area -->
 
-    <!-- Back button -->
-    <div id="game-area">
-      <button class="back-btn btn btn-secondary fw-bold">Back</button>
-    </div>
+    <!-- #region Game area (dynamic content injected by JS) -->
+    <div id="game-area"><!-- Dynamic content injected by JS --></div>
+    <!-- #endregion Game area -->
 
-    <!-- Player Form-->
+    <!-- #region Player Form (raccoon image + dynamic form inserted by JS) -->
     <section id="player-form-area">
-      <img id="raccoon" src="assets/images/raccoon/raccoon1.png" alt="Raccoon wearing glasses waving cheerfully to the player"
-        class="img-fluid">
+      <img id="raccoon" src="assets/images/raccoon/raccoon1.png"
+        alt="Raccoon wearing glasses waving cheerfully to the player" class="img-fluid">
     </section>
+    <!-- #endregion Player Form -->
 
-    <!-- End Screen-->
+    <!-- #region End Screen (final stats + highscores + action buttons) -->
     <section id="end-screen">
       <div class="end-screen-container">
         <h1 id="end-title">
@@ -127,6 +129,7 @@
         </div>
       </div>
     </section>
+    <!-- #endregion End Screen -->
   </main>
 
   <!-- JS-->
