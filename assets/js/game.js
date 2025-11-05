@@ -92,8 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Global event delegation for buttons/controls
   document.addEventListener("click", handleButtonClick);
   // Prevent background scroll/drag interactions across the app
-  document.addEventListener("wheel", (e) => e.preventDefault(), { passive: false });
-  document.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
+  document.addEventListener("wheel", (e) => e.preventDefault(), {
+    passive: false,
+  });
+  document.addEventListener("touchmove", (e) => e.preventDefault(), {
+    passive: false,
+  });
   document.addEventListener("dragstart", (e) => e.preventDefault());
 
   // ============================================================================
@@ -157,7 +161,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const playerNameInput = document.createElement("input");
     playerNameInput.setAttribute("type", "text");
     playerNameInput.classList.add("player-input", "rounded-3", "px-2");
-    playerNameInput.classList.add("form-control", "form-control-lg", "rounded-2", "mb-3");
+    playerNameInput.classList.add(
+      "form-control",
+      "form-control-lg",
+      "rounded-2",
+      "mb-3"
+    );
     playerNameInput.setAttribute("placeholder", "Your Name...");
 
     // Start button (submit)
@@ -165,14 +174,26 @@ document.addEventListener("DOMContentLoaded", () => {
     startGameSubmitInput.setAttribute("type", "submit");
     startGameSubmitInput.setAttribute("value", "Start Game");
     startGameSubmitInput.classList.add("submit-btn");
-    startGameSubmitInput.classList.add("btn", "btn-secondary", "py-2", "px-3", "fw-bold");
+    startGameSubmitInput.classList.add(
+      "btn",
+      "btn-secondary",
+      "py-2",
+      "px-3",
+      "fw-bold"
+    );
 
     // Back to menu button
     const backToMenuButton = document.createElement("button");
     backToMenuButton.setAttribute("type", "button");
     backToMenuButton.textContent = "Back";
     backToMenuButton.classList.add("back-btn-form", "back-btn");
-    backToMenuButton.classList.add("btn", "btn-secondary", "py-2", "px-3", "fw-bold");
+    backToMenuButton.classList.add(
+      "btn",
+      "btn-secondary",
+      "py-2",
+      "px-3",
+      "fw-bold"
+    );
 
     // Row container for action buttons
     const formButtonsRow = document.createElement("div");
@@ -186,29 +207,39 @@ document.addEventListener("DOMContentLoaded", () => {
     formButtonsRow.append(startGameSubmitInput, backToMenuButton);
 
     // Compose the form
-    playerNameForm.append(nameInstructionParagraph, playerNameInput, formButtonsRow);
+    playerNameForm.append(
+      nameInstructionParagraph,
+      playerNameInput,
+      formButtonsRow
+    );
 
-  /**
-   * Handle player-name form submission.
-   * - Validates input; shows inline prompt if empty.
-   * - On success, stores player name and transitions to game screen.
-   *
-   * @param {SubmitEvent} event - The form submission event.
-   * @returns {void}
-   */
+    /**
+     * Handle player-name form submission.
+     * - Validates input; shows inline prompt if empty.
+     * - On success, stores player name and transitions to game screen.
+     *
+     * @param {SubmitEvent} event - The form submission event.
+     * @returns {void}
+     */
     playerNameForm.addEventListener("submit", (event) => {
       event.preventDefault();
       if (playerNameInput.value.trim() === "") {
-        const existingEnterNameMessage = document.querySelector(".enterNameMsg");
+        const existingEnterNameMessage =
+          document.querySelector(".enterNameMsg");
 
         if (existingEnterNameMessage) existingEnterNameMessage.remove();
 
         // Show message prompting the player to enter a name
         const enterNameMessageWrapper = document.createElement("div");
-        enterNameMessageWrapper.classList.add("d-flex", "justify-content-center", "mb-0");
+        enterNameMessageWrapper.classList.add(
+          "d-flex",
+          "justify-content-center",
+          "mb-0"
+        );
 
         const enterNameMessage = document.createElement("div");
-        enterNameMessage.textContent = "Please enter your name to start the game!";
+        enterNameMessage.textContent =
+          "Please enter your name to start the game!";
         enterNameMessage.classList.add(
           "enterNameMsg",
           "px-3",
@@ -293,7 +324,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const raccoonImage = document.createElement("img");
     raccoonImage.id = "raccoon-game-area";
     raccoonImage.src = "assets/images/raccoon/raccoon1.png";
-    raccoonImage.alt = "Raccoon wearing glasses waving cheerfully to the player";
+    raccoonImage.alt =
+      "Raccoon wearing glasses waving cheerfully to the player";
     raccoonImage.classList.add("img-fluid");
     gameAreaEl.appendChild(raccoonImage);
 
@@ -302,7 +334,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Shuffle card
     for (let i = shuffledCards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [shuffledCards[i], shuffledCards[j]] = [shuffledCards[j], shuffledCards[i]];
+      [shuffledCards[i], shuffledCards[j]] = [
+        shuffledCards[j],
+        shuffledCards[i],
+      ];
     }
 
     // Create card elements
@@ -372,7 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function checkForMatch() {
     const [firstCard, secondCard] = flippedCards;
     const isMatch = firstCard.dataset.id === secondCard.dataset.id;
-    
+
     lockBoard = true;
 
     if (isMatch) {
@@ -601,18 +636,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     playerNameElement.textContent = playerName || "";
     playerTimeElement.textContent = finalTime;
-    
-  const endButtons = document.querySelector(".end-buttons");
+
+    const endButtons = document.querySelector(".end-buttons");
 
     if (!highscoresList) {
       // If the highscores list is missing, create a fallback container to avoid crashes
-      console.warn("Highscores list not found — creating fallback list element.");
+      console.warn(
+        "Highscores list not found — creating fallback list element."
+      );
       highscoresList = document.createElement("ol");
       highscoresList.id = "highscores-list";
       const highscoreWrapper = document.querySelector("#highscores");
       if (highscoreWrapper) highscoreWrapper.appendChild(highscoresList);
     }
-  
 
     saveAndDisplayHighscores(playerName, finalTime, highscoresList);
   }
@@ -638,7 +674,9 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   function saveAndDisplayHighscores(name, time, highscoresList) {
     if (!highscoresList) {
-      console.warn('saveAndDisplayHighscores: highscoresList is null or undefined — aborting to avoid errors.');
+      console.warn(
+        "saveAndDisplayHighscores: highscoresList is null or undefined — aborting to avoid errors."
+      );
       return;
     }
     const existingScores = Array.from(
@@ -651,12 +689,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     existingScores.push({ name, time });
 
-  /**
-   * Converts a mm:ss string into total seconds.
-   * @param {string} t - A time string like "03:07".
-   * @returns {number} Total seconds (e.g., 187).
-   */
-  const toSeconds = (t) => {
+    /**
+     * Converts a mm:ss string into total seconds.
+     * @param {string} t - A time string like "03:07".
+     * @returns {number} Total seconds (e.g., 187).
+     */
+    const toSeconds = (t) => {
       const [m, s] = t.split(":").map(Number);
       return m * 60 + s;
     };
@@ -675,7 +713,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       highscoresList.appendChild(li);
-  
     });
 
     localStorage.setItem("forestPalsHighscores", JSON.stringify(top5));
@@ -710,7 +747,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const existingForm = document.getElementById("player-form");
       if (existingForm) existingForm.remove();
-      
+
       if (raccoon && playerFormArea.contains(raccoon)) {
         playerFormArea.insertBefore(form, raccoon);
       } else {
@@ -721,7 +758,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // How to Play button
     if (e.target && e.target.id === "how-to-play-btn") {
-  
       showSection(sections[1]);
     }
 
@@ -740,13 +776,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // End screen buttons
     if (e.target && e.target.id === "retry-btn") {
-  
       showSection(sections[3]);
       resetGame();
     }
 
     if (e.target && e.target.id === "main-menu-btn") {
-  
       startBtn.style.display = "block";
       howToPlayBtn.style.display = "block";
       gameTitle.style.display = "block";
