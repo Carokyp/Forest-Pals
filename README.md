@@ -7,6 +7,20 @@
 
 ## About 
 
+## Project structure
+
+Top-level layout keeps production website code under `assets/` and moves non-website artifacts (like validation screenshots and wireframes) under `docs/`.
+
+- assets/
+   - css/ — site styles
+   - js/ — site scripts
+   - images/ — site images (backgrounds, cards, raccoon, favicon)
+- docs/
+   - validation/
+      - css/ — CSS validator screenshots
+      - html/ — HTML validator screenshots
+- index.html — site entry point
+
 ## Index – Table of Contents
 * [User Experience (UX)](#user-experience-ux)
    * [Strategy](#Strategy)
