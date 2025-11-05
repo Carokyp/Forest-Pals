@@ -64,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("start-btn");
   const howToPlayBtn = document.getElementById("how-to-play-btn");
   const gameTitle = document.getElementById("game-title");
-  const menu = document.getElementById("menu");
 
   /** Array to hold references to different sections of the game */
   const sections = [
@@ -318,7 +317,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Grid container for cards using CSS Grid
     const cardsGridContainer = document.createElement("div");
     cardsGridContainer.setAttribute("id", "grid-container");
-    cardsGridContainer.classList.add("card-grid");
     gameAreaEl.appendChild(cardsGridContainer);
 
     const raccoonImage = document.createElement("img");
@@ -636,8 +634,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     playerNameElement.textContent = playerName || "";
     playerTimeElement.textContent = finalTime;
-
-    const endButtons = document.querySelector(".end-buttons");
 
     if (!highscoresList) {
       // If the highscores list is missing, create a fallback container to avoid crashes
