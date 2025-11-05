@@ -132,9 +132,9 @@ body::before {
 
 /* #region How to play area styles */
 #how-to-play-area {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto auto;
+  display: grid; /* How to play layout */
+  grid-template-columns: 1fr; /* Single column */
+  grid-template-rows: auto auto auto; /* Title, instructions, back button */
   place-items: center;
   min-height: 100dvh;
 }
@@ -188,24 +188,18 @@ body::before {
 #retry-btn,
 #ok-btn,
 #end-screen .btn-secondary,
+#game-area .btn-secondary,
+#player-form .btn-secondary,
 .back-btn,
 .back-btn-form,
 .submit-btn {
   background-color: var(--light-violet);
   border: 3px solid var(--dark-violet);
-  color: white;
-}
-
-#start-btn,
-#player-form .btn-secondary,
-#game-area .btn-secondary,
-#end-screen .btn-secondary {
   font-family: var(--font-text);
-  background-color: var(--light-violet);
-  border-color: var(--dark-violet);
   color: white;
 }
 
+/* Hover effect for violet buttons */
 #start-btn:hover,
 #player-form .btn-secondary:hover,
 #game-area .btn-secondary:hover,
@@ -225,6 +219,7 @@ body::before {
   color: var(--text-color);
 }
 
+/* Hover effect for orange buttons */
 #how-to-play-btn:hover {
   background-color: var(--dark-orange);
   border-color: var(--dark-orange);
@@ -236,23 +231,23 @@ body::before {
 /* #region Player form styles */
 
 #player-form-area {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto;
+  display: grid; 
+  grid-template-columns: 1fr; /* Single column */
+  grid-template-rows: 1fr auto; /* Form and back button */
   place-items: center;
   min-height: 100dvh;
   position: relative;
 }
 
-#player-form {
-  /* Responsive width that caps at ~40% of 1400px (560px) */
-  width: min(80dvw, 560px);
+#player-form { 
+  width: min(80dvw, 560px); /* Responsive width that caps at ~40% of 1400px (560px) */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+/* Form title */
 #form-instruction {
   font-family: var(--font-text);
   font-size: 1.2rem;
@@ -277,11 +272,10 @@ body::before {
   outline: none;
 }
 
+/* Enter name message style*/
 .enterNameMsg {
   font-family: var(--font-text);
-
   border: 2px solid var(--dark-orange);
-
   color: var(--text-color);
   background-color: rgb(255, 224, 199);
 }
@@ -300,8 +294,8 @@ body::before {
 /* #region Game area styles */
 #game-area {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.2fr 0.6fr;
+  grid-template-columns: 1fr; /* Single column */
+  grid-template-rows: 0.2fr 0.6fr; /* Top HUD and game grid */
   place-items: center;
   min-height: 100dvh;
   max-width: 1800px;
@@ -310,12 +304,13 @@ body::before {
 
 #top-hud {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, auto); /* Back button, spacer, score & timer */
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
 }
 
+/* Left and right HUD sections */   
 .left-hud {
   display: flex;
   align-items: center;
@@ -327,9 +322,10 @@ body::before {
   gap: 1rem;
 }
 
+/* Grid to contain game cards */
 #grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
   gap: 0.75rem;
   justify-content: center;
   place-items: center;
@@ -338,6 +334,7 @@ body::before {
   width: fit-content;
 }
 
+/* Card styles*/
 #grid-container .game-card {
   position: relative;
   width: 4.3rem;
@@ -351,7 +348,8 @@ body::before {
   justify-self: center;
   align-self: center;
 }
-
+/* Card image styles */
+/* Card image styles */
 #grid-container .game-card img {
   position: absolute;
   width: 100%;
@@ -364,27 +362,29 @@ body::before {
   transform-style: preserve-3d;
 }
 
+/* Front and back card face positioning */
 #grid-container .card-front {
   transform: rotateY(180deg);
 }
-
 #grid-container .card-back {
   transform: rotateY(0);
 }
 
+/* Flip card when clicked */
 #grid-container .game-card.flipped .card-front {
   transform: rotateY(0);
 }
-
 #grid-container .game-card.flipped .card-back {
   transform: rotateY(180deg);
 }
 
+/* Back button styles */
 #game-area .back-btn {
   font-size: 0.9rem;
   padding: 0.5rem 0.9em;
 }
 
+/* Score and timer styles */
 #score,
 #timer {
   font-family: var(--font-text);
@@ -397,6 +397,7 @@ body::before {
   border-radius: 6px;
 }
 
+/* Speech bubble container to position bubble at bottom center */
 .speech-bubble-container {
   position: absolute;
   bottom: 1rem;
@@ -409,6 +410,7 @@ body::before {
   pointer-events: none;
 }
 
+/* Speech bubble styles */
 #speech-bubble {
   position: static;
   text-align: center;
@@ -441,16 +443,16 @@ body::before {
 
 #end-screen {
   display: grid;
-  place-items: center;
+  place-items: center; /* Center content */
   align-content: center;
   min-height: 100dvh;
   padding: 2rem;
 }
 
 .end-screen-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto auto;
+  display: grid; /* End screen content layout */
+  grid-template-columns: 1fr; /* Single column */
+  grid-template-rows: auto auto auto; /* Title, text, buttons */
   place-items: center;
   gap: 1.2rem;
   padding: 2rem;
@@ -461,13 +463,14 @@ body::before {
 }
 
 .end-buttons {
-  display: grid;
-  grid-template-columns: auto auto;
+  display: grid; /* Buttons layout */
+  grid-template-columns: auto auto; /* Two columns for main menu and back button */
   width: 100%;
   gap: 1.5rem;
   justify-content: center;
 }
 
+/* End screen buttons styles */
 #retry-btn,
 #ok-btn {
   font-family: var(--font-text);
@@ -479,6 +482,7 @@ body::before {
   cursor: pointer;
 }
 
+/* End screen text styles */
 .end-text {
   display: grid;
   justify-items: center;
@@ -490,6 +494,7 @@ body::before {
   color: var(--text-color);
 }
 
+/* End screen title styles */
 #end-title {
   font-family: var(--font-text);
   color: var(--text-color);
@@ -505,6 +510,7 @@ body::before {
   margin-top: 0.5rem;
 }
 
+/* High scores list styles */
 #highscores-list {
   margin-top: 0.5rem;
   list-style-position: inside;
@@ -513,10 +519,12 @@ body::before {
   width: 100%;
 }
 
+/* High scores list item styles */
 #highscores-list li {
   padding-left: 0.8rem;
 }
 
+/* Highlighted text styles */
 .highlight {
   background-color: beige;
   color: var(--text-color);
@@ -539,7 +547,7 @@ body::before {
   }
 
   #grid-container {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* Four columns */
   }
 
   #game-area .back-btn {
@@ -569,7 +577,7 @@ body::before {
 /* #region Media: Tablet screen to small laptop */
 @media(min-width: 768px) and (max-width: 1023px) {
   body::before {
-    background-image: url('../images/background/background-laptop.png');
+    background-image: url('../images/background/background-laptop.png'); /* Tablet background */
   }
 
   h1,
@@ -582,10 +590,10 @@ body::before {
   }
 
 #game-area {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-      grid-template-areas:
+  display: grid; /* Game area layout */
+  grid-template-columns: auto auto; /* Two columns: back button and score/time */
+  grid-template-rows: auto auto; /* Two rows: raccoon and grid */
+      grid-template-areas: /* Define grid areas */
       "back-btn score-time"
       "raccoon grid";
   place-items: center;
@@ -599,7 +607,7 @@ body::before {
   }
 
   #raccoon-game-area, .speech-bubble-container {
-    grid-area: raccoon;
+    grid-area: raccoon; /* Assign raccoon area to both elements */
   }
 
   #raccoon-game-area {
@@ -679,7 +687,7 @@ body::before {
 /* #region Media: Small laptop to large laptop */
 @media (min-width: 1024px) and (max-width: 1439px) {
   body::before {
-    background-image: url('../images/background/background-laptop.png');
+    background-image: url('../images/background/background-laptop.png'); /* Laptop background */
   }
 
   h1,
@@ -692,9 +700,9 @@ body::before {
   }
 
   #game-area {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
+  display: grid; /* Game area layout */
+  grid-template-columns: auto auto; /* Two columns: back button and score/time */
+  grid-template-rows: auto auto; /* Two rows: raccoon and grid */
       grid-template-areas:
       "back-btn score-time"
       "raccoon grid";
@@ -790,7 +798,7 @@ body::before {
 /* #region Media: Large laptop and up */
 @media (min-width: 1440px) {
   body::before {
-    background-image: url('../images/background/background-large-laptop.png');
+    background-image: url('../images/background/background-large-laptop.png'); /* Large laptop background */
   }
 
   h1,
