@@ -121,7 +121,7 @@ body::before {
   margin-top: 4rem;
 }
 
-#menu-btn {
+#menu-actions {
   display: grid;
   /* Buttons layout */
   gap: 1.5rem;

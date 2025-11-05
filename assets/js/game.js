@@ -321,7 +321,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const raccoonImage = document.createElement("img");
     raccoonImage.id = "raccoon-game-area";
-    raccoonImage.src = "assets/images/raccoon/raccoon1.png";
+  raccoonImage.src = "assets/images/raccoon/raccoon-1.png";
     raccoonImage.alt =
       "Raccoon wearing glasses waving cheerfully to the player";
     raccoonImage.classList.add("img-fluid");
