@@ -54,7 +54,90 @@ Top-level layout keeps production website code under `assets/` and moves non-web
 
 #### In scope Features:
 
+1. **Main Menu Navigation**
+   - Start game button
+   - How to Play instructions
+   - Raccoon mascot character
+
+2. **Player Name System**
+   - Player name input with validation
+   - Name persistence during game session
+   - Personalized messages using player name when game is complete
+
+3. **Memory Card Game**
+   - 12 cards (6 pairs of forest animals)
+   - Card flip animations
+   - Match detection logic
+   - Shuffled card layout (Fisher-Yates algorithm)
+
+4. **Game Timer**
+   - Real-time timer in mm:ss format
+   - Automatic start when game begins
+   - Stops when game completes
+
+5. **Score Tracking**
+   - Live score display (X / 6 pairs)
+   - Updates on each successful match
+
+6. **Raccoon Speech Bubbles**
+   - Congratulatory messages for each animal match
+   - Two random messages per animal match
+   - Final completion message with player name
+
+7. **Highscores System**
+   - Top 5 fastest times
+   - Sorted by completion time
+   - Persistent storage using localStorage
+   - Highlighted new scores
+
+8. **End Screen**
+   - Player name and final time display
+   - Highscores leaderboard
+   - Retry button (preserves player name)
+   - Main menu button (resets game)
+
+9. **Responsive Design**
+   - Adaptive card grid layout (4x3 on large screens, 3x4 on small)
+   - Mobile-friendly interface
+   - Conditional raccoon mascot visibility
+
+10. **Game Controls**
+    - Back button in game HUD
+    - Form validation
+    - Board locking during card evaluation
+
 #### Out of scope Features:
+
+1. **Difficulty Levels** - Easy/Medium/Hard modes that would increase the challenge by:
+   - Adding more card pairs to the game board (e.g., 12 cards for Easy, 20 for Medium, 30+ for Hard)
+   - Using more visually similar animal images to make matching harder (e.g., different shades of the same animal)
+   - Restricting the number of moves allowed to complete the game (e.g., 20 moves for Easy, 15 for Medium, 10 for Hard)
+   - **Special Card Mechanics:**
+     - Trap/Penalty cards that increase the timer when flipped or add more cards onto the player's game board (making it harder to achieve a fast time and complete the game)
+     - Bonus cards that briefly reveal all cards on the grid for a few seconds, or decrease the timer to help players achieve a better score and climb the leaderboard
+   
+2. **Sound Effects & Music** - Audio feedback to enhance the gaming experience and immersion:
+   - Card flip sounds when players click and reveal cards
+   - Success sound effects for matches (actual animal sounds)
+   - Failure sound effects when cards don't match
+   - Background music during gameplay (soft melodies)
+   - Raccoon character voice lines or sounds when delivering messages
+   
+3. **Themes/Skins** - Customizable visual appearance to personalize the game:
+   - Different card designs based on themes: seasons (spring flowers, autumn leaves), countries (wildlife from different regions), or other animal sets (ocean creatures, farm animals)
+   - Alternative background images or color schemes to match the selected theme
+   - Ability to unlock themes by completing challenges or achieving high scores
+   
+4. **Pause Button** - Game control feature to allow players to take breaks:
+   - Ability to pause the timer mid-game without losing progress
+   - Resume from the exact game state (all flipped cards remain in their current state)
+   - Pause menu with options to resume the current game, restart, or return to the main menu
+   
+5. **Settings Menu** - Player preferences and customization options:
+   - Toggle sound effects and background music on/off
+   - Adjust difficulty level without starting a new game
+   - Select preferred card deck themes from unlocked options
+   - Option to clear localStorage (reset highscores)
 
 ### Structure
 
@@ -100,14 +183,14 @@ __Frameworks, Libraries & Programs Used__
 * [Google Fonts](https://fonts.google.com/): was used to import the 'Pacifico' and 'Onest' fonts into the style.css 
 * [Font Awesome](https://fontawesome.com/): was used to add icons for aesthetic and UX purposes.
 * [GitHub](https://github.com/): is used as the repository for the project's code after being pushed from Git.
-* [Photoshop](https://www.adobe.com/uk/products/photoshop.html): was used for early design to help having a better idea of which color and image will suit the website it was also used to resize, edit picture but also creating the menus and the color palette
-* [Visual Studio Git Source Control](https://learn.microsoft.com/en-us/visualstudio/version-control/git-with-visual-studio?view=vs-2022): was used to commit and push or pull those into GitHub 
+* [Photoshop](https://www.adobe.com/uk/products/photoshop.html): was used for early design to help get a better idea of which colors and images would suit the website. It was also used to resize and edit pictures, as well as create the menus and color palette
+* [Visual Studio Git Source Control](https://learn.microsoft.com/en-us/visualstudio/version-control/git-with-visual-studio?view=vs-2022): was used to commit and push or pull changes to GitHub 
 * [Balsamiq](https://balsamiq.com/): was used to create the wireframes during the design process.
-* [WAVE](https://wave.webaim.org/) & [Lighthouse](https://developer.chrome.com/docs/lighthouse) Used for accessibility testing to ensure that all content is readable and accessible to every user.
-* [HTML Validator](https://validator.w3.org/#validate_by_input) Confirmed the HTML code is valid, with no errors detected.
-* [CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) Verified the CSS code, with no errors detected.
-* [JS-Beautify](https://beautifier.io/) Checked the formatting and structure of the HTML and CSS for consistency and readability.
-* [Squoosh](https://squoosh.app) was used in this project to resize, compress, and optimise images for the web, ensuring they load quickly while maintaining visual quality
+* [WAVE](https://wave.webaim.org/) & [Lighthouse](https://developer.chrome.com/docs/lighthouse): Used for accessibility testing to ensure that all content is readable and accessible to every user.
+* [HTML Validator](https://validator.w3.org/#validate_by_input): Confirmed the HTML code is valid, with no errors detected.
+* [CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input): Verified the CSS code, with no errors detected.
+* [JS-Beautify](https://beautifier.io/): Checked the formatting and structure of the HTML and CSS for consistency and readability.
+* [Squoosh](https://squoosh.app): was used in this project to resize, compress, and optimize images for the web, ensuring they load quickly while maintaining visual quality
 
 ## Testing 
 
