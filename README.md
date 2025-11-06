@@ -424,6 +424,13 @@ These are **not errors** and do not affect the functionality of the website, the
 All warnings are minor and expected when using modern CSS features such as custom properties and browser-specific extensions.  
 The code remains fully functional and visually consistent across browsers.
 
+[**JavaScript Validator**](https://jshint.com/)
+
+<p align="center">
+<img src="docs/validation/js/js-validator.png" alt="JavaScript Validation Result" />
+</p>
+
+The JavaScript code was validated using JSHint with no errors detected. The code follows best practices and maintains clean, readable syntax throughout.
 
 ## Functionality Testing
 
