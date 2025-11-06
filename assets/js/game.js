@@ -619,9 +619,11 @@ document.addEventListener("DOMContentLoaded", () => {
    * @returns {void}
    */
   function showEndScreen() {
-    const finalTime = document.getElementById("timer")
-      ? document.getElementById("timer").textContent.replace("Time: ", "")
-      : "00:00";
+    const finalTime = (
+    document.getElementById("timer") ?
+      document.getElementById("timer").textContent.replace("Time: ", "")
+      : "00:00"
+    );
 
     const grid = document.getElementById("grid-container");
     if (grid) grid.remove();
