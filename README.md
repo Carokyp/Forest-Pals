@@ -343,14 +343,14 @@ Forest Pals features a **playful, child-friendly design** with a warm, woodland 
 
 __Languages Used__
 
-* [CSS](https://en.wikipedia.org/wiki/CSS)
 * [HTML5](https://en.wikipedia.org/wiki/HTML5)
-* [Bootstrap5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+* [CSS](https://en.wikipedia.org/wiki/CSS)
 * [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
   
 __Frameworks, Libraries & Programs Used__
 
-* [Google Fonts](https://fonts.google.com/): was used to import the 'Pacifico' and 'Onest' fonts into the style.css 
+* [Bootstrap 5](https://getbootstrap.com/docs/5.3/getting-started/introduction/): was used for responsive layout, button styling, and utility classes
+* [Google Fonts](https://fonts.google.com/): was used to import the 'Baloo 2' and 'Quicksand' fonts into the style.css 
 * [Font Awesome](https://fontawesome.com/): was used to add icons for aesthetic and UX purposes.
 * [GitHub](https://github.com/): is used as the repository for the project's code after being pushed from Git.
 * [Photoshop](https://www.adobe.com/uk/products/photoshop.html): was used for early design to help get a better idea of which colors and images would suit the website. It was also used to resize and edit pictures, as well as create the menus and color palette
@@ -366,6 +366,13 @@ __Frameworks, Libraries & Programs Used__
 ## Testing 
 
 ### Validator Testing 
+
+Testing has been carried out on the following browsers:
+
+- **Google Chrome** - Version 139.0.7258.67
+- **Firefox** - Version 141.0.3
+- **Microsoft Edge** - Version 139.0.3405.86
+- **Safari on macOS** - Version 26.0, Copyright © 2003-2025 Apple Inc.
 
 [**HTML Validator**](https://validator.w3.org/)
 
@@ -490,6 +497,40 @@ The code remains fully functional and visually consistent across browsers.
 
 ### Performance
 
+Performance testing was conducted using [Google Lighthouse](https://developer.chrome.com/docs/lighthouse) to ensure optimal loading times, accessibility, and best practices across both desktop and mobile devices.
+
+#### Desktop Performance
+
+<p align="center">
+<img src="test/lighthouse/LightHouse-Desktop.png" alt="Lighthouse Desktop Performance Results" />
+</p>
+
+The desktop version achieved excellent scores across all metrics:
+- **Performance:** 99/100 - Near-perfect loading speed and responsiveness
+- **Accessibility:** 100/100 - Fully accessible to all users
+- **Best Practices:** 100/100 - Follows web development best practices
+- **SEO:** 91/100 - Well-optimized for search engines
+
+#### Mobile Performance
+
+<p align="center">
+<img src="test/lighthouse/LightHouse-Mobile.png" alt="Lighthouse Mobile Performance Results" />
+</p>
+
+The mobile version also achieved strong scores:
+- **Performance:** 95/100 - Fast loading on mobile devices
+- **Accessibility:** 100/100 - Fully accessible across mobile platforms
+- **Best Practices:** 100/100 - Maintains high standards on mobile
+- **SEO:** 92/100 - Mobile-friendly and search engine optimized
+
+**Performance Notes:**
+- **First Contentful Paint (FCP):** Shows as orange/warning on mobile, indicating the time until the first content is rendered on screen. This is due to the custom background image and initial card assets loading.
+- **Largest Contentful Paint (LCP):** Also shows as orange/warning on mobile, measuring when the largest content element (game board with cards) becomes visible. This is affected by the image-heavy nature of the memory card game.
+
+Those performance are in an acceptable ranges for an image-intensive game and do not significantly impact user experience. The overall performance scores remain excellent (99 on desktop, 95 on mobile).
+
+**Summary:** Forest Pals demonstrates good performance across all devices, full accessibility compliance, and adherence to web development best practices. The game provides a smooth, responsive experience for players on both desktop and mobile platforms.
+
 ### Testing User Stories
 
 This section demonstrates how each user story from the [Strategy](#strategy) section was successfully implemented and tested in the final game.
@@ -544,7 +585,7 @@ This project is hosted **on GitHub Pages**. Updates pushed to the main branch wi
 
 5. Click "Save"
    
-6. Wait 1-2 minutes for deployment, the site will be live at [https://carokyp.github.io/Doux-Matin](https://carokyp.github.io/Doux-Matin)
+6. Wait 1-2 minutes for deployment, the site will be live at [https://carokyp.github.io/Forest-Pals](https://carokyp.github.io/Forest-Pals)
 
 ### Clone this repository
 
@@ -562,7 +603,7 @@ Cloning creates a local copy on your computer linked to the original repository.
 3. Open Git Bash.
 4. Change the current working directory to the location where you want the cloned directory.
 5. Type `git clone`, and then paste the URL you copied earlier.
-6. `git clone https://github.com/Carokyp/Doux-Matin.git`
+6. `git clone https://github.com/Carokyp/Forest-Pals.git`
 7. Press Enter to create your local clone.
 
 #### Mac
@@ -572,20 +613,20 @@ Follow the same steps as Windows, but use Terminal instead of Git Bash.
 1. Open Terminal
 2. Change the current working directory to the location where you want the cloned directory.
 3. Type `git clone`, and then paste the URL you copied earlier.
-4. `git clone https://github.com/Carokyp/Doux-Matin.git`
+4. `git clone https://github.com/Carokyp/Forest-Pals.git`
 5. Press Enter to create your local clone.
 
 ### Run a copy of this repository via Fork
 
 Forking creates a separate copy of the repository under your own GitHub account.
-	•	You can make changes freely.
-	•	If the original repository is updated, GitHub will notify you, and you can pull updates into your fork.
+- You can make changes freely.
+- If the original repository is updated, GitHub will notify you, and you can pull updates into your fork.
 
 __Create a new fork__  
 
 1. First, set up Git [Download and install Git on your computer](https://git-scm.com/downloads)
    
-2. Go to [[Doux-Matin](https://carokyp.github.io/Forest-Pals/) repository
+2. Go to [Forest-Pals](https://github.com/Carokyp/Forest-Pals) repository
    
 3. Click the 'Fork' button on the upper right part of the page.
    
@@ -593,7 +634,7 @@ __Create a new fork__
      <img width="332" height="106" alt="Image" src="https://github.com/user-attachments/assets/d75c5ad2-f974-4a87-bd1c-f090fefea16b" />
    </div>
 
-4. You now have a fork of the Doux-Matin repository in your GitHub account. Go to your profile, open the forked repository, and upload the required files.
+4. You now have a fork of the Forest-Pals repository in your GitHub account. Go to your profile, open the forked repository, and upload the required files.
    
 5. Above the list of forked files, click the 'Code' button.
 
@@ -606,13 +647,13 @@ __Create a new fork__
 **Making Changes and Pushing Updates**
 
 1. Create a new branch for your change
-* `git checkout -b my-feature-branch`
-1. Make your changes in your local repository.
-2. Stage and commit your changes:
-* `git add .`
-* `git commit -m "Describe your changes here"`
-3. Push your changes to your remote repository: \
-* `git push origin my-feature-branch`
+   * `git checkout -b my-feature-branch`
+2. Make your changes in your local repository.
+3. Stage and commit your changes:
+   * `git add .`
+   * `git commit -m "Describe your changes here"`
+4. Push your changes to your remote repository:
+   * `git push origin my-feature-branch`
 
 **Pull Request Fork**
 1. Go to your fork on GitHub.
