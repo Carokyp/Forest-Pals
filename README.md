@@ -31,11 +31,42 @@ Currently, the game is ideal for younger children who are discovering animals an
 
 ### Strategy
 
+Forest Pals is designed for young children, parents and educators seeking an engaging and educational memory game that teaches animal recognition while developing cognitive skills. The game provides a safe, accessible, and fun learning environment, allowing children to play at home or on the go. Forest Pals creates an entertaining way for children to learn about forest animals while improving their memory and concentration abilities.
+
 #### Business goals of the website are:
+
+- Create an engaging educational game that helps young children learn about forest animals
+- Provide a fun, accessible memory game that works on all devices
+- Help children develop and improve their memory and concentration skills through gameplay
+- Build a foundation for future feature expansion and competitive gameplay options
+
 
 #### The customer goals of this website are:
 
+- Find an educational game that helps children learn animal names in a fun way
+- Access a simple, easy-to-understand game suitable for young children
+- Play a memory game that provides immediate feedback and encouragement
+- Track progress through a highscore system
+
 #### User stories
+
+- As a **parent**, I want to find a safe, educational game for my child, so that they can learn about forest animals in a fun and engaging way.
+
+- As a **parent**, I want the game to have simple, clear instructions, so that my child can play independently without needing to read complex text.
+
+- As a **parent**, I want the game to work on any device (phone, tablet, computer), so that my child can play wherever and whenever it's convenient.
+
+- As a **player**, I want to see colorful pictures of cute animals, so that I feel excited and engaged while playing the game.
+
+- As a **player**, I want to see my name in the game, so that it feels special and personal to me.
+
+- As a **player**, I want easy navigation and clear "How to Play" instructions, so that I can understand the game quickly without frustration.
+
+- As a **player**, I want to see a highscore leaderboard with my fastest times, so that I can challenge myself to improve and compete with family members.
+
+- As a **player**, I want my highscores to be saved, so that I can see my progress and try to beat my previous best times.
+
+- As a **mobile user**, I want the game to be responsive and touch-friendly, so that I can play comfortably on my phone or tablet.
 
 ### Scope
 
