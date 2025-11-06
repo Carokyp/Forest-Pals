@@ -658,7 +658,7 @@ document.addEventListener("DOMContentLoaded", () => {
    * - highscoresList: reference to the <ol> that will be populated.
    *
    * Behavior:
-   * - Reads existing <li> entries into an array of {name,time}.
+   * - Loads existing scores from localStorage (if any exist).
    * - Adds the new entry and sorts ascending by time using a mm:ss → seconds converter.
    * - Keeps only the fastest MAX_HIGHSCORES entries and re-renders the list.
    * - Highlights the just-added score in the DOM and persists the top list in localStorage.
@@ -675,13 +675,17 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       return;
     }
-    const existingScores = Array.from(
-      highscoresList.querySelectorAll("li")
-    ).map((li) => {
-      const name = li.querySelector(".hs-name").textContent;
-      const time = li.querySelector(".hs-time").textContent;
-      return { name, time };
-    });
+    
+    // Load existing scores from localStorage
+    let existingScores = [];
+    const savedScores = localStorage.getItem("forestPalsHighscores");
+    if (savedScores) {
+      try {
+        existingScores = JSON.parse(savedScores);
+      } catch (e) {
+        existingScores = [];
+      }
+    }
 
     existingScores.push({ name, time });
 

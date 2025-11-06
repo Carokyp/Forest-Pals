@@ -100,7 +100,7 @@ __Frameworks, Libraries & Programs Used__
 * [Google Fonts](https://fonts.google.com/): was used to import the 'Pacifico' and 'Onest' fonts into the style.css 
 * [Font Awesome](https://fontawesome.com/): was used to add icons for aesthetic and UX purposes.
 * [GitHub](https://github.com/): is used as the repository for the project's code after being pushed from Git.
-* [Photoshop](https://www.adobe.com/uk/products/photoshop.html): was used for early design to help having a better idea of wish color and image will suit the website it was also used to resize, eadit picture but also creating the menus and the color pallette
+* [Photoshop](https://www.adobe.com/uk/products/photoshop.html): was used for early design to help having a better idea of which color and image will suit the website it was also used to resize, edit picture but also creating the menus and the color palette
 * [Visual Studio Git Source Control](https://learn.microsoft.com/en-us/visualstudio/version-control/git-with-visual-studio?view=vs-2022): was used to commit and push or pull those into GitHub 
 * [Balsamiq](https://balsamiq.com/): was used to create the wireframes during the design process.
 * [WAVE](https://wave.webaim.org/) & [Lighthouse](https://developer.chrome.com/docs/lighthouse) Used for accessibility testing to ensure that all content is readable and accessible to every user.
@@ -126,65 +126,68 @@ __Frameworks, Libraries & Programs Used__
 | Test Label | Test Action | Expected Outcome | Test Outcome | Notes |
 |------------|-------------|------------------|--------------|-------|
 | **MAIN MENU** |
-| Main menu display | Load the game page | Main menu displays with "Forest Pals" title, "Start" button, "How to Play" button, and raccoon mascot image | | |
-| Start button functionality | Click on the "Start" button | Title and menu buttons hide, player form appears with name input field, "Start Game" button, "Back" button, and raccoon mascot | | |
-| How to Play button | Click on the "How to Play" button | "How to Play" screen displays with game instructions (5 numbered steps) and "Back" button | | |
-| Back button from How to Play | Click "Back" button on How to Play screen | Returns to main menu with all elements visible | | |
+| Main menu display | Load the game page | Main menu displays with "Forest Pals" title, "Start" button, "How to Play" button, and raccoon mascot image | PASS | |
+| Start button functionality | Click on the "Start" button | Title and menu buttons hide, player form appears with name input field, "Start Game" button, "Back" button, and raccoon mascot | PASS | |
+| How to Play button | Click on the "How to Play" button | "How to Play" screen displays with game instructions (5 numbered steps) and "Back" button | PASS | |
+| Back button from How to Play | Click "Back" button on How to Play screen | Returns to main menu with all elements visible | PASS | |
 | **PLAYER NAME FORM** |
-| Player form display | Click "Start" from main menu | Form appears with instruction text, name input field, "Start Game" and "Back" buttons | | |
-| Empty name submission | Leave name field empty and click "Start Game" | Error message appears: "Please enter your name to start the game!" in a styled message box | | |
-| Valid name submission | Enter a name (e.g., "Alex") and click "Start Game" | Game area displays with HUD (score, timer, back button), 12 cards face down in grid, and raccoon mascot | | |
-| Back button from player form | Click "Back" button on player form | Returns to main menu, form is removed, all menu elements visible | | |
+| Player form display | Click "Start" from main menu | Form appears with instruction text, name input field, "Start Game" and "Back" buttons | PASS| |
+| Empty name submission | Leave name field empty and click "Start Game" | Error message appears: "Please enter your name to start the game!" in a styled message box | PASS | |
+| Valid name submission | Enter a name (e.g., "Alex") and click "Start Game" | Game area displays with HUD (score, timer, back button), 12 cards face down in grid | PASS |
+| Back button from player form | Click "Back" button on player form | Returns to main menu, form is removed, all menu elements visible | PASS | |
 | **GAME BOARD** |
-| Game board generation | Submit valid player name | 12 cards (6 pairs) are displayed face down in a grid layout with gray backs | | |
-| Cards shuffled | Start game multiple times | Cards appear in different positions each time (shuffled using Fisher-Yates algorithm) | | |
-| HUD display | Game board loads | Top HUD shows: "Back" button (left), "Score: 0 / 6" and "Time: 00:00" (right) | | |
-| Timer starts automatically | Game board loads | Timer starts counting from 00:00 in mm:ss format, incrementing every second | | |
-| Raccoon mascot present | Game board loads | Raccoon mascot image appears at bottom of game area | | |
+| Game board generation | Submit valid player name | 12 cards (6 pairs) are displayed face down in a grid layout with gray backs | PASS | |
+| Cards shuffled | Start game multiple times | Cards appear in different positions each time (shuffled using Fisher-Yates algorithm) | PASS | |
+| HUD display | Game board loads | Top HUD shows: "Back" button (left), "Score: 0 / 6" and "Time: 00:00" (right) | PASS | |
+| Timer starts automatically | Game board loads | Timer starts counting from 00:00 in mm:ss format, incrementing every second | PASS | |
 | **CARD FLIPPING** |
-| First card flip | Click on any face-down card | Card flips to reveal animal image (bird, deer, fox, hedgehog, rabbit, or squirrel) | | |
-| Second card flip | Click on a second face-down card | Second card flips to reveal its animal image | | |
-| Third card blocked | Click on three cards rapidly | First two cards flip, third click is ignored (board is locked) | | |
-| Same card double-click | Click the same card twice | Second click is ignored, card stays flipped | | |
+| First card flip | Click on any face-down card | Card flips to reveal animal image| PASS | |
+| Second card flip | Click on a second face-down card | Second card flips to reveal its animal image | PASS | |
+| Third card blocked | Click on three cards rapidly | First two cards flip, third click is ignored (board is locked) | PASS | |
+| Same card double-click | Click the same card twice | Second click is ignored, card stays flipped | PASS | |
 | **MATCHING LOGIC** |
-| Successful match | Flip two cards with the same animal | Cards remain face up, score increases by 1, raccoon speech bubble appears with congratulatory message specific to the animal | | |
-| Match score update | Match two cards | Score display updates to "Score: 1 / 6" (or appropriate number) | | |
-| Matched cards stay visible | Match two cards and continue playing | Matched cards remain face up and cannot be clicked again | | |
-| Raccoon speech variety | Match same animal type multiple times across games | Different congratulatory messages appear for the same animal (e.g., birds have 2 different messages) | | |
-| Failed match | Flip two cards with different animals | After ~600ms delay, both cards flip back face down | | |
-| Board lock during mismatch | Flip two non-matching cards | Board is locked during the flip-back animation, preventing new clicks | | |
-| Board unlock after mismatch | Wait for non-matching cards to flip back | Board unlocks and new cards can be clicked | | |
+| Successful match | Flip two cards with the same animal | Cards remain face up, score increases by 1, speech bubble appears with congratulatory message specific to the animal | PASS | |
+| Match score update | Match two cards | Score display updates to "Score: 1 / 6" (or appropriate number) | PASS | |
+| Matched cards stay visible | Match two cards and continue playing | Matched cards remain face up and cannot be clicked again | PASS | |
+| Raccoon speech variety | Match same animal type multiple times across games | Different congratulatory messages appear for the same animal (e.g., birds have 2 different messages) |PASS | |
+| Failed match | Flip two cards with different animals | After a small delay, both cards flip back face down | PASS | |
+| Board lock during mismatch | Flip two non-matching cards | Board is locked during the flip-back animation, preventing new clicks | PASS | |
+| Board unlock after mismatch | Wait for non-matching cards to flip back | Board unlocks and new cards can be clicked | PASS | |
 | **TIMER** |
-| Timer format | Observe timer during gameplay | Timer displays as mm:ss (e.g., 00:05, 01:23) with leading zeros | | |
-| Timer increments | Play game for 65+ seconds | Timer correctly displays minutes and seconds (e.g., 01:05) | | |
-| Timer stops on completion | Match all 6 pairs | Timer stops counting when game is complete | | |
+| Timer format | Observe timer during gameplay | Timer displays as mm:ss (e.g., 00:05, 01:23) with leading zeros | PASS | |
+| Timer increments | Play game for 65+ seconds | Timer correctly displays minutes and seconds (e.g., 01:05) | PASS | |
+| Timer stops on completion | Match all 6 pairs | Timer stops counting when game is complete | PASS| |
 | **GAME COMPLETION** |
-| All pairs matched | Match all 6 pairs (score reaches 6/6) | Final raccoon speech bubble appears with personalized message: "You did it, [Name]! You found all my friends!" | | |
-| End screen display | Complete the game (after 2-second delay) | End screen shows with: title "Well done, [Name]!", player's final time, highscores list, "Retry" and "Main menu" buttons | | |
-| Player name on end screen | Complete game as "Alex" | End screen title shows "Well done, Alex!" | | |
-| Final time display | Complete game | Player's completion time is displayed in mm:ss format | | |
+| All pairs matched | Match all 6 pairs (score reaches 6/6) | Final speech bubble appears with personalized message: "You did it, [Player-Name]! You found all my friends!" | PASS | |
+| End screen display | Complete the game (after 2-second delay) | End screen shows with: title "Well done, [Player-Name]!", player's final time, highscores list, "Retry" and "Main menu" buttons | PASS| |
+| Player name on end screen | Complete game as "Alex" | End screen title shows "Well done, Alex!" | PASS | |
+| Final time display | Complete game | Player's completion time is displayed in mm:ss format | PASS| |
 | **HIGHSCORES** |
-| Highscores list | Complete the game | Highscores list shows top 5 scores sorted by time (fastest first) | | |
-| New score added | Complete game with time not in top 5 | If score is in top 5, it's added and displayed; otherwise top 5 remains unchanged | | |
-| New top score | Complete game faster than all existing scores | New score appears at position 1, highlighted with special styling | | |
-| Score highlighting | Complete game with qualifying time | New score entry has "highlight" class applied for visual distinction | | |
-| Highscores persistence | Complete game, close browser, reopen | Highscores persist via localStorage and display on subsequent game completions | | |
-| Maximum 5 scores | Complete game 6+ times | Only top 5 fastest times are kept and displayed | | |
+| Highscores list | Complete the game | Highscores list shows top 5 scores sorted by time (fastest first) | PASS| |
+| New score added | Complete game with time not in top 5 | If score is in top 5, it's added and displayed; otherwise top 5 remains unchanged | PASS| |
+| New top score | Complete game faster than all existing scores | New score appears at position 1, highlighted with special styling | PASS | |
+| Score highlighting | Complete game with qualifying time | New score entry has "highlight" class applied for visual distinction |PASS | |
+| Highscores persistence | Complete game, close browser, reopen | Highscores persist via localStorage and display on subsequent game completions | PASS | Scores persist until browser cache is cleared |
+| Maximum 5 scores | Complete game 6+ times | Only top 5 fastest times are kept and displayed | PASS| |
 | **END SCREEN BUTTONS** |
-| Retry button | Click "Retry" button on end screen | Returns to game area with reset board (new shuffled cards), score at 0/6, timer at 00:00 | | |
-| Retry preserves player name | Click "Retry" | Player name is preserved, no need to re-enter name | | |
-| Main menu button | Click "Main menu" button on end screen | Returns to main menu, player name is reset (must enter name again for new game) | | |
-| Main menu full reset | Return to main menu from end screen | All elements visible (title, Start button, How to Play button, raccoon) | | |
+| Retry button | Click "Retry" button on end screen | Returns to game area with reset board (new shuffled cards), score at 0/6, timer at 00:00 |PASS | |
+| Retry preserves player name | Click "Retry" | Player name is preserved, no need to re-enter name |PASS| |
+| Main menu button | Click "Main menu" button on end screen | Returns to main menu, player name is reset (must enter name again for new game) |PASS| |
+| Main menu full reset | Return to main menu from end screen | All elements visible (title, Start button, How to Play button, raccoon) | PASS| |
 | **BACK BUTTON IN GAME** |
-| Back button during game | Click "Back" button in top HUD while playing | Returns to main menu (timer stops, game is abandoned) | | |
+| Back button during game | Click "Back" button in top HUD while playing | Returns to main menu (timer stops, game is abandoned) | PASS | |
 | **RESPONSIVE ELEMENTS** |
-| Card grid layout | View game on different screen sizes | Cards arrange appropriately in grid layout using CSS Grid | | |
-| All images load | Load game and navigate through all screens | All images load correctly: card backs, card fronts (6 animals), raccoon mascot, background | | |
+| Card grid layout - Large screens | View game on screens wider than 480px | Cards display in 4 columns x 3 rows grid layout | PASS | |
+| Card grid layout - Small screens | View game on screens smaller than 480px | Cards display in 3 columns x 4 rows grid layout |PASS | |
+| Raccoon mascot - Large screens | Game view on screens wider than 768px | Raccoon mascot image is visible on menu / form / game area | PASS| |
+| Raccoon mascot - Small screens | Visible in Menu / form view on screens hidden in game view smaller than 768px | Raccoon mascot is hidden in the game view| PASS | |
+| Speech bubble - Small screens | Match cards on screens smaller than 768px | Speech bubble appears at bottom of screen | PASS | |
+| All images load | Load game and navigate through all screens | All images load correctly: card backs, card fronts (6 animals), raccoon mascot, background | PASS| |
 | **ACCESSIBILITY & UX** |
-| Prevent scrolling | Attempt to scroll page during game | Page doesn't scroll (overflow hidden on body) | | |
-| Prevent dragging | Try to drag elements | Elements cannot be dragged (dragstart prevented) | | |
-| Sections properly hidden | Navigate between sections | Only one section is visible at a time, others have d-none class and visibility: hidden | | |
-| Speech bubble timeout | Match cards and wait | Speech bubble automatically disappears after 3 seconds (30000ms) | | |
+| Prevent scrolling | Attempt to scroll page during game | Page doesn't scroll (overflow hidden on body) | PASS | |
+| Prevent dragging | Try to drag elements | Elements cannot be dragged (dragstart prevented) | PASS| On Safari browser cards can be selected which highlight them in light blue color but won't be dragged or moved |
+| Sections properly hidden | Navigate between sections | Only one section is visible at a time | PASS | |
+| Speech bubble timeout | Match cards and wait | Speech bubble automatically disappears after 3 seconds | PASS | |
 
 ### Performance
 
