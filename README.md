@@ -388,7 +388,7 @@ __Frameworks, Libraries & Programs Used__
 <img src="docs/validation/html/screenshot-2025-11-05-07-20-30.png" alt="HTML Validation Result 4" />
 </p>
 
-</details>
+</details> <br>
 
 [**CSS Validator**](https://jigsaw.w3.org/css-validator/)
 
@@ -401,6 +401,24 @@ __Frameworks, Libraries & Programs Used__
 <p align="center">
 <img src="docs/validation/css/screenshot-2025-11-05-07-22-52.png" alt="CSS Warnings" />
 </p>
+
+## CSS Validation Warnings — Summary and Explanation
+
+When validating the stylesheet, several warnings were reported.  
+These are **not errors** and do not affect the functionality of the website, they are mostly informational messages from the CSS validator.
+
+| **Warning Type** | **Explanation** | **Resolution** |
+|------------------|-----------------|----------------|
+| Imported style sheets not checked | The validator cannot access or verify styles imported with `@import`. | No action required this is normal behaviour. |
+| Vendor extension (`-webkit-user-drag`) | This property is specific to WebKit browsers (e.g. Safari, Chrome) and is not part of the CSS standard. | Safe to keep for browser compatibility. |
+| Dynamic CSS variables not statically checked | The validator cannot evaluate `var(--variable)` values because they depend on runtime definitions. | No action required modern CSS practice. |
+| Same color for background and border | The hover states use the same color for both `background-color` and `border-color`, which may reduce visual contrast. | Optional adjustment for better contrast. |
+| Deprecated value `break-word` | The property `word-break: break-word;` is deprecated. | Replace with `overflow-wrap: break-word;` for modern syntax. |
+
+**Summary:**  
+All warnings are minor and expected when using modern CSS features such as custom properties and browser-specific extensions.  
+The code remains fully functional and visually consistent across browsers.
+
 
 ## Functionality Testing
 
