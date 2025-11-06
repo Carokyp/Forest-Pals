@@ -121,6 +121,71 @@ __Frameworks, Libraries & Programs Used__
 
 ## Test Cases and Results
 
+### Functionality Testing
+
+| Test Label | Test Action | Expected Outcome | Test Outcome | Notes |
+|------------|-------------|------------------|--------------|-------|
+| **MAIN MENU** |
+| Main menu display | Load the game page | Main menu displays with "Forest Pals" title, "Start" button, "How to Play" button, and raccoon mascot image | | |
+| Start button functionality | Click on the "Start" button | Title and menu buttons hide, player form appears with name input field, "Start Game" button, "Back" button, and raccoon mascot | | |
+| How to Play button | Click on the "How to Play" button | "How to Play" screen displays with game instructions (5 numbered steps) and "Back" button | | |
+| Back button from How to Play | Click "Back" button on How to Play screen | Returns to main menu with all elements visible | | |
+| **PLAYER NAME FORM** |
+| Player form display | Click "Start" from main menu | Form appears with instruction text, name input field, "Start Game" and "Back" buttons | | |
+| Empty name submission | Leave name field empty and click "Start Game" | Error message appears: "Please enter your name to start the game!" in a styled message box | | |
+| Valid name submission | Enter a name (e.g., "Alex") and click "Start Game" | Game area displays with HUD (score, timer, back button), 12 cards face down in grid, and raccoon mascot | | |
+| Back button from player form | Click "Back" button on player form | Returns to main menu, form is removed, all menu elements visible | | |
+| **GAME BOARD** |
+| Game board generation | Submit valid player name | 12 cards (6 pairs) are displayed face down in a grid layout with gray backs | | |
+| Cards shuffled | Start game multiple times | Cards appear in different positions each time (shuffled using Fisher-Yates algorithm) | | |
+| HUD display | Game board loads | Top HUD shows: "Back" button (left), "Score: 0 / 6" and "Time: 00:00" (right) | | |
+| Timer starts automatically | Game board loads | Timer starts counting from 00:00 in mm:ss format, incrementing every second | | |
+| Raccoon mascot present | Game board loads | Raccoon mascot image appears at bottom of game area | | |
+| **CARD FLIPPING** |
+| First card flip | Click on any face-down card | Card flips to reveal animal image (bird, deer, fox, hedgehog, rabbit, or squirrel) | | |
+| Second card flip | Click on a second face-down card | Second card flips to reveal its animal image | | |
+| Third card blocked | Click on three cards rapidly | First two cards flip, third click is ignored (board is locked) | | |
+| Same card double-click | Click the same card twice | Second click is ignored, card stays flipped | | |
+| **MATCHING LOGIC** |
+| Successful match | Flip two cards with the same animal | Cards remain face up, score increases by 1, raccoon speech bubble appears with congratulatory message specific to the animal | | |
+| Match score update | Match two cards | Score display updates to "Score: 1 / 6" (or appropriate number) | | |
+| Matched cards stay visible | Match two cards and continue playing | Matched cards remain face up and cannot be clicked again | | |
+| Raccoon speech variety | Match same animal type multiple times across games | Different congratulatory messages appear for the same animal (e.g., birds have 2 different messages) | | |
+| Failed match | Flip two cards with different animals | After ~600ms delay, both cards flip back face down | | |
+| Board lock during mismatch | Flip two non-matching cards | Board is locked during the flip-back animation, preventing new clicks | | |
+| Board unlock after mismatch | Wait for non-matching cards to flip back | Board unlocks and new cards can be clicked | | |
+| **TIMER** |
+| Timer format | Observe timer during gameplay | Timer displays as mm:ss (e.g., 00:05, 01:23) with leading zeros | | |
+| Timer increments | Play game for 65+ seconds | Timer correctly displays minutes and seconds (e.g., 01:05) | | |
+| Timer stops on completion | Match all 6 pairs | Timer stops counting when game is complete | | |
+| **GAME COMPLETION** |
+| All pairs matched | Match all 6 pairs (score reaches 6/6) | Final raccoon speech bubble appears with personalized message: "You did it, [Name]! You found all my friends!" | | |
+| End screen display | Complete the game (after 2-second delay) | End screen shows with: title "Well done, [Name]!", player's final time, highscores list, "Retry" and "Main menu" buttons | | |
+| Player name on end screen | Complete game as "Alex" | End screen title shows "Well done, Alex!" | | |
+| Final time display | Complete game | Player's completion time is displayed in mm:ss format | | |
+| **HIGHSCORES** |
+| Highscores list | Complete the game | Highscores list shows top 5 scores sorted by time (fastest first) | | |
+| New score added | Complete game with time not in top 5 | If score is in top 5, it's added and displayed; otherwise top 5 remains unchanged | | |
+| New top score | Complete game faster than all existing scores | New score appears at position 1, highlighted with special styling | | |
+| Score highlighting | Complete game with qualifying time | New score entry has "highlight" class applied for visual distinction | | |
+| Highscores persistence | Complete game, close browser, reopen | Highscores persist via localStorage and display on subsequent game completions | | |
+| Maximum 5 scores | Complete game 6+ times | Only top 5 fastest times are kept and displayed | | |
+| **END SCREEN BUTTONS** |
+| Retry button | Click "Retry" button on end screen | Returns to game area with reset board (new shuffled cards), score at 0/6, timer at 00:00 | | |
+| Retry preserves player name | Click "Retry" | Player name is preserved, no need to re-enter name | | |
+| Main menu button | Click "Main menu" button on end screen | Returns to main menu, player name is reset (must enter name again for new game) | | |
+| Main menu full reset | Return to main menu from end screen | All elements visible (title, Start button, How to Play button, raccoon) | | |
+| **BACK BUTTON IN GAME** |
+| Back button during game | Click "Back" button in top HUD while playing | Returns to main menu (timer stops, game is abandoned) | | |
+| **RESPONSIVE ELEMENTS** |
+| Card grid layout | View game on different screen sizes | Cards arrange appropriately in grid layout using CSS Grid | | |
+| All images load | Load game and navigate through all screens | All images load correctly: card backs, card fronts (6 animals), raccoon mascot, background | | |
+| **ACCESSIBILITY & UX** |
+| Prevent scrolling | Attempt to scroll page during game | Page doesn't scroll (overflow hidden on body) | | |
+| Prevent dragging | Try to drag elements | Elements cannot be dragged (dragstart prevented) | | |
+| Sections properly hidden | Navigate between sections | Only one section is visible at a time, others have d-none class and visibility: hidden | | |
+| Speech bubble timeout | Match cards and wait | Speech bubble automatically disappears after 3 seconds (30000ms) | | |
+
 ### Performance
 
 ### Testing User Stories
