@@ -159,13 +159,52 @@ Forest Pals is designed for young children, parents and educators seeking an eng
 
 ### Structure
 
-**Level 1 - Home page**
+Forest Pals uses a **single-page application (SPA)** structure where all content exists on one HTML page (`index.html`). JavaScript dynamically shows and hides different sections to create a smooth, seamless user experience without page reloads. This approach improves performance by eliminating loading times between screens and provides instant transitions.
 
-**Level 2 - Navigation Page**
+The game follows a **state-based navigation** model with five distinct screens that users can navigate between:
 
-**Level 3 - Supporting Elements**
+#### Game States & Navigation Flow
+
+**1. Main Menu**
+- Starting screen displayed on page load
+- Two primary actions: "Start" or "How to Play"
+- Navigation options:
+  - "Start" → Player Name Form
+  - "How to Play" → Instructions Screen
+
+**2. Instructions Screen**
+- Displays game rules and how to play
+- Navigation options:
+  - "Back" → Main Menu
+
+**3. Player Name Form**
+- Requires player name input with validation
+- Navigation options:
+  - "Start Game" → Active Game (if valid name entered)
+  - "Back" → Main Menu
+
+**4. Active Game**
+- Main gameplay area with 12 cards, timer, and score
+- Raccoon mascot provides encouragement (visible on screens wider than 768px)
+- Navigation options:
+  - "Back" → Main Menu (abandons current game)
+  - Automatic transition → End Screen (when all 6 pairs matched)
+
+**5. End Screen**
+- Displays completion message, time, and highscores leaderboard
+- Navigation options:
+  - "Retry" → Active Game (preserves player name, resets board)
+  - "Main Menu" → Main Menu (resets player session)
+
+#### Technical Implementation
+
+- **State Management:** Only one screen is visible at a time (controlled by CSS `display` properties)
+- **Transitions:** JavaScript functions handle instant screen switching without page reloads
+- **Data Persistence:** localStorage saves highscores across browser sessions
+- **User Experience:** Prevents page scrolling and element dragging for distraction-free gameplay
 
 ### Skeleton
+During this phase, wireframes for all pages were created using [Balsamiq](https://balsamiq.com/) (see samples below).
 
 ### Wireframes
 
