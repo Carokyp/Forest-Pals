@@ -50,9 +50,7 @@ Forest Pals is designed for young children, parents and educators seeking an eng
 
 #### User stories
 
-- As a **parent**, I want to find a safe, educational game for my child, so that they can learn about animals in a fun and engaging way.
-
-- As a **parent**, I want the game to have simple, clear instructions, so that my child can play independently without needing to read complex text.
+- As a **parent**, I want to find a safe educational game for my child, so that they can learn about animals in a fun and engaging way.
 
 - As a **player**, I want to see my name in the game, so that it feels special and personal to me.
 
@@ -416,9 +414,9 @@ These are **not errors** and do not affect the functionality of the website, the
 
 | **Warning Type** | **Explanation** | **Resolution** |
 |------------------|-----------------|----------------|
-| Imported style sheets not checked | The validator cannot access or verify styles imported with `@import`. | No action required this is normal behaviour. |
+| Imported style sheets not checked | The validator cannot access or verify styles imported with `@import`. | No action required; this is normal behaviour. |
 | Vendor extension (`-webkit-user-drag`) | This property is specific to WebKit browsers (e.g. Safari, Chrome) and is not part of the CSS standard. | Safe to keep for browser compatibility. |
-| Dynamic CSS variables not statically checked | The validator cannot evaluate `var(--variable)` values because they depend on runtime definitions. | No action required modern CSS practice. |
+| Dynamic CSS variables not statically checked | The validator cannot evaluate `var(--variable)` values because they depend on runtime definitions. | No action required; modern CSS practice. |
 | Same color for background and border | The hover states use the same color for both `background-color` and `border-color`, which may reduce visual contrast. | Optional adjustment for better contrast. |
 | Deprecated value `break-word` | The property `word-break: break-word;` is deprecated. | Replace with `overflow-wrap: break-word;` for modern syntax. |
 
@@ -506,7 +504,7 @@ Performance testing was conducted using [Google Lighthouse](https://developer.ch
 </p>
 
 The desktop version achieved excellent scores across all metrics:
-- **Performance:** 99/100 - Near-perfect loading speed and responsiveness
+- **Performance:** 99/100 - Near perfect loading speed and responsiveness
 - **Accessibility:** 100/100 - Fully accessible to all users
 - **Best Practices:** 100/100 - Follows web development best practices
 - **SEO:** 91/100 - Well-optimized for search engines
@@ -527,7 +525,7 @@ The mobile version also achieved strong scores:
 - **First Contentful Paint (FCP):** Shows as orange/warning on mobile, indicating the time until the first content is rendered on screen. This is due to the custom background image and initial card assets loading.
 - **Largest Contentful Paint (LCP):** Also shows as orange/warning on mobile, measuring when the largest content element (game board with cards) becomes visible. This is affected by the image-heavy nature of the memory card game.
 
-Those performance are in an acceptable ranges for an image-intensive game and do not significantly impact user experience. The overall performance scores remain excellent (99 on desktop, 95 on mobile).
+Those performance are in an acceptable ranges for an image intensive game and do not significantly impact user experience. The overall performance scores remain very good.
 
 **Summary:** Forest Pals demonstrates good performance across all devices, full accessibility compliance, and adherence to web development best practices. The game provides a smooth, responsive experience for players on both desktop and mobile platforms.
 
@@ -539,8 +537,7 @@ This section demonstrates how each user story from the [Strategy](#strategy) sec
 
 | User Story | Implementation |
 |------------|----------------|
-| As a **parent**, I want to find a safe, educational game for my child, so that they can learn about animals in a fun and engaging way. | Game features 6 different forest animals (birds, deer, foxes, hedgehogs, rabbits, squirrels). No external links, ads, or inappropriate content. |
-| As a **parent**, I want the game to have simple, clear instructions, so that my child can play independently without needing to read complex text. | "How to Play" section provides 5 clear, numbered steps with simple language.|
+| As a **parent**, I want to find a safe educational game for my child, so that they can learn about animals in a fun and engaging way. | Game features 6 different forest animals (birds, deer, foxes, hedgehogs, rabbits, squirrels). No external links, ads, or inappropriate content. |
 
 #### Player User Stories
 
@@ -557,7 +554,7 @@ This section demonstrates how each user story from the [Strategy](#strategy) sec
 |------------|----------------|
 | As a **user**, I want the game to be responsive and touch-friendly, so that I can play comfortably on my phone, tablet or desktop. | Responsive grid layout adapts to all screen sizes (3x4 on mobile, 4x3 on tablet and desktop), touch-optimized controls, and optimized interface elements for seamless cross-device gameplay. |
 
-**Summary:** All 7 user stories have been successfully implemented and thoroughly tested. The game meets all requirements defined in the Strategy phase, providing a safe, educational, and engaging experience for young children and their parents across all devices.
+**Summary:** All 6 user stories have been successfully implemented and thoroughly tested. The game meets all requirements defined in the Strategy phase, providing a safe, educational, and engaging experience for young children and their parents across all devices.
 
 ## Deployment
 
@@ -593,7 +590,7 @@ Cloning creates a local copy on your computer linked to the original repository.
 
 #### Windows
 
-1. Go to [this repository](https://carokyp.github.io/Forest-Pals/)on GitHub
+1. Go to [this repository](https://carokyp.github.io/Forest-Pals/) on GitHub
 2. Click Code, select HTTPS, and copy the link.
 
 <div align="center">
