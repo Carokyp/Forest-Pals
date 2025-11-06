@@ -7,19 +7,11 @@
 
 ## About 
 
-## Project structure
+**Forest Pals** is an interactive memory card game designed primarily for young children to learn about forest animals in a fun and engaging way. Players match pairs of adorable woodland creatures including birds, deer, foxes, hedgehogs, rabbits, and squirrels, helping them recognize and remember different animal names.
 
-Top-level layout keeps production website code under `assets/` and moves non-website artifacts (like validation screenshots and wireframes) under `docs/`.
+The game features a friendly raccoon mascot who encourages players throughout their journey with cheerful messages and congratulations when they find matching pairs. With its colorful design, simple controls, and timed gameplay, Forest Pals makes learning entertaining.
 
-- assets/
-   - css/ — site styles
-   - js/ — site scripts
-   - images/ — site images (backgrounds, cards, raccoon, favicon)
-- docs/
-   - validation/
-      - css/ — CSS validator screenshots
-      - html/ — HTML validator screenshots
-- index.html — site entry point
+Currently, the game is ideal for younger children who are discovering animals and developing memory skills. However, with planned future features like difficulty levels, special card mechanics, and competitive elements, Forest Pals has the potential to evolve into a more comprehensive game suitable for older children and adults who enjoy fun, challenging memory games beyond just educational content.
 
 ## Index – Table of Contents
 * [User Experience (UX)](#user-experience-ux)
@@ -44,11 +36,6 @@ Top-level layout keeps production website code under `assets/` and moves non-web
 #### The customer goals of this website are:
 
 #### User stories
-
-#### MVP Roadmap (Minimal Viable Product)
-
-<p align="center">
-</p>
 
 ### Scope
 
@@ -167,7 +154,74 @@ Top-level layout keeps production website code under `assets/` and moves non-web
 
 ## Features
 
-#### Future Features
+### Existing Features
+
+#### **Main Menu**
+- Clean, welcoming interface with the game title and raccoon mascot
+- "Start" button to begin a new game
+- "How to Play" button that displays clear instructions for new players
+- Easy navigation with back buttons to return to the main menu at any time
+
+#### **Player Name System**
+- Personalized experience with player name input
+- Form validation ensures players enter a name before starting
+- Player name is displayed throughout the game and on the end screen
+- Name persists during retry but resets when returning to the main menu
+
+#### **Memory Card Game**
+- 12 cards featuring 6 pairs of adorable forest animals (birds, deer, foxes, hedgehogs, rabbits, squirrels)
+- Smooth card flip animations for engaging gameplay
+- Shuffled card layout using Fisher-Yates algorithm ensures a unique game every time
+- Responsive grid layout adapts to screen size (4x3 on large screens, 3x4 on small screens)
+
+#### **Game Timer & Score Tracking**
+- Real-time timer displays in mm:ss format
+- Timer automatically starts when the game begins and stops when completed
+- Live score display showing pairs matched out of 6
+- Players compete for the fastest completion time
+
+#### **Raccoon Character & Speech Bubbles**
+- Friendly raccoon mascot provides encouragement throughout the game
+- Animal-specific congratulatory messages when matching pairs
+- Two different random messages for each animal type
+- Special completion message with player's name when all pairs are found
+- Speech bubbles automatically disappear after a few seconds
+
+#### **Highscores Leaderboard**
+- Top 5 fastest completion times are saved and displayed
+- Scores persist using browser localStorage (survives browser restarts)
+- New scores are automatically sorted by completion time
+- Latest score is highlighted for easy identification
+- Leaderboard displays on the end screen after each game completion
+
+#### **End Screen**
+- Congratulatory message with player's name
+- Display of completion time
+- Full highscores leaderboard
+- "Retry" button to play again with the same name
+- "Main Menu" button to start fresh with a new player
+
+#### **Responsive Design**
+- Mobile-friendly interface tested on iPhone SE, iPhone XR, iPhone 12 Pro, iPhone 14 Pro Max, Pixel 7, and Samsung Galaxy S8+, as well as similar-sized devices
+- Adaptive card grid layout for optimal viewing (4x3 on screens wider than 480px, 3x4 on smaller screens)
+- Raccoon mascot visibility adjusts based on screen size (visible on screens wider than 768px, hidden in game view on smaller screens)
+- Speech bubble positioning optimized for mobile devices
+- Touch-friendly controls for mobile gameplay
+
+#### **User Experience Enhancements**
+- Board locking prevents accidental clicks during card evaluation
+- Form validation with helpful error messages
+- Prevents page scrolling and element dragging for distraction-free gameplay
+- Only one game section visible at a time for clarity
+- Smooth transitions between game states
+
+### Future Features
+
+- **Difficulty Levels** - Easy, Medium, and Hard modes with more cards, special trap/bonus cards, and move limits
+- **Sound Effects & Music** - Audio feedback for card flips, matches, and background music with optional raccoon voice lines
+- **Themes & Customization** - Seasonal and geographic themes with unlockable card designs and backgrounds
+- **Pause Functionality** - Pause button to stop the timer and resume from the exact game state
+- **Settings Menu** - Control sound, difficulty, themes, and ability to reset highscores
 
 ## Technologies Used
 
@@ -186,6 +240,8 @@ __Frameworks, Libraries & Programs Used__
 * [Photoshop](https://www.adobe.com/uk/products/photoshop.html): was used for early design to help get a better idea of which colors and images would suit the website. It was also used to resize and edit pictures, as well as create the menus and color palette
 * [Visual Studio Git Source Control](https://learn.microsoft.com/en-us/visualstudio/version-control/git-with-visual-studio?view=vs-2022): was used to commit and push or pull changes to GitHub 
 * [Balsamiq](https://balsamiq.com/): was used to create the wireframes during the design process.
+* [ChatGPT](https://openai.com/chatgpt): was used to assist with grammar correction, code structure improvements, and README documentation organization
+* [Copilot in VS Code](https://code.visualstudio.com/docs/copilot/overview): was used to help with code completion, debugging, and suggesting best practices for JavaScript implementation
 * [WAVE](https://wave.webaim.org/) & [Lighthouse](https://developer.chrome.com/docs/lighthouse): Used for accessibility testing to ensure that all content is readable and accessible to every user.
 * [HTML Validator](https://validator.w3.org/#validate_by_input): Confirmed the HTML code is valid, with no errors detected.
 * [CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input): Verified the CSS code, with no errors detected.
