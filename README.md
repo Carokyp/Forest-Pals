@@ -375,22 +375,22 @@ Testing has been carried out on the following browsers:
 [**HTML Validator**](https://validator.w3.org/)
 
 <p align="center">
-<img src="docs/validation/html/screenshot-2025-11-05-07-19-47.png" alt="HTML Validation Result 1" />
+<img src="docs/validation/html/html-checker-1.png" alt="HTML Validation Result 1" />
 </p>
 
 <details>
 <summary>Click here to view full HTML validation results</summary>
 
 <p align="center">
-<img src="docs/validation/html/screenshot-2025-11-05-07-19-57.png" alt="HTML Validation Result 2" />
+<img src="docs/validation/html/html-checker-2.png" alt="HTML Validation Result 2" />
 </p>
 
 <p align="center">
-<img src="docs/validation/html/screenshot-2025-11-05-07-20-10.png" alt="HTML Validation Result 3" />
+<img src="docs/validation/html/html-checker-3.png" alt="HTML Validation Result 3" />
 </p>
 
 <p align="center">
-<img src="docs/validation/html/screenshot-2025-11-05-07-20-30.png" alt="HTML Validation Result 4" />
+<img src="docs/validation/html/html-checker-4.png" alt="HTML Validation Result 4" />
 </p>
 
 </details> <br>
@@ -398,13 +398,13 @@ Testing has been carried out on the following browsers:
 [**CSS Validator**](https://jigsaw.w3.org/css-validator/)
 
 <p align="center">
-<img src="docs/validation/css/screenshot-2025-11-05-07-22-40.png" alt="CSS Validation Result" />
+<img src="docs/validation/css/css-checker-1.png" alt="CSS Validation Result" />
 </p>
 
 #### CSS Warnings
 
 <p align="center">
-<img src="docs/validation/css/screenshot-2025-11-05-07-22-52.png" alt="CSS Warnings" />
+<img src="docs/validation/css/css-checker-2.png" alt="CSS Warnings" />
 </p>
 
 ## CSS Validation Warnings — Summary and Explanation
