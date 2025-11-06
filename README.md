@@ -15,11 +15,11 @@ Currently, the game is ideal for younger children who are discovering animals an
 
 ## Index – Table of Contents
 * [User Experience (UX)](#user-experience-ux)
-   * [Strategy](#Strategy)
-   * [Scope](#Scope)
-   * [Skeleton](#Skeleton)
-   * [Structure](#Structure)
-   * [Surface](#Surface)
+   * [Strategy](#strategy)
+   * [Scope](#scope)
+   * [Structure](#structure)
+   * [Skeleton](#skeleton)
+   * [Surface](#surface)
 
 * [Features](#features)
 * [Technologies Used](#technologies-used)
@@ -200,21 +200,20 @@ The game follows a **state-based navigation** model with five distinct screens t
 - **User Experience:** Prevents page scrolling and element dragging for distraction-free gameplay
 
 ### Skeleton
+
 During this phase, wireframes for all game states were created using [Balsamiq](https://balsamiq.com/) to visualize the user journey and interface layout.
 
 ### Wireframes
 
-The design considered both desktop and mobile users. The website’s responsiveness was built using , ensuring layouts adapt smoothly across all devices:
+The design prioritizes responsive functionality across all device types, utilizing [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) for flexible card layouts with carefully crafted breakpoints ensuring optimal layouts and user experience:
 
-Extra small (screens smaller than 576px)
-Small (screens 576px and larger)
-Medium (screens 768px and larger)
-Large (screens 992px and larger)
-Extra large (screens 1200px and larger)
-Extra extra large (screens 1400px and larger)
-This approach ensures the website displays correctly and remains user-friendly on mobile devices, tablets, and desktop monitors.
+- **Mobile (up to 480px):** Compact 3x4 card grid, streamlined interface, hidden mascot during gameplay
+- **Small tablets (481px - 767px):** Enhanced spacing, adjusted typography for readability
+- **Tablets (768px - 1023px):** Visible raccoon mascot, 4x3 card grid, improved visual hierarchy
+- **Laptops (1024px - 1439px):** Expanded layout with balanced proportions
+- **Large displays (1440px+):** Maximum 1800px content width for optimal viewing experience
 
-This allows the website to display properly and remain user-friendly on all devices and desktop screens.
+This responsive architecture ensures seamless gameplay and visual clarity whether players are on mobile phones, tablets, or desktop computers.
 
 Wireframes were created for each of the five game states to map out the user experience and interface design:
 
@@ -242,12 +241,6 @@ Wireframes were created for each of the five game states to map out the user exp
   <p align="center">
   <!-- Insert End Screen wireframe image here -->
   </p>
-
-**Design Considerations:**
-- All wireframes were designed with responsive breakpoints in mind (mobile, tablet, desktop)
-- Card grid layout adapts from 4x3 (desktop) to 3x4 (mobile) at 480px breakpoint
-- Raccoon mascot visibility changes at 768px breakpoint for optimal mobile experience
-- Speech bubble positioning adjusts based on screen size
 
 ### Surface
 
@@ -374,11 +367,40 @@ __Frameworks, Libraries & Programs Used__
 
 ### Validator Testing 
 
-[HTML Validator](https://validator.w3.org/)
+[**HTML Validator**](https://validator.w3.org/)
 
-[CSS Validator](https://jigsaw.w3.org/css-validator/)
+<p align="center">
+<img src="docs/validation/html/screenshot-2025-11-05-07-19-47.png" alt="HTML Validation Result 1" />
+</p>
+
+<details>
+<summary>Click here to view full HTML validation results</summary>
+
+<p align="center">
+<img src="docs/validation/html/screenshot-2025-11-05-07-19-57.png" alt="HTML Validation Result 2" />
+</p>
+
+<p align="center">
+<img src="docs/validation/html/screenshot-2025-11-05-07-20-10.png" alt="HTML Validation Result 3" />
+</p>
+
+<p align="center">
+<img src="docs/validation/html/screenshot-2025-11-05-07-20-30.png" alt="HTML Validation Result 4" />
+</p>
+
+</details>
+
+[**CSS Validator**](https://jigsaw.w3.org/css-validator/)
+
+<p align="center">
+<img src="docs/validation/css/screenshot-2025-11-05-07-22-40.png" alt="CSS Validation Result" />
+</p>
 
 #### CSS Warnings
+
+<p align="center">
+<img src="docs/validation/css/screenshot-2025-11-05-07-22-52.png" alt="CSS Warnings" />
+</p>
 
 ## Functionality Testing
 
