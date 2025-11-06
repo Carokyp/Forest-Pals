@@ -50,13 +50,9 @@ Forest Pals is designed for young children, parents and educators seeking an eng
 
 #### User stories
 
-- As a **parent**, I want to find a safe, educational game for my child, so that they can learn about forest animals in a fun and engaging way.
+- As a **parent**, I want to find a safe, educational game for my child, so that they can learn about animals in a fun and engaging way.
 
 - As a **parent**, I want the game to have simple, clear instructions, so that my child can play independently without needing to read complex text.
-
-- As a **parent**, I want the game to work on any device (phone, tablet, computer), so that my child can play wherever and whenever it's convenient.
-
-- As a **player**, I want to see colorful pictures of cute animals, so that I feel excited and engaged while playing the game.
 
 - As a **player**, I want to see my name in the game, so that it feels special and personal to me.
 
@@ -66,7 +62,7 @@ Forest Pals is designed for young children, parents and educators seeking an eng
 
 - As a **player**, I want my highscores to be saved, so that I can see my progress and try to beat my previous best times.
 
-- As a **mobile user**, I want the game to be responsive and touch-friendly, so that I can play comfortably on my phone or tablet.
+- As a **user**, I want the game to be responsive and touch-friendly, so that I can play comfortably on my phone, tablet or desktop.
 
 ### Scope
 
@@ -204,17 +200,76 @@ The game follows a **state-based navigation** model with five distinct screens t
 - **User Experience:** Prevents page scrolling and element dragging for distraction-free gameplay
 
 ### Skeleton
-During this phase, wireframes for all pages were created using [Balsamiq](https://balsamiq.com/) (see samples below).
+During this phase, wireframes for all game states were created using [Balsamiq](https://balsamiq.com/) to visualize the user journey and interface layout.
 
 ### Wireframes
 
-* __Home Page__  
+The design considered both desktop and mobile users. The website’s responsiveness was built using , ensuring layouts adapt smoothly across all devices:
+
+Extra small (screens smaller than 576px)
+Small (screens 576px and larger)
+Medium (screens 768px and larger)
+Large (screens 992px and larger)
+Extra large (screens 1200px and larger)
+Extra extra large (screens 1400px and larger)
+This approach ensures the website displays correctly and remains user-friendly on mobile devices, tablets, and desktop monitors.
+
+This allows the website to display properly and remain user-friendly on all devices and desktop screens.
+
+Wireframes were created for each of the five game states to map out the user experience and interface design:
+
+* **State 1: Main Menu**
   <p align="center">
+  <!-- Insert Main Menu wireframe image here -->
   </p>
+
+* **State 2: Instructions Screen**
+  <p align="center">
+  <!-- Insert Instructions wireframe image here -->
+  </p>
+
+* **State 3: Player Name Form**
+  <p align="center">
+  <!-- Insert Player Name Form wireframe image here -->
+  </p>
+
+* **State 4: Active Game**
+  <p align="center">
+  <!-- Insert Game Board wireframe image here -->
+  </p>
+
+* **State 5: End Screen**
+  <p align="center">
+  <!-- Insert End Screen wireframe image here -->
+  </p>
+
+**Design Considerations:**
+- All wireframes were designed with responsive breakpoints in mind (mobile, tablet, desktop)
+- Card grid layout adapts from 4x3 (desktop) to 3x4 (mobile) at 480px breakpoint
+- Raccoon mascot visibility changes at 768px breakpoint for optimal mobile experience
+- Speech bubble positioning adjusts based on screen size
 
 ### Surface
 
 #### Visual Style
+
+Forest Pals features a **playful, child-friendly design** with a warm, woodland aesthetic that appeals to young children while maintaining clear readability and intuitive navigation. All visual assets including the forest background, animal card illustrations, and raccoon mascot were custom-designed and created in [Photoshop](https://www.adobe.com/uk/products/photoshop.html).
+
+**Design:**
+- Bright, inviting colors create a cheerful atmosphere suitable for children
+- Rounded shapes and soft edges throughout the interface promote a gentle, non-threatening aesthetic
+- Large, clear typography ensures readability for early readers
+- Whimsical forest background creates an immersive woodland environment
+- Custom illustrations designed specifically for the game ensure a cohesive, original visual identity
+
+**Typography:**
+- **Headings:** [Baloo 2](https://fonts.google.com/specimen/Baloo+2) - A playful, rounded cursive font perfect for children's content
+  - Used for game title, section headers, and buttons
+  - Fluid sizing (clamp) ensures readability across all devices
+- **Body Text:** [Quicksand](https://fonts.google.com/specimen/Quicksand) - A friendly, geometric sans-serif
+  - Used for instructions, game text, and UI elements
+  - Clean and legible for young readers
+
 
 #### Colors 
 
@@ -223,8 +278,6 @@ During this phase, wireframes for all pages were created using [Balsamiq](https:
 </p>
 
 ## Features
-
-### Existing Features
 
 #### **Main Menu**
 - Clean, welcoming interface with the game title and raccoon mascot
@@ -316,7 +369,6 @@ __Frameworks, Libraries & Programs Used__
 * [HTML Validator](https://validator.w3.org/#validate_by_input): Confirmed the HTML code is valid, with no errors detected.
 * [CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input): Verified the CSS code, with no errors detected.
 * [JS-Beautify](https://beautifier.io/): Checked the formatting and structure of the HTML and CSS for consistency and readability.
-* [Squoosh](https://squoosh.app): was used in this project to resize, compress, and optimize images for the web, ensuring they load quickly while maintaining visual quality
 
 ## Testing 
 
@@ -328,9 +380,7 @@ __Frameworks, Libraries & Programs Used__
 
 #### CSS Warnings
 
-## Test Cases and Results
-
-### Functionality Testing
+## Functionality Testing
 
 | Test Label | Test Action | Expected Outcome | Test Outcome | Notes |
 |------------|-------------|------------------|--------------|-------|
@@ -401,6 +451,32 @@ __Frameworks, Libraries & Programs Used__
 ### Performance
 
 ### Testing User Stories
+
+This section demonstrates how each user story from the [Strategy](#strategy) section was successfully implemented and tested in the final game.
+
+#### Parent User Stories
+
+| User Story | Implementation |
+|------------|----------------|
+| As a **parent**, I want to find a safe, educational game for my child, so that they can learn about animals in a fun and engaging way. | Game features 6 different forest animals (birds, deer, foxes, hedgehogs, rabbits, squirrels). No external links, ads, or inappropriate content. |
+| As a **parent**, I want the game to have simple, clear instructions, so that my child can play independently without needing to read complex text. | "How to Play" section provides 5 clear, numbered steps with simple language.|
+
+#### Player User Stories
+
+| User Story | Implementation |
+|------------|----------------|
+| As a **player**, I want to see my name in the game, so that it feels special and personal to me. | Player name input form with validation. Name appears in raccoon's final speech bubble and end screen congratulations throughout gameplay session. |
+| As a **player**, I want easy navigation and clear "How to Play" instructions, so that I can understand the game quickly without frustration. | Clear navigation with "Start", "How to Play", "Back" buttons. Instructions presented in numbered steps. Consistent back navigation from all screens. |
+| As a **player**, I want to see a highscore leaderboard with my fastest times, so that I can challenge myself to improve and compete with family members. | Top 5 highscores displayed on end screen, sorted by fastest completion time. Latest score highlighted for easy identification. |
+| As a **player**, I want my highscores to be saved, so that I can see my progress and try to beat my previous best times. | localStorage implementation persists top 5 scores across browser sessions. Scores survive page reloads and browser restarts until browser cache is manually cleared. |
+
+#### User Stories
+
+| User Story | Implementation |
+|------------|----------------|
+| As a **user**, I want the game to be responsive and touch-friendly, so that I can play comfortably on my phone, tablet or desktop. | Responsive grid layout adapts to all screen sizes (3x4 on mobile, 4x3 on tablet and desktop), touch-optimized controls, and optimized interface elements for seamless cross-device gameplay. |
+
+**Summary:** All 7 user stories have been successfully implemented and thoroughly tested. The game meets all requirements defined in the Strategy phase, providing a safe, educational, and engaging experience for young children and their parents across all devices.
 
 ## Deployment
 
