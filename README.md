@@ -217,27 +217,37 @@ Wireframes were created for each of the five game states to map out the user exp
 
 * **State 1: Main Menu**
   <p align="center">
-  <!-- Insert Main Menu wireframe image here -->
+  <img src="wireframes/phone-1.png" alt="Main Menu - Phone" width="250" />
+  <img src="wireframes/tablet-1.png" alt="Main Menu - Tablet" width="350" />
+  <img src="wireframes/desktop-1.png" alt="Main Menu - Desktop" width="450" />
   </p>
 
 * **State 2: Instructions Screen**
   <p align="center">
-  <!-- Insert Instructions wireframe image here -->
+  <img src="wireframes/phone-2.png" alt="Instructions Screen - Phone" width="250" />
+  <img src="wireframes/tablet-2.png" alt="Instructions Screen - Tablet" width="350" />
+  <img src="wireframes/desktop-2.png" alt="Instructions Screen - Desktop" width="450" />
   </p>
 
 * **State 3: Player Name Form**
   <p align="center">
-  <!-- Insert Player Name Form wireframe image here -->
+  <img src="wireframes/phone-3.png" alt="Player Name Form - Phone" width="250" />
+  <img src="wireframes/tablet-3.png" alt="Player Name Form - Tablet" width="350" />
+  <img src="wireframes/desktop-3.png" alt="Player Name Form - Desktop" width="450" />
   </p>
 
 * **State 4: Active Game**
   <p align="center">
-  <!-- Insert Game Board wireframe image here -->
+  <img src="wireframes/phone-4.png" alt="Active Game - Phone" width="250" />
+  <img src="wireframes/tablet-4.png" alt="Active Game - Tablet" width="350" />
+  <img src="wireframes/desktop-4.png" alt="Active Game - Desktop" width="450" />
   </p>
 
 * **State 5: End Screen**
   <p align="center">
-  <!-- Insert End Screen wireframe image here -->
+  <img src="wireframes/phone-5.png" alt="End Screen - Phone" width="250" />
+  <img src="wireframes/tablet-5.png" alt="End Screen - Tablet" width="350" />
+  <img src="wireframes/desktop-5.png" alt="End Screen - Desktop" width="450" />
   </p>
 
 ### Surface
