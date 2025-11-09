@@ -3,6 +3,10 @@
  
 </div><br>
 
+<p align="center">
+<img src="assets/images/screenshots/responsive-screens.png" alt="Forest Pals Responsive Design" width="800" />
+</p>
+
 [Link to Live Website](https://carokyp.github.io/Forest-Pals/)
 
 ## About 
