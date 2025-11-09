@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const TOTAL_PAIRS = 6;
   const MATCH_DELAY = 300;
   const NO_MATCH_DELAY = 600;
-  const SPEECH_DURATION = 30000;
+  const SPEECH_DURATION = 3000;
   const END_SCREEN_DELAY = 2000;
   const MAX_HIGHSCORES = 5;
 
@@ -652,6 +652,26 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
+   * Initializes localStorage with default highscores if none exist.
+   * This ensures the highscores list is never empty on first load.
+   *
+   * @returns {void}
+   */
+  function initializeDefaultHighscores() {
+    const savedScores = localStorage.getItem("forestPalsHighscores");
+    if (!savedScores) {
+      const defaultScores = [
+        { name: "Caro", time: "00:30" },
+        { name: "Ethan", time: "00:50" },
+        { name: "Luna", time: "01:20" },
+        { name: "Martin", time: "01:30" },
+        { name: "Sam", time: "01:40" }
+      ];
+      localStorage.setItem("forestPalsHighscores", JSON.stringify(defaultScores));
+    }
+  }
+
+  /**
    * Saves the provided score, re-renders the highscores list, and persists to localStorage.
    *
    * Input contract:
@@ -795,6 +815,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // INITIALIZATION (NAKED CODE)
   // ============================================================================
 
+  // Initialize default highscores in localStorage if none exist
+  initializeDefaultHighscores();
+  
   // Prevent background scroll and drag on the whole page
   document.body.style.overflow = "hidden";
   // Show initial menu and prepare a board (board remains hidden until shown)
