@@ -281,18 +281,33 @@ Forest Pals features a **playful, child-friendly design** with a warm, woodland 
 ## Features
 
 #### **Main Menu**
+<p align="center">
+<img src="assets/images/screenshots/main-menu.png" alt="Main Menu Screenshot" width="600" />
+</p>
+
 - Clean, welcoming interface with the game title and raccoon mascot
 - "Start" button to begin a new game
 - "How to Play" button that displays clear instructions for new players
 - Easy navigation with back buttons to return to the main menu at any time
 
 #### **Player Name System**
+<p align="center">
+<img src="assets/images/screenshots/player-form.png" alt="Player Name Form Screenshot" width="600" />
+</p>
+
 - Personalized experience with player name input
 - Form validation ensures players enter a name before starting
+<p align="center">
+<img src="assets/images/screenshots/no-name.png" alt="Player Name Form Screenshot" width="400" />
+</p>
 - Player name is displayed throughout the game and on the end screen
 - Name persists during retry but resets when returning to the main menu
 
 #### **Memory Card Game**
+<p align="center">
+<img src="assets/images/screenshots/game-area.png" alt="Memory Card Game Screenshot" width="600" />
+</p>
+
 - 12 cards featuring 6 pairs of adorable forest animals (birds, deer, foxes, hedgehogs, rabbits, squirrels)
 - Smooth card flip animations for engaging gameplay
 - Shuffled card layout using Fisher-Yates algorithm ensures a unique game every time
@@ -305,6 +320,9 @@ Forest Pals features a **playful, child-friendly design** with a warm, woodland 
 - Players compete for the fastest completion time
 
 #### **Raccoon Character & Speech Bubbles**
+<p align="center">
+<img src="assets/images/screenshots/raccon-speech.png" alt="Player Name Form Screenshot" width="350" />
+</p>
 - Friendly raccoon mascot provides encouragement throughout the game
 - Animal-specific congratulatory messages when matching pairs
 - Two different random messages for each animal type
@@ -312,6 +330,9 @@ Forest Pals features a **playful, child-friendly design** with a warm, woodland 
 - Speech bubbles automatically disappear after a few seconds
 
 #### **Highscores Leaderboard**
+<p align="center">
+<img src="assets/images/screenshots/highscore.png" alt="Player Name Form Screenshot" width="600" />
+</p>
 - Top 5 fastest completion times are saved and displayed
 - Scores persist using browser localStorage (survives browser restarts)
 - New scores are automatically sorted by completion time
