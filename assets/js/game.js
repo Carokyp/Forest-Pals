@@ -1,10 +1,17 @@
 /**
- * Application bootstrap: runs once the DOM is fully parsed.
- * - Declares configuration/constants and shared state
+ * Initializes the Forest Pals memory game once the DOM is fully loaded.
+ * 
+ * This callback function:
+ * - Declares game configuration, constants, and shared state
  * - Defines all UI and game-logic functions
- * - Wires up global event listeners and shows the initial screen
+ * - Wires up global event listeners
+ * - Shows the initial menu screen
+ * 
+ * @listens document#DOMContentLoaded
+ * @returns {void}
  */
 document.addEventListener("DOMContentLoaded", () => {
+
   // ============================================================================
   // CONFIGURATION & CONSTANTS
   // ============================================================================
@@ -19,9 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 6, name: "squirrel", image: "assets/images/cards/squirrel.png" },
   ];
 
-  /** Raccoon speech lines for each time the player makes a match
-   * It tells different lines depending on the animal matched
-   * And informs the player with the animal he just matched
+  /**
+   * Raccoon speech lines for each time the player makes a match.
+   * Different lines are shown depending on the animal matched.
+   * @type {Object.<string, string[]>}
    */
   const RACCOON_LINES = {
     bird: [
@@ -50,11 +58,17 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
   };
 
+  /** @type {number} Total number of card pairs to match */
   const TOTAL_PAIRS = 6;
+  /** @type {number} Delay in ms before handling a successful match */
   const MATCH_DELAY = 300;
+  /** @type {number} Delay in ms before flipping cards back on mismatch */
   const NO_MATCH_DELAY = 600;
+  /** @type {number} Duration in ms to display raccoon speech bubbles */
   const SPEECH_DURATION = 3000;
+  /** @type {number} Delay in ms before showing end screen */
   const END_SCREEN_DELAY = 2000;
+  /** @type {number} Maximum number of highscores to store */
   const MAX_HIGHSCORES = 5;
 
   // ============================================================================
@@ -78,11 +92,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // STATE VARIABLES
   // ============================================================================
 
+  /** @type {string} Current player's name */
   let playerName = "";
+  /** @type {HTMLElement[]} Array of currently flipped card elements */
   let flippedCards = [];
+  /** @type {boolean} Flag to prevent card interactions during evaluation */
   let lockBoard = false;
+  /** @type {number} Number of pairs matched so far */
   let score = 0;
+  /** @type {number|null} Interval ID for the game timer */
   let timerInterval = null;
+  /** @type {number} Total seconds elapsed in the current game */
   let timeElapsed = 0;
 
   // ============================================================================
@@ -319,17 +339,19 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsGridContainer.setAttribute("id", "grid-container");
     gameAreaEl.appendChild(cardsGridContainer);
 
+    /** Raccoon mascot image element */
     const raccoonImage = document.createElement("img");
     raccoonImage.id = "raccoon-game-area";
-  raccoonImage.src = "assets/images/raccoon/raccoon-1.png";
+    raccoonImage.src = "assets/images/raccoon/raccoon-1.png";
     raccoonImage.alt =
       "Raccoon wearing glasses waving cheerfully to the player";
     raccoonImage.classList.add("img-fluid");
     gameAreaEl.appendChild(raccoonImage);
 
+    /** Create deck by duplicating card array for pairs */
     const shuffledCards = [...CARDS, ...CARDS];
 
-    // Shuffle card
+    // Shuffle cards using Fisher-Yates algorithm
     for (let i = shuffledCards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffledCards[i], shuffledCards[j]] = [
@@ -402,6 +424,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /**
+   * Checks if the two currently flipped cards match and handles the result.
+   * @returns {void}
+   */
   function checkForMatch() {
     const [firstCard, secondCard] = flippedCards;
     const isMatch = firstCard.dataset.id === secondCard.dataset.id;
@@ -712,9 +738,9 @@ document.addEventListener("DOMContentLoaded", () => {
     existingScores.push({ name, time });
 
     /**
-     * Converts a mm:ss string into total seconds.
-     * @param {string} t - A time string like "03:07".
-     * @returns {number} Total seconds (e.g., 187).
+     * Converts a mm:ss time string into total seconds.
+     * @param {string} t - A time string like "03:07"
+     * @returns {number} Total seconds (e.g., 187)
      */
     const toSeconds = (t) => {
       const [m, s] = t.split(":").map(Number);
