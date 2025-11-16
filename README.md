@@ -772,7 +772,22 @@ __Create a new fork__
 
 I would like to thank my mentor, Brian, for the assistance and support he provided throughout this project.
 
+### Visual Design References
+
+All game assets were custom-designed in Photoshop, with inspiration from the following sources:
+
+**Character Design:**
+- [Raccoon](https://uk.pinterest.com/pin/3307399721934273/)
+- [Fox & Hedgehog](https://uk.pinterest.com/pin/790874384604691050/)
+- [Rabbit & Squirrel](https://uk.pinterest.com/pin/20618110789793470/) 
+- [Deer](https://uk.pinterest.com/pin/4503668372924842/) 
+- [Bird](https://uk.pinterest.com/pin/985231164887956/) 
+
 ### Code References
 
-Some parts of the project required utility scripts and styling tweaks. I adapted solutions from the following resources, modifying them to fit the project’s needs.
+Some parts of the project required utility scripts and styling tweaks. I adapted solutions from the following resources, modifying them to fit the project's needs.
+
+
+
+
 
