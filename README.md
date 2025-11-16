@@ -785,7 +785,19 @@ All game assets were custom-designed in Photoshop, with inspiration from the fol
 
 ### Code References
 
-Some parts of the project required utility scripts and styling tweaks. I adapted solutions from the following resources, modifying them to fit the project's needs.
+The memory card game logic and implementation were adapted from the following tutorials, with modifications to fit the project's specific requirements:
+
+- [Memory Card Game Tutorial 1](https://www.youtube.com/watch?v=dqqxkrKhfS4&t=954s) - Core game mechanics including card matching logic, flip animations, and game state management
+- [Memory Card Game Tutorial 2](https://www.youtube.com/watch?v=9SBafLiMLpc) - Additional implementation techniques for memory game functionality
+- [CSS Grid Tutorial](https://www.youtube.com/watch?v=eHaZlFcGl6k&t=2s) - CSS Grid layout techniques for responsive element positioning throughout the game
+- [Saving Highscores with localStorage](https://www.youtube.com/watch?v=GihQAC1I39Q) - localStorage implementation for saving and retrieving highscores
+- [Creating a Highscore System for Games](https://www.youtube.com/watch?v=DFhmNLKwwGw) - Highscore system design and persistent data storage techniques
+- [Convert MM:SS to Seconds Using JavaScript](https://medium.com/@harshitgambhir88/convert-hh-mm-ss-to-seconds-or-vice-versa-using-javascript-df96c23f1404) - Time string conversion logic for sorting highscores by completion time
+- [Sorting Player Scores in JavaScript](https://greg-a-s-wright.medium.com/sorting-the-scores-of-an-array-of-player-objects-javascript-3e58cba709c8) - Array sorting techniques for ranking highscores from fastest to slowest
+
+
+
+
 
 
 

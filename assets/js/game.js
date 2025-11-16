@@ -665,9 +665,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!highscoresList) {
       // If the highscores list is missing, create a fallback container to avoid crashes
-      console.warn(
-        "Highscores list not found — creating fallback list element."
-      );
       highscoresList = document.createElement("ol");
       highscoresList.id = "highscores-list";
       const highscoreWrapper = document.querySelector("#highscores");
@@ -718,9 +715,6 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   function saveAndDisplayHighscores(name, time, highscoresList) {
     if (!highscoresList) {
-      console.warn(
-        "saveAndDisplayHighscores: highscoresList is null or undefined — aborting to avoid errors."
-      );
       return;
     }
     
@@ -751,11 +745,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const top5 = existingScores.slice(0, MAX_HIGHSCORES);
 
+    // Render the top 5 highscores to the DOM
     highscoresList.innerHTML = "";
     top5.forEach((entry, index) => {
       const li = document.createElement("li");
       li.innerHTML = `<span class="hs-name">${entry.name}</span> — <span class="hs-time">${entry.time}</span>`;
 
+      // Highlight the current player's new score
       if (entry.name === name && entry.time === time) {
         li.classList.add("highlight");
       }
@@ -763,6 +759,7 @@ document.addEventListener("DOMContentLoaded", () => {
       highscoresList.appendChild(li);
     });
 
+    // Persist the updated top 5 to localStorage
     localStorage.setItem("forestPalsHighscores", JSON.stringify(top5));
   }
 
