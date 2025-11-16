@@ -275,12 +275,42 @@ Forest Pals features a **playful, child-friendly design** with a warm, woodland 
   - Used for instructions, game text, and UI elements
   - Clean and legible for young readers
 
-
 #### Colors 
 
-<p align="center" >
-  
+Forest Pals uses a warm, woodland color palette that creates a welcoming atmosphere for young players.
+
+**Color Palette 1: Titles & UI Surfaces**
+
+- **Dark Brown:** `#6d483d` - Game title and main headings
+- **Dark Orange:** `#a47868` - Border color for player name form, "How to Play" button, and highscore board
+- **Light Orange:** `#edbea2` - Background color for forms, instruction panels, and highscore display
+- **Dark Violet:** `#614258` - Border color for interactive buttons (Start, Back, Timer, Score, Retry, Main Menu)
+- **Light Violet:** `#926384` - Background color for all interactive buttons and game HUD elements
+
+<p align="center">
+<img src="assets/images/color-palette/color-1.png" alt="Color Palette 1 - Titles & UI Surfaces" width="600" />
 </p>
+
+**Color Palette 2: Raccoon**
+- **Raccoon Outline:** `#8b6d58` - Outline and defining edges
+- **Raccoon Base:** `#b9967a` - Main body color
+- **Raccoon Highlights:** `#f7dbb8` - Lighter accents and highlights
+- Used for: Raccoon character design throughout menu, form, and game screens
+
+
+<p align="center">
+<img src="assets/images/color-palette/color-2.png" alt="Color Palette 2 - Interactive Buttons" width="600" />
+</p>
+
+**Color Palette 3: Game Cards**
+- **Card Outline:** `#8b7696` - Card border and edges
+- **Card Background:** `#c4b3cf` - Main card surface color
+- **Card Details:** `#eed7e0` - Moon detail and subtle highlights
+
+<p align="center">
+<img src="assets/images/color-palette/color-3.png" alt="Color Palette 3 - Raccoon Mascot" width="600" />
+</p>
+
 
 ## Features
 
