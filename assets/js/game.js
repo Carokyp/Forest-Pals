@@ -108,15 +108,33 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================================
   // EVENT LISTENER REGISTRATION
   // ============================================================================
-  // Global event delegation for buttons/controls
+  
+  /**
+   * Global event delegation for all button clicks throughout the application.
+   * Handles Start, How to Play, Back, Retry, and Main Menu buttons.
+   */
   document.addEventListener("click", handleButtonClick);
-  // Prevent background scroll/drag interactions across the app
+  
+  /**
+   * Prevents mouse wheel scrolling to keep the game view locked in place.
+   * Uses passive: false to allow preventDefault() to work.
+   */
   document.addEventListener("wheel", (e) => e.preventDefault(), {
     passive: false,
   });
+  
+  /**
+   * Prevents touch-based scrolling on mobile devices for a locked game experience.
+   * Uses passive: false to allow preventDefault() to work.
+   */
   document.addEventListener("touchmove", (e) => e.preventDefault(), {
     passive: false,
   });
+  
+  /**
+   * Prevents drag-and-drop interactions on images and other elements
+   * to maintain clean game aesthetics and prevent accidental drags.
+   */
   document.addEventListener("dragstart", (e) => e.preventDefault());
 
   // ============================================================================
