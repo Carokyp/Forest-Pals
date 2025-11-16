@@ -407,6 +407,22 @@ Testing has been carried out on the following browsers:
 - **Microsoft Edge** - Version 139.0.3405.86
 - **Safari on macOS** - Version 26.0, Copyright © 2003-2025 Apple Inc.
 
+#### Safari-Specific Issues Resolved:
+
+During cross-browser testing, several Safari-specific rendering issues were identified and resolved to ensure consistent gameplay across all browsers.
+
+| Issue | Cause | Solution | Status |
+|-------|-------|----------|--------|
+| Grid shifting left on load | Missing `-webkit-transform-style` prefix for 3D transforms | Added `-webkit-transform-style: preserve-3d` to card elements in `styles.css` | Fixed |
+| Text/card selection enabled | Missing `-webkit-user-select` prefix | Added `-webkit-user-select: none` globally in `styles.css` | Fixed |
+
+**Technical Details:**
+- Safari requires vendor-prefixed properties for certain CSS features to work properly
+- The 3D card flip animations use `transform-style: preserve-3d`, which needs the `-webkit-` prefix in Safari, without these prefixes Safari would recalculate element positions multiple times on page load, causing visual glitches
+- Text selection prevention also requires the `-webkit-user-select` property in Safari to prevent players from highlighting cards and text during gameplay
+
+
+
 [**HTML Validator**](https://validator.w3.org/)
 
 <p align="center">

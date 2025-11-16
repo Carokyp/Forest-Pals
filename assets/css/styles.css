@@ -51,6 +51,8 @@
   padding: 0;
   box-sizing: border-box;
   /* Prevent text selection and dragging */
+  -webkit-user-select: none;
+  /*Prevents text selection in Safari*/
   user-select: none;
   /*Prevents text selection to be highlighted*/
   -webkit-user-drag: none;
@@ -143,6 +145,8 @@ body::before {
   /* Ensure raccoon images are block-level for proper sizing */
   pointer-events: none;
   /* Prevent interaction */
+  -webkit-user-select: none;
+  /* Prevent text selection in Safari */
   user-select: none;
   /* Prevent text selection */
 }
@@ -384,6 +388,7 @@ body::before {
   overflow: visible;
   background: transparent !important;
   border: none !important;
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   justify-self: center;
   align-self: center;
@@ -399,6 +404,7 @@ body::before {
   transition: transform 0.5s ease;
   object-fit: cover;
   border: none !important;
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
@@ -519,7 +525,7 @@ body::before {
 
 /* End screen buttons styles */
 #retry-btn,
-#ok-btn {
+#main-menu-btn {
   font-family: var(--font-text);
   font-weight: bold;
   padding: 0.8rem 0.8rem;
