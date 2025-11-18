@@ -449,7 +449,7 @@ body::before {
 /* Speech bubble container to position bubble at bottom center */
 .speech-bubble-container {
   position: absolute;
-  bottom: 1rem;
+  bottom: clamp(2rem, 3vh, 7rem);
   left: 0;
   width: 100%;
   height: 5rem;
@@ -464,7 +464,7 @@ body::before {
   position: static;
   text-align: center;
   word-break: break-word;
-  font-size: 0.8rem;
+  font-size: clamp(1rem, 2.8vw, 1.4rem);
   padding: 1rem 1.2rem;
   pointer-events: none;
   font-family: var(--font-text);
