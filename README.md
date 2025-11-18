@@ -384,13 +384,23 @@ Forest Pals uses a warm, woodland color palette that creates a welcoming atmosph
 - "Retry" button to play again with the same name
 - "Main Menu" button to start fresh with a new player
 
+#### **Landscape Mode Restriction**
+<p align="center">
+<img src="assets/images/screenshots/unsupported-screen-size.png" alt="Unsupported Screen Size Message" width="600" />
+</p>
+
+- Displays a friendly message when players rotate their mobile device or small tablet to landscape mode
+- Features the raccoon mascot, clear instructions, and animated icons showing how to rotate back to portrait mode
+- Ensures the game is always played in the optimal orientation for the best experience
+- Automatically disappears when the device is rotated back to portrait mode
+- Only applies to small screens (height < 600px); desktop and laptop screens work in any orientation
+
 #### **Responsive Design**
 - Mobile-friendly interface tested on iPhone SE, iPhone XR, iPhone 12 Pro, iPhone 14 Pro Max, Pixel 7, and Samsung Galaxy S8+, as well as similar-sized devices
 - Adaptive card grid layout for optimal viewing (4x3 on screens wider than 480px, 3x4 on smaller screens)
 - Raccoon mascot visibility adjusts based on screen size (visible on screens wider than 768px, hidden in game view on smaller screens)
 - Speech bubble positioning optimized for mobile devices
 - Touch-friendly controls for mobile gameplay
-- **Landscape Mode Restriction** - Players who attempt to play in landscape mode on screens smaller than 600px height will receive an unsupported message prompting them to rotate their device to portrait mode for optimal gameplay. This ensures the game interface remains properly sized and playable on mobile devices and small tablets. Desktop and laptop screens (height > 600px) support both portrait and landscape orientations.
 
 #### **User Experience Enhancements**
 - Board locking prevents accidental clicks during card evaluation
