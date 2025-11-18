@@ -597,10 +597,12 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh; /* Use dynamic viewport height to account for browser UI */
   background-color: var(--light-orange);
   z-index: 9999; /* Above everything */
   justify-content: center;
   align-items: center;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 .unsupported-content {
