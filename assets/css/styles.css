@@ -191,6 +191,7 @@ body::before {
 .htp-container {
   border-radius: 10px;
   margin: 1rem;
+  margin-bottom: 0;
   max-height: 70dvh;
 }
 
@@ -494,7 +495,6 @@ body::before {
   /* Center content */
   align-content: center;
   min-height: 100dvh;
-  padding: 2rem;
 }
 
 .end-screen-container {
@@ -506,7 +506,7 @@ body::before {
   /* Title, text, buttons */
   place-items: center;
   gap: 1.2rem;
-  padding: 2rem;
+  padding: 1.25rem;
   background-color: var(--light-orange);
   border: 3px solid var(--dark-orange);
   border-radius: 10px;
@@ -588,6 +588,113 @@ body::before {
 }
 
 /* #endregion End screen styles */
+
+/* #region Unsupported Screen Size Message */
+#unsupported-screen-size-message {
+  display: none; /* Hidden by default */
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--light-orange);
+  z-index: 9999; /* Above everything */
+  justify-content: center;
+  align-items: center;
+}
+
+.unsupported-content {
+  text-align: center;
+  max-width: 90vw;
+  max-height: 90vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: clamp(0.8rem, 2vw, 2rem);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.unsupported-raccoon {
+  width: clamp(60px, 15vw, 110px);
+  height: auto;
+  margin-bottom: clamp(0.3rem, 1vw, 0.7rem);
+}
+
+.unsupported-content h2 {
+  font-family: var(--font-title);
+  color: var(--dark-violet);
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  margin-bottom: clamp(0.4rem, 1.5vw, 0.7rem);
+}
+
+.unsupported-content p {
+  font-family: var(--font-text);
+  color: var(--text-color);
+  font-size: clamp(0.85rem, 2.5vw, 1.2rem);
+  line-height: 1.5;
+  margin-bottom: clamp(0.5rem, 1.5vw, 0.7rem);
+  font-weight: 600;
+}
+
+.rotation-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.6rem, 2vw, 1rem);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  color: var(--dark-violet);
+}
+
+.rotation-icon .fa-arrow-right {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+}
+/* #endregion Unsupported Screen Size Message */
+
+/* #region Media: Landscape mode (horizontal) - Game not supported */
+@media (orientation: landscape) and (max-height: 600px) {
+  
+  /* Show unsupported screen message when device is horizontal */
+  #unsupported-screen-size-message {
+    display: flex !important;
+  }
+
+  /* Hide all game content */
+  #menu,
+  #how-to-play-area,
+  #player-form-area,
+  #game-area,
+  #end-screen {
+    display: none !important;
+  }
+}
+/* #endregion Media: Landscape mode */
+
+/* #region Media: Small phone screens (iphone 5/SE)*/
+@media (width: 320px) {
+  #top-hud {
+    gap: 0.20rem;
+  }
+
+  .right-hud {
+    gap: 0.20rem;
+  }
+
+  .speech-bubble-container {
+    bottom: 0.5rem;
+  }
+
+  #speech-bubble {
+    font-size: 0.65rem;
+    padding: 0.70rem 1rem;
+    max-width: 90%;
+  }
+  
+}
+
+/* #endregion Media: Small phone screens */
 
 /* #region Media: Large phone screens to tablet */
 @media (min-width: 481px) and (max-width: 767px) {
