@@ -17,6 +17,8 @@ The game features a friendly raccoon mascot who encourages players throughout th
 
 Currently, the game is ideal for younger children who are discovering animals and developing memory skills. However, with planned future features like difficulty levels, special card mechanics, and competitive elements, Forest Pals has the potential to evolve into a more comprehensive game suitable for older children and adults who enjoy fun, challenging memory games beyond just educational content.
 
+**Note:** Forest Pals is optimized for portrait mode on mobile devices and tablets. Players using landscape mode on small screens will be prompted to rotate their device for the best experience.
+
 ## Index – Table of Contents
 * [User Experience (UX)](#user-experience-ux)
    * [Strategy](#strategy)
@@ -209,11 +211,13 @@ During this phase, wireframes for all game states were created using [Balsamiq](
 
 The design prioritizes responsive functionality across all device types, utilizing [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) for flexible card layouts with carefully crafted breakpoints ensuring optimal layouts and user experience:
 
+- **iPhone 5/SE (320px width):** Optimized spacing for HUD, timer, score display, and speech bubble for very small screens
 - **Mobile (up to 480px):** Compact 3x4 card grid, streamlined interface, hidden mascot during gameplay
 - **Small tablets (481px - 767px):** Enhanced spacing, adjusted typography for readability
 - **Tablets (768px - 1023px):** Visible raccoon mascot, 4x3 card grid, improved visual hierarchy
 - **Laptops (1024px - 1439px):** Expanded layout with balanced proportions
 - **Large displays (1440px+):** Maximum 1800px content width for optimal viewing experience
+- **Landscape restriction (max-height: 600px):** Unsupported message displayed on small devices in landscape orientation, prompting portrait mode for optimal gameplay
 
 This responsive architecture ensures seamless gameplay and visual clarity whether players are on mobile phones, tablets, or desktop computers.
 
@@ -386,6 +390,7 @@ Forest Pals uses a warm, woodland color palette that creates a welcoming atmosph
 - Raccoon mascot visibility adjusts based on screen size (visible on screens wider than 768px, hidden in game view on smaller screens)
 - Speech bubble positioning optimized for mobile devices
 - Touch-friendly controls for mobile gameplay
+- **Landscape Mode Restriction** - Players who attempt to play in landscape mode on screens smaller than 600px height will receive an unsupported message prompting them to rotate their device to portrait mode for optimal gameplay. This ensures the game interface remains properly sized and playable on mobile devices and small tablets. Desktop and laptop screens (height > 600px) support both portrait and landscape orientations.
 
 #### **User Experience Enhancements**
 - Board locking prevents accidental clicks during card evaluation
