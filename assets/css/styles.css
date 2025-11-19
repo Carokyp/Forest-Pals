@@ -18,7 +18,8 @@
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Caprasimo&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Macondo&family=Quicksand:wght@300..700&display=swap');
 
-/* Hidden sections by default — JS switches them via showSection(section) */
+/* Hidden sections by default — JS switches them via showSection(section)
+   This creates a single-page app experience where JS controls which section is visible */
 #how-to-play-area,
 #game-area,
 #end-screen {
@@ -50,13 +51,14 @@
   /*Removes default browser spacing on all elements */
   padding: 0;
   box-sizing: border-box;
-  /* Prevent text selection and dragging */
+  /* Prevent text selection and dragging to maintain game-like feel
+     Users shouldn't accidentally select text while clicking cards */
   -webkit-user-select: none;
-  /*Prevents text selection in Safari*/
+  /* Safari compatibility */
   user-select: none;
-  /*Prevents text selection to be highlighted*/
+  /* Standard property */
   -webkit-user-drag: none;
-  /*Prevents dragging*/
+  /* Prevents image dragging */
 }
 
 /* Page layout */
@@ -70,17 +72,18 @@ body {
 /* #endregion Reset & Base */
 
 /* #region Background layer */
-/* Universal background that respects 1800px constraint */
+/* Universal background that respects 1800px constraint
+   Using ::before pseudo-element allows fixed background while content scrolls,
+   and enables easy background swapping via media queries */
 body::before {
   content: '';
-  /* Necessary for pseudo-element */
+  /* Required for pseudo-element to render */
   position: fixed;
-  /* Creates an invisible element (pseudo-element) that acts as a background layer */
+  /* Keeps background fixed during scroll */
   top: 0;
   left: 50%;
-  /* Center horizontally */
   transform: translateX(-50%);
-  /* Center horizontally */
+  /* left: 50% + translateX(-50%) centers the background horizontally */
   width: 100vw;
   /* Full viewport width */
   height: 100vh;
@@ -389,8 +392,11 @@ body::before {
   overflow: visible;
   background: transparent !important;
   border: none !important;
+  /* !important needed to override Bootstrap's .btn styles that would interfere with card flip effect */
   -webkit-transform-style: preserve-3d;
+  /* Safari compatibility for 3D transforms */
   transform-style: preserve-3d;
+  /* Enables 3D card flip animation */
   justify-self: center;
   align-self: center;
 }
@@ -402,6 +408,7 @@ body::before {
   height: 100%;
   border-radius: 6px;
   backface-visibility: hidden;
+  /* Hides the back side of card during flip animation for smooth effect */
   transition: transform 0.5s ease;
   object-fit: cover;
   border: none !important;
@@ -598,7 +605,8 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100dvh;
-  /* Use dynamic viewport height to account for browser UI */
+  /* dvh (dynamic viewport height) adjusts for mobile browser UI (address bar, etc.)
+     preventing content from being hidden behind browser chrome */
   background-color: var(--light-orange);
   z-index: 9999;
   /* Above everything */
@@ -668,7 +676,10 @@ body::before {
 
 /* #endregion Unsupported Screen Size Message */
 
-/* #region Media: Landscape mode (horizontal) - Game not supported */
+/* #region Media: Landscape mode (horizontal) - Game not supported
+   The game layout is optimized for portrait mode. On small landscape screens,
+   the game area becomes cramped and difficult to play, so we show a message
+   asking users to rotate their device instead. */
 @media (orientation: landscape) and (max-height: 600px) {
 
   /* Show unsupported screen message when device is horizontal */
@@ -803,6 +814,7 @@ body::before {
     position: relative;
     z-index: 1;
     transform: scaleX(-1);
+    /* Flips raccoon horizontally to face the game grid */
   }
 
   .speech-bubble-container {
