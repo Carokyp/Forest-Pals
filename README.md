@@ -279,6 +279,10 @@ Forest Pals features a **playful, child-friendly design** with a warm, woodland 
 - **Body Text:** [Quicksand](https://fonts.google.com/specimen/Quicksand) - A friendly, geometric sans-serif
   - Used for instructions, game text, and UI elements
   - Clean and legible for young readers
+- **Timer/Score:** [Poppins](https://fonts.google.com/specimen/Poppins) - A geometric sans-serif optimized for numbers
+  - Used for timer and score display
+  - Features tabular numerals that maintain consistent width, preventing layout shifts as numbers change
+  - Clear distinction between similar digits (0/8, 1/7) ensures accurate readability during fast-paced gameplay
 
 #### Colors 
 
@@ -430,7 +434,7 @@ __Languages Used__
 __Frameworks, Libraries & Programs Used__
 
 * [Bootstrap 5](https://getbootstrap.com/docs/5.3/getting-started/introduction/): was used for responsive layout, button styling, and utility classes
-* [Google Fonts](https://fonts.google.com/): was used to import the 'Baloo 2' and 'Quicksand' fonts into the style.css 
+* [Google Fonts](https://fonts.google.com/): was used to import the 'Baloo 2', 'Quicksand', and 'Poppins' fonts into the style.css 
 * [Font Awesome](https://fontawesome.com/): was used to add icons for aesthetic and UX purposes.
 * [GitHub](https://github.com/): is used as the repository for the project's code after being pushed from Git.
 * [Photoshop](https://www.adobe.com/uk/products/photoshop.html): was used for early design to help get a better idea of which colors and images would suit the website. It was also used to resize and edit pictures, as well as create the menus and color palette
