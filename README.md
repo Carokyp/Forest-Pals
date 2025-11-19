@@ -17,7 +17,7 @@ The game features a friendly raccoon mascot who encourages players throughout th
 
 Currently, the game is ideal for younger children who are discovering animals and developing memory skills. However, with planned future features like difficulty levels, special card mechanics, and competitive elements, Forest Pals has the potential to evolve into a more comprehensive game suitable for older children and adults who enjoy fun, challenging memory games beyond just educational content.
 
-**Note:** Forest Pals is optimized for portrait mode on mobile devices and tablets. Players using landscape mode on small screens will be prompted to rotate their device for the best experience.
+**Note:** Forest Pals is optimized for portrait mode on mobile devices. Players using landscape mode on small screens will be prompted to rotate their device for the best experience.
 
 ## Index – Table of Contents
 * [User Experience (UX)](#user-experience-ux)
@@ -263,7 +263,7 @@ Wireframes were created for each of the five game states to map out the user exp
 
 #### Visual Style
 
-Forest Pals features a **playful, child-friendly design** with a warm, woodland aesthetic that appeals to young children while maintaining clear readability and intuitive navigation. All visual assets including the forest background, animal card illustrations, and raccoon mascot were custom-designed and created in [Photoshop](https://www.adobe.com/uk/products/photoshop.html).
+Forest Pals features a playful, child-friendly design with a warm, woodland aesthetic that appeals to young children while maintaining clear readability and intuitive navigation. All visual assets including the forest background, animal card illustrations, and raccoon mascot were custom-designed and created in [Photoshop](https://www.adobe.com/uk/products/photoshop.html).
 
 **Design:**
 - Bright, inviting colors create a cheerful atmosphere suitable for children
@@ -302,8 +302,6 @@ Forest Pals uses a warm, woodland color palette that creates a welcoming atmosph
 - **Raccoon Outline:** `#8b6d58` - Outline and defining edges
 - **Raccoon Base:** `#b9967a` - Main body color
 - **Raccoon Highlights:** `#f7dbb8` - Lighter accents and highlights
-- Used for: Raccoon character design throughout menu, form, and game screens
-
 
 <p align="center">
 <img src="assets/images/color-palette/color-2.png" alt="Color Palette 2 - Interactive Buttons" width="600" />
@@ -350,7 +348,7 @@ Forest Pals uses a warm, woodland color palette that creates a welcoming atmosph
 <img src="assets/images/screenshots/game-area.png" alt="Memory Card Game Screenshot" width="600" />
 </p>
 
-- 12 cards featuring 6 pairs of adorable forest animals (birds, deer, foxes, hedgehogs, rabbits, squirrels)
+- 12 cards featuring 6 pairs of forest animals (birds, deer, foxes, hedgehogs, rabbits, squirrels)
 - Smooth card flip animations for engaging gameplay
 - Shuffled card layout using Fisher-Yates algorithm ensures a unique game every time
 - Responsive grid layout adapts to screen size (4x3 on large screens, 3x4 on small screens)
@@ -403,7 +401,7 @@ Forest Pals uses a warm, woodland color palette that creates a welcoming atmosph
 - Only applies to small screens (height < 600px); desktop and laptop screens work in any orientation
 
 #### **Responsive Design**
-- Mobile-friendly interface tested on iphone 5/SE, iPhone SE, iPhone XR, iPhone 12 Pro, iPhone 14 Pro Max, Pixel 7, and Samsung Galaxy S8+, as well as similar-sized devices
+- Mobile-friendly interface tested on iphone 5/SE, iPhone SE, iPhone XR, iPhone 12 Pro, iPhone 14 Pro Max, iphone 16 Pro Max as well as similar-sized devices
 - Adaptive card grid layout for optimal viewing (4x3 on screens wider than 480px, 3x4 on smaller screens)
 - Raccoon mascot visibility adjusts based on screen size (visible on screens wider than 768px, hidden in game view on smaller screens)
 - Speech bubble positioning optimized for mobile devices
@@ -669,7 +667,7 @@ This section demonstrates how each user story from the [Strategy](#strategy) sec
 
 This project is hosted **on GitHub Pages**. Updates pushed to the main branch will automatically update the live site. **Please do not make changes directly to this repository**, since updates pushed to `main` will immediately update the live site. Use a fork or clone to make changes safely. Thank You!
 
-1. Log into [my GitHub repository](https://carokyp.github.io/Forest-Pals/)
+1. Log into [my GitHub repository](https://github.com/Carokyp/Forest-Pals)
    
 2. Click the "Settings" tab (top of the repository)
    
@@ -699,7 +697,7 @@ Cloning creates a local copy on your computer linked to the original repository.
 
 #### Windows
 
-1. Go to [this repository](https://carokyp.github.io/Forest-Pals/) on GitHub
+1. Go to [this repository](https://github.com/Carokyp/Forest-Pals) on GitHub
 2. Click Code, select HTTPS, and copy the link.
 
 <div align="center">
@@ -748,7 +746,7 @@ __Create a new fork__
   <img width="314" height="244" alt="Image" src="https://github.com/user-attachments/assets/907cfcb2-eced-4b9b-8d48-d827a2ea020d" />
 </div>
 
-6. A drop-down menu will appear. Select the one which applies to your setup. Further details on completing the final step can be found on [GitHub Fork Documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repository).
+6. A drop-down menu will appear. Select the one which applies to your setup. Further details on completing the final step can be found on [GitHub Fork Documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
 
 **Making Changes and Pushing Updates**
 
