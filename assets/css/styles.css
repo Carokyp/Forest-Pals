@@ -157,9 +157,6 @@ body::before {
 #raccoon-game-area {
   display: none;
   /* Hidden in menu */
-}
-
-#raccoon-game-area {
   width: 8rem;
   height: auto;
   order: 2;
@@ -701,19 +698,46 @@ body::before {
 
 /* #region Media: Small phone screens (iPhone 5/SE) */
 @media (max-width: 320px) {
+
+  .htp-title {
+    font-size: 2rem;
+  }
+
+  #player-form {
+    width: min(90dvw, 300px);
+  }
+
+  /* Form title */
+  #form-instruction {
+    font-size: 1rem;
+  }
+
+  /* Custom placeholder */
+  #player-form input::placeholder {
+    font-size: 0.9rem;
+  }
+
+  .enter-name-msg {
+    font-size: 0.9rem;
+  }
+
+  /* Form buttons container */
+  .submit-btn,
+  .back-btn-form {
+    font-size: 1rem;
+  }
+
   #top-hud {
     gap: 0.20rem !important;
+    margin-top: 0.5rem;
   }
 
   .right-hud {
     gap: 0.20rem !important;
   }
 
-  #top-hud{
-    margin-top: 0.5rem;
-  }
-
-  #score,#timer {
+  #score,
+  #timer {
     font-size: 0.9rem;
   }
 
@@ -789,11 +813,54 @@ body::before {
 
   h1,
   #game-title {
+    font-size: 4rem;
+  }
+
+  #raccoon,
+  #raccoon-menu {
+    width: 20rem;
+  }
+
+  #start-btn,
+  #how-to-play-btn {
     font-size: 3rem;
   }
 
+  .htp-title {
+    font-size: 3.3rem;
+  }
+
+  .instructions-text {
+    font-size: 1.5rem;
+  }
+
+
+  .back-btn {
+    font-size: 1.5rem;
+  }
+
   #player-form {
-    width: min(50dvw, 560px);
+    width: min(70dvw, 600px);
+  }
+
+  /* Form title */
+  #form-instruction {
+    font-size: 1.5rem;
+  }
+
+  /* Custom placeholder */
+  #player-form input::placeholder {
+    font-size: 1.3rem;
+  }
+
+  .enter-name-msg {
+    font-size: 1.1rem;
+  }
+
+  /* Form buttons container */
+  .submit-btn,
+  .back-btn-form {
+    font-size: 1.5rem;
   }
 
   #game-area {
@@ -820,7 +887,7 @@ body::before {
 
   #raccoon-game-area {
     display: block;
-    width: clamp(10rem, 30vw, 18rem);
+    width: clamp(12rem, 32vw, 20rem);
     align-self: end;
     justify-self: center;
     position: relative;
@@ -832,9 +899,9 @@ body::before {
   .speech-bubble-container {
     grid-area: raccoon;
     position: absolute;
-    bottom: 50%;
-    left: 15%;
-    width: 75%;
+    bottom: 40%;
+    left: 10%;
+    width: 85%;
     display: flex;
     justify-content: center;
     pointer-events: none;
@@ -867,12 +934,12 @@ body::before {
   }
 
   #game-area .back-btn {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
   }
 
   #score,
   #timer {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
   }
 
   #grid-container {
@@ -889,6 +956,21 @@ body::before {
     height: 8.5rem;
   }
 
+  /* End screen buttons styles */
+  #retry-btn,
+  #main-menu-btn {
+    font-size: 1.5rem;
+  }
+
+  #highscores {
+    font-size: 1.7rem;
+  }
+
+  /* End screen title styles */
+  #end-title {
+    font-size: 3rem;
+  }
+
 }
 
 /* #endregion Media: Tablets and up */
@@ -902,11 +984,15 @@ body::before {
   }
 
   #player-form {
-    width: min(40dvw, 560px);
+    width: min(60dvw, 560px);
+  }
+
+  .enter-name-msg {
+    font-size: 1.2rem;
   }
 
   .speech-bubble-container {
-    bottom: 55%;
+    bottom: 58%;
   }
 
 }
@@ -921,7 +1007,25 @@ body::before {
 
   h1,
   #game-title {
-    font-size: 4rem;
+    font-size: 5rem;
+  }
+
+  .back-btn {
+    font-size: 1.7rem;
+  }
+
+  /* Form title */
+  #form-instruction {
+    font-size: 1.7rem;
+  }
+
+  /* Custom placeholder */
+  #player-form input::placeholder {
+    font-size: 1.5rem;
+  }
+
+  .enter-name-msg {
+    font-size: 1.3rem;
   }
 
   #game-area {
@@ -934,6 +1038,10 @@ body::before {
 
   .speech-bubble-container {
     bottom: 65%;
+  }
+
+  #speech-bubble {
+    font-size: 1.7rem;
   }
 
   #grid-container .game-card {
