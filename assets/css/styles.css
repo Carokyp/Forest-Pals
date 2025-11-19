@@ -591,14 +591,17 @@ body::before {
 
 /* #region Unsupported Screen Size Message */
 #unsupported-screen-size-message {
-  display: none; /* Hidden by default */
+  display: none;
+  /* Hidden by default */
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100dvh; /* Use dynamic viewport height to account for browser UI */
+  height: 100dvh;
+  /* Use dynamic viewport height to account for browser UI */
   background-color: var(--light-orange);
-  z-index: 9999; /* Above everything */
+  z-index: 9999;
+  /* Above everything */
   justify-content: center;
   align-items: center;
 }
@@ -606,7 +609,8 @@ body::before {
 .unsupported-content {
   text-align: center;
   max-width: 90vw;
-  max-height: 82dvh; /* Reduced to ensure it fits within viewport */
+  max-height: 82dvh;
+  /* Reduced to ensure it fits within viewport */
   background-color: rgba(255, 255, 255, 0.9);
   padding: clamp(0.8rem, 2vw, 2rem);
   border-radius: 20px;
@@ -651,14 +655,22 @@ body::before {
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(10px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(10px);
+  }
 }
+
 /* #endregion Unsupported Screen Size Message */
 
 /* #region Media: Landscape mode (horizontal) - Game not supported */
 @media (orientation: landscape) and (max-height: 600px) {
-  
+
   /* Show unsupported screen message when device is horizontal */
   #unsupported-screen-size-message {
     display: flex !important;
@@ -673,6 +685,7 @@ body::before {
     display: none !important;
   }
 }
+
 /* #endregion Media: Landscape mode */
 
 /* #region Media: Small phone screens (iPhone 5/SE and smaller) */
@@ -696,9 +709,9 @@ body::before {
   }
 
   .enterNameMsg {
-  font-size: 0.8rem;
+    font-size: 0.8rem;
   }
-  
+
 }
 
 /* #endregion Media: Small phone screens */
@@ -858,6 +871,7 @@ body::before {
 
 /* #region Media: Medium laptops */
 @media (min-width: 1024px) {
+
   h1,
   #game-title {
     font-size: 3.5rem;
@@ -872,6 +886,7 @@ body::before {
   }
 
 }
+
 /* #endregion Media: Medium laptops */
 
 /* #region Media: Large laptops - Enhanced sizing */
