@@ -601,7 +601,6 @@ body::before {
   z-index: 9999; /* Above everything */
   justify-content: center;
   align-items: center;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 .unsupported-content {
@@ -676,8 +675,8 @@ body::before {
 }
 /* #endregion Media: Landscape mode */
 
-/* #region Media: Small phone screens (iphone 5/SE)*/
-@media (width: 320px) {
+/* #region Media: Small phone screens (iPhone 5/SE and smaller) */
+@media (max-width: 320px) {
   #top-hud {
     gap: 0.20rem;
   }
@@ -695,6 +694,10 @@ body::before {
     padding: 0.70rem 1rem;
     max-width: 90%;
   }
+
+  .enterNameMsg {
+  font-size: 0.8rem;
+  }
   
 }
 
@@ -708,7 +711,7 @@ body::before {
 
   h1,
   #game-title {
-    font-size: 3rem !important;
+    font-size: 3rem;
   }
 
   #grid-container {
@@ -742,16 +745,15 @@ body::before {
 
 /* #endregion Media: Large phone screens to tablet */
 
-/* #region Media: Tablet screen to small laptop */
-@media(min-width: 768px) and (max-width: 1023px) {
+/* #region Media: Tablets and up - Show raccoon mascot and use 2-column layout */
+@media (min-width: 768px) {
   body::before {
     background-image: url('../images/background/background-laptop.png');
-    /* Tablet background */
   }
 
   h1,
   #game-title {
-    font-size: 3rem !important;
+    font-size: 3rem;
   }
 
   #player-form {
@@ -760,13 +762,9 @@ body::before {
 
   #game-area {
     display: grid;
-    /* Game area layout */
     grid-template-columns: auto auto;
-    /* Two columns: back button and score/time */
     grid-template-rows: auto auto;
-    /* Two rows: raccoon and grid */
     grid-template-areas:
-      /* Define grid areas */
       "back-btn score-time"
       "raccoon grid";
     place-items: center;
@@ -782,7 +780,6 @@ body::before {
   #raccoon-game-area,
   .speech-bubble-container {
     grid-area: raccoon;
-    /* Assign raccoon area to both elements */
   }
 
   #raccoon-game-area {
@@ -795,7 +792,6 @@ body::before {
     transform: scaleX(-1);
   }
 
-  /* Position bubble near raccoon keep above background via z-index */
   .speech-bubble-container {
     grid-area: raccoon;
     position: absolute;
@@ -858,231 +854,47 @@ body::before {
 
 }
 
-/* #endregion Media: Tablet screen to small laptop */
+/* #endregion Media: Tablets and up */
 
-/* #region Media: Small laptop to large laptop */
-@media (min-width: 1024px) and (max-width: 1439px) {
-  body::before {
-    background-image: url('../images/background/background-laptop.png');
-    /* Laptop background */
-  }
-
+/* #region Media: Medium laptops */
+@media (min-width: 1024px) {
   h1,
   #game-title {
-    font-size: 3.5rem !important;
+    font-size: 3.5rem;
   }
 
   #player-form {
     width: min(40dvw, 560px);
   }
 
-  #game-area {
-    display: grid;
-    /* Game area layout */
-    grid-template-columns: auto auto;
-    /* Two columns: back button and score/time */
-    grid-template-rows: auto auto;
-    /* Two rows: raccoon and grid */
-    grid-template-areas:
-      "back-btn score-time"
-      "raccoon grid";
-    place-items: center;
-    min-height: 100dvh;
-    position: relative;
-  }
-
-  #speech-bubble {
-    font-size: 1.1rem;
-    max-width: 14rem;
-  }
-
-  #raccoon-game-area,
   .speech-bubble-container {
-    grid-area: raccoon;
-  }
-
-  /* Flip the raccoon horizontally to face the grid also acts as context for bubble */
-  #raccoon-game-area {
-    display: block;
-    width: clamp(10rem, 30vw, 18rem);
-    align-self: end;
-    justify-self: center;
-    position: relative;
-    /* context for the bubble */
-    z-index: 1;
-    transform: scaleX(-1);
-    /* flip horizontally */
-  }
-
-  /* Position bubble near raccoon; keep above background via z-index */
-  .speech-bubble-container {
-    grid-area: raccoon;
-    position: absolute;
     bottom: 55%;
-    left: 15%;
-    width: 75%;
-    display: flex;
-    justify-content: center;
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  #speech-bubble {
-    min-width: fit-content;
-  }
-
-  #top-hud {
-    display: contents;
-  }
-
-  .left-hud {
-    grid-area: back-btn;
-    display: flex;
-    align-items: start;
-    justify-self: start;
-    padding: 1rem 0 0 2rem;
-  }
-
-  .right-hud {
-    grid-area: score-time;
-    display: flex;
-    align-items: center;
-    justify-self: center;
-    gap: 1rem;
-    padding: 1rem 0 0 0;
-  }
-
-  #game-area .back-btn {
-    font-size: 1.4rem;
-  }
-
-  #score,
-  #timer {
-    font-size: 1.4rem;
-  }
-
-  #grid-container {
-    grid-area: grid;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    justify-content: center;
-    align-content: center;
-  }
-
-  #grid-container .game-card {
-    width: 5.7rem;
-    height: 8.5rem;
   }
 
 }
+/* #endregion Media: Medium laptops */
 
-/* #endregion Media: Small laptop to large laptop */
-
-/* #region Media: Large laptop and up */
+/* #region Media: Large laptops - Enhanced sizing */
 @media (min-width: 1440px) {
   body::before {
     background-image: url('../images/background/background-large-laptop.png');
-    /* Large laptop background */
   }
 
   h1,
   #game-title {
-    font-size: 4rem !important;
-  }
-
-  #player-form {
-    width: min(40dvw, 560px);
+    font-size: 4rem;
   }
 
   #game-area {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-      "back-btn score-time"
-      "raccoon grid";
-    place-items: center;
-    min-height: 100dvh;
     margin: 0 auto;
-    position: relative;
-  }
-
-  #speech-bubble {
-    font-size: 1.1rem;
-    max-width: 14rem;
-  }
-
-  #raccoon-game-area,
-  .speech-bubble-container {
-    grid-area: raccoon;
   }
 
   #raccoon-game-area {
-    display: block;
     width: clamp(10rem, 30vw, 25rem);
-    align-self: end;
-    justify-self: center;
-    position: relative;
-    /* context for the bubble */
-    z-index: 1;
-    transform: scaleX(-1);
-    /* flip horizontally */
   }
 
   .speech-bubble-container {
-    grid-area: raccoon;
-    position: absolute;
     bottom: 65%;
-    left: 15%;
-    width: 75%;
-    display: flex;
-    justify-content: center;
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  #speech-bubble {
-    min-width: fit-content;
-  }
-
-  #top-hud {
-    display: contents;
-  }
-
-  .left-hud {
-    grid-area: back-btn;
-    display: flex;
-    align-items: start;
-    justify-self: start;
-    padding: 1rem 0 0 2rem;
-  }
-
-  .right-hud {
-    grid-area: score-time;
-    display: flex;
-    align-items: center;
-    justify-self: center;
-    gap: 1rem;
-    padding: 1rem 0 0 0;
-  }
-
-  #game-area .back-btn {
-    font-size: 1.4rem;
-  }
-
-  #score,
-  #timer {
-    font-size: 1.4rem;
-  }
-
-  #grid-container {
-    grid-area: grid;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    justify-content: center;
-    align-content: center;
   }
 
   #grid-container .game-card {
@@ -1092,4 +904,4 @@ body::before {
 
 }
 
-/* #endregion Media: Large laptop and up */
+/* #endregion Media: Large laptops */
