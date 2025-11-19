@@ -316,7 +316,7 @@ body::before {
 }
 
 /* Enter name message style*/
-.enterNameMsg {
+.enter-name-msg {
   font-family: var(--font-text);
   border: 2px solid var(--dark-orange);
   color: var(--text-color);
@@ -719,7 +719,7 @@ body::before {
     max-width: 90%;
   }
 
-  .enterNameMsg {
+  .enter-name-msg {
     font-size: 0.8rem;
   }
 

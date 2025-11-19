@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
       if (playerNameInput.value.trim() === "") {
         const existingEnterNameMessage =
-          document.querySelector(".enterNameMsg");
+          document.querySelector(".enter-name-msg");
 
         if (existingEnterNameMessage) existingEnterNameMessage.remove();
 
@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
         enterNameMessage.textContent =
           "Please enter your name to start the game!";
         enterNameMessage.classList.add(
-          "enterNameMsg",
+          "enter-name-msg",
           "px-3",
           "mb-3",
           "py-2",
