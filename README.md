@@ -225,37 +225,37 @@ Wireframes were created for each of the five game states to map out the user exp
 
 * **State 1: Main Menu**
   <p align="center">
-  <img src="wireframes/phone-1.png" alt="Main Menu - Phone" width="250" />
-  <img src="wireframes/tablet-1.png" alt="Main Menu - Tablet" width="350" />
-  <img src="wireframes/desktop-1.png" alt="Main Menu - Desktop" width="450" />
+  <img src="documentation/wireframes/phone-1.png" alt="Main Menu - Phone" width="250" />
+  <img src="documentation/wireframes/tablet-1.png" alt="Main Menu - Tablet" width="350" />
+  <img src="documentation/wireframes/desktop-1.png" alt="Main Menu - Desktop" width="450" />
   </p>
 
 * **State 2: Instructions Screen**
   <p align="center">
-  <img src="wireframes/phone-2.png" alt="Instructions Screen - Phone" width="250" />
-  <img src="wireframes/tablet-2.png" alt="Instructions Screen - Tablet" width="350" />
-  <img src="wireframes/desktop-2.png" alt="Instructions Screen - Desktop" width="450" />
+  <img src="documentation/wireframes/phone-2.png" alt="Instructions Screen - Phone" width="250" />
+  <img src="documentation/wireframes/tablet-2.png" alt="Instructions Screen - Tablet" width="350" />
+  <img src="documentation/wireframes/desktop-2.png" alt="Instructions Screen - Desktop" width="450" />
   </p>
 
 * **State 3: Player Name Form**
   <p align="center">
-  <img src="wireframes/phone-3.png" alt="Player Name Form - Phone" width="250" />
-  <img src="wireframes/tablet-3.png" alt="Player Name Form - Tablet" width="350" />
-  <img src="wireframes/desktop-3.png" alt="Player Name Form - Desktop" width="450" />
+  <img src="documentation/wireframes/phone-3.png" alt="Player Name Form - Phone" width="250" />
+  <img src="documentation/wireframes/tablet-3.png" alt="Player Name Form - Tablet" width="350" />
+  <img src="documentation/wireframes/desktop-3.png" alt="Player Name Form - Desktop" width="450" />
   </p>
 
 * **State 4: Active Game**
   <p align="center">
-  <img src="wireframes/phone-4.png" alt="Active Game - Phone" width="250" />
-  <img src="wireframes/tablet-4.png" alt="Active Game - Tablet" width="350" />
-  <img src="wireframes/desktop-4.png" alt="Active Game - Desktop" width="450" />
+  <img src="documentation/wireframes/phone-4.png" alt="Active Game - Phone" width="250" />
+  <img src="documentation/wireframes/tablet-4.png" alt="Active Game - Tablet" width="350" />
+  <img src="documentation/wireframes/desktop-4.png" alt="Active Game - Desktop" width="450" />
   </p>
 
 * **State 5: End Screen**
   <p align="center">
-  <img src="wireframes/phone-5.png" alt="End Screen - Phone" width="250" />
-  <img src="wireframes/tablet-5.png" alt="End Screen - Tablet" width="350" />
-  <img src="wireframes/desktop-5.png" alt="End Screen - Desktop" width="450" />
+  <img src="documentation/wireframes/phone-5.png" alt="End Screen - Phone" width="250" />
+  <img src="documentation/wireframes/tablet-5.png" alt="End Screen - Tablet" width="350" />
+  <img src="documentation/wireframes/desktop-5.png" alt="End Screen - Desktop" width="450" />
   </p>
 
 ### Surface
@@ -471,22 +471,22 @@ During cross-browser testing, several Safari-specific rendering issues were iden
 [**HTML Validator**](https://validator.w3.org/)
 
 <p align="center">
-<img src="docs/validation/html/html-checker-1.png" alt="HTML Validation Result 1" />
+<img src="documentation/validation/html/html-checker-1.png" alt="HTML Validation Result 1" />
 </p>
 
 <details>
 <summary>Click here to view full HTML validation results</summary>
 
 <p align="center">
-<img src="docs/validation/html/html-checker-2.png" alt="HTML Validation Result 2" />
+<img src="documentation/validation/html/html-checker-2.png" alt="HTML Validation Result 2" />
 </p>
 
 <p align="center">
-<img src="docs/validation/html/html-checker-3.png" alt="HTML Validation Result 3" />
+<img src="documentation/validation/html/html-checker-3.png" alt="HTML Validation Result 3" />
 </p>
 
 <p align="center">
-<img src="docs/validation/html/html-checker-4.png" alt="HTML Validation Result 4" />
+<img src="documentation/validation/html/html-checker-4.png" alt="HTML Validation Result 4" />
 </p>
 
 </details> <br>
@@ -494,13 +494,13 @@ During cross-browser testing, several Safari-specific rendering issues were iden
 [**CSS Validator**](https://jigsaw.w3.org/css-validator/)
 
 <p align="center">
-<img src="docs/validation/css/css-checker-1.png" alt="CSS Validation Result" />
+<img src="documentation/validation/css/css-checker-1.png" alt="CSS Validation Result" />
 </p>
 
 #### CSS Warnings
 
 <p align="center">
-<img src="docs/validation/css/css-checker-2.png" alt="CSS Warnings" />
+<img src="documentation/validation/css/css-checker-2.png" alt="CSS Warnings" />
 </p>
 
 ## CSS Validation Warnings — Summary and Explanation
@@ -523,7 +523,7 @@ The code remains fully functional and visually consistent across browsers.
 [**JavaScript Validator**](https://jshint.com/)
 
 <p align="center">
-<img src="docs/validation/js/js-validator.png" alt="JavaScript Validation Result" />
+<img src="documentation/validation/js/js-validator.png" alt="JavaScript Validation Result" />
 </p>
 
 The JavaScript code was validated using JSHint with no errors detected. The code follows best practices and maintains clean, readable syntax throughout.
@@ -603,7 +603,7 @@ Performance testing was conducted using [Google Lighthouse](https://developer.ch
 #### Desktop Performance
 
 <p align="center">
-<img src="test/lighthouse/LightHouse-Desktop.png" alt="Lighthouse Desktop Performance Results" />
+<img src="documentation/test/lighthouse/lighthouse-desktop.png" alt="Lighthouse Desktop Performance Results" />
 </p>
 
 The desktop version achieved excellent scores across all metrics:
@@ -615,7 +615,7 @@ The desktop version achieved excellent scores across all metrics:
 #### Mobile Performance
 
 <p align="center">
-<img src="test/lighthouse/LightHouse-Mobile.png" alt="Lighthouse Mobile Performance Results" />
+<img src="documentation/test/lighthouse/lighthouse-mobile.png" alt="Lighthouse Mobile Performance Results" />
 </p>
 
 The mobile version also achieved strong scores:
