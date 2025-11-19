@@ -51,7 +51,7 @@ Forest Pals is designed for young children, parents and educators seeking an eng
 
 - Find an educational game that helps children learn animal names in a fun way
 - Access a simple, easy-to-understand game suitable for young children
-- Play a memory game that provides immediate feedback and encouragement
+- Play a memory game that provides immediate encouragement
 - Track progress through a highscore system
 
 #### User stories
@@ -130,28 +130,29 @@ Forest Pals is designed for young children, parents and educators seeking an eng
    - Adding more card pairs to the game board (e.g., 12 cards for Easy, 20 for Medium, 30+ for Hard)
    - Using more visually similar animal images to make matching harder (e.g., different shades of the same animal)
    - Restricting the number of moves allowed to complete the game (e.g., 20 moves for Easy, 15 for Medium, 10 for Hard)
-   - **Special Card Mechanics:**
-     - Trap/Penalty cards that increase the timer when flipped or add more cards onto the player's game board (making it harder to achieve a fast time and complete the game)
-     - Bonus cards that briefly reveal all cards on the grid for a few seconds, or decrease the timer to help players achieve a better score and climb the leaderboard
+
+2. **Special Card Mechanics:**
+   - Trap/Penalty cards that increase the timer when flipped or add more cards onto the player's game board (making it harder to achieve a fast time and complete the game)
+   - Bonus cards that briefly reveal all cards on the grid for a few seconds, or decrease the timer to help players achieve a better score and climb the leaderboard
    
-2. **Sound Effects & Music** - Audio feedback to enhance the gaming experience and immersion:
+3. **Sound Effects & Music** - Audio to enhance the gaming experience and immersion:
    - Card flip sounds when players click and reveal cards
-   - Success sound effects for matches (actual animal sounds)
+   - Success sound effects for matches (ex: actual animal sounds)
    - Failure sound effects when cards don't match
    - Background music during gameplay (soft melodies)
    - Raccoon character voice lines or sounds when delivering messages
    
-3. **Themes/Skins** - Customizable visual appearance to personalize the game:
+4. **Themes/Skins** - Customizable visual appearance to personalize the game:
    - Different card designs based on themes: seasons (spring flowers, autumn leaves), countries (wildlife from different regions), or other animal sets (ocean creatures, farm animals)
    - Alternative background images or color schemes to match the selected theme
    - Ability to unlock themes by completing challenges or achieving high scores
    
-4. **Pause Button** - Game control feature to allow players to take breaks:
+5. **Pause Button** - Game control feature to allow players to take breaks:
    - Ability to pause the timer mid-game without losing progress
    - Resume from the exact game state (all flipped cards remain in their current state)
    - Pause menu with options to resume the current game, restart, or return to the main menu
    
-5. **Settings Menu** - Player preferences and customization options:
+6. **Settings Menu** - Player preferences and customization options:
    - Toggle sound effects and background music on/off
    - Adjust difficulty level without starting a new game
    - Select preferred card deck themes from unlocked options
@@ -286,10 +287,8 @@ Forest Pals uses a warm, woodland color palette that creates a welcoming atmosph
 **Color Palette 1: Titles & UI Surfaces**
 
 - **Dark Brown:** `#6d483d` - Game title and main headings
-- **Dark Orange:** `#a47868` - Border color for player name form, "How to Play" button, and highscore board
-- **Light Orange:** `#edbea2` - Background color for forms, instruction panels, and highscore display
-- **Dark Violet:** `#614258` - Border color for interactive buttons (Start, Back, Timer, Score, Retry, Main Menu)
-- **Light Violet:** `#926384` - Background color for all interactive buttons and game HUD elements
+- **Dark Orange:** `#a47868` / **Light Orange:** `#edbea2` - Border and background colors for player name form, how to play button, highscore board and instruction panels.
+- **Dark Violet:** `#614258` / **Light Violet:** `#926384` - Border and background colors for interactive buttons (Start, Back, Timer, Score, Retry, Main Menu)
 
 <p align="center">
 <img src="assets/images/color-palette/color-1.png" alt="Color Palette 1 - Titles & UI Surfaces" width="600" />
@@ -338,6 +337,7 @@ Forest Pals uses a warm, woodland color palette that creates a welcoming atmosph
 <p align="center">
 <img src="assets/images/screenshots/no-name.png" alt="Player Name Form Screenshot" width="400" />
 </p>
+
 - Player name is displayed throughout the game and on the end screen
 - Name persists during retry but resets when returning to the main menu
 
@@ -359,8 +359,9 @@ Forest Pals uses a warm, woodland color palette that creates a welcoming atmosph
 
 #### **Raccoon Character & Speech Bubbles**
 <p align="center">
-<img src="assets/images/screenshots/raccon-speech.png" alt="Player Name Form Screenshot" width="350" />
+<img src="assets/images/screenshots/raccoon-speech.png" alt="Player Name Form Screenshot" width="350" />
 </p>
+
 - Friendly raccoon mascot provides encouragement throughout the game
 - Animal-specific congratulatory messages when matching pairs
 - Two different random messages for each animal type
@@ -371,7 +372,9 @@ Forest Pals uses a warm, woodland color palette that creates a welcoming atmosph
 <p align="center">
 <img src="assets/images/screenshots/highscore.png" alt="Player Name Form Screenshot" width="600" />
 </p>
+
 - Top 5 fastest completion times are saved and displayed
+- Pre-populated with sample player names and times as part of the game to give players initial scores to beat
 - Scores persist using browser localStorage (survives browser restarts)
 - New scores are automatically sorted by completion time
 - Latest score is highlighted for easy identification
@@ -396,7 +399,7 @@ Forest Pals uses a warm, woodland color palette that creates a welcoming atmosph
 - Only applies to small screens (height < 600px); desktop and laptop screens work in any orientation
 
 #### **Responsive Design**
-- Mobile-friendly interface tested on iPhone SE, iPhone XR, iPhone 12 Pro, iPhone 14 Pro Max, Pixel 7, and Samsung Galaxy S8+, as well as similar-sized devices
+- Mobile-friendly interface tested on iphone 5/SE, iPhone SE, iPhone XR, iPhone 12 Pro, iPhone 14 Pro Max, Pixel 7, and Samsung Galaxy S8+, as well as similar-sized devices
 - Adaptive card grid layout for optimal viewing (4x3 on screens wider than 480px, 3x4 on smaller screens)
 - Raccoon mascot visibility adjusts based on screen size (visible on screens wider than 768px, hidden in game view on smaller screens)
 - Speech bubble positioning optimized for mobile devices
@@ -407,12 +410,11 @@ Forest Pals uses a warm, woodland color palette that creates a welcoming atmosph
 - Form validation with helpful error messages
 - Prevents page scrolling and element dragging for distraction-free gameplay
 - Only one game section visible at a time for clarity
-- Smooth transitions between game states
 
 ### Future Features
 
 - **Difficulty Levels** - Easy, Medium, and Hard modes with more cards, special trap/bonus cards, and move limits
-- **Sound Effects & Music** - Audio feedback for card flips, matches, and background music with optional raccoon voice lines
+- **Sound Effects & Music** - Audio for card flips, matches, and background music with optional raccoon voice lines
 - **Themes & Customization** - Seasonal and geographic themes with unlockable card designs and backgrounds
 - **Pause Functionality** - Pause button to stop the timer and resume from the exact game state
 - **Settings Menu** - Control sound, difficulty, themes, and ability to reset highscores
