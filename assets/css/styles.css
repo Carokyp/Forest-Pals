@@ -676,8 +676,8 @@ body::before {
 
 /* #endregion Unsupported Screen Size Message */
 
-/* #region Media: Landscape mode (horizontal) - Game not supported
-   The game layout is optimized for portrait mode. On small landscape screens,
+/* #region Media: Landscape mode */
+/* The game layout is optimized for portrait mode. On small landscape screens,
    the game area becomes cramped and difficult to play, so we show a message
    asking users to rotate their device instead. */
 @media (orientation: landscape) and (max-height: 600px) {
