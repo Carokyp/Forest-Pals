@@ -1,22 +1,24 @@
 /**
  * Initializes the Forest Pals memory game once the DOM is fully loaded.
- * 
+ *
  * This callback function:
  * - Declares game configuration, constants, and shared state
  * - Defines all UI and game-logic functions
  * - Wires up global event listeners
  * - Shows the initial menu screen
- * 
+ *
  * @listens document#DOMContentLoaded
  * @returns {void}
  */
 document.addEventListener("DOMContentLoaded", () => {
-
   // ============================================================================
   // CONFIGURATION & CONSTANTS
   // ============================================================================
 
-  /** Array of card objects, each with an id, name, and image path */
+  /** 
+   * Array of card objects, each with an id, name, and image path
+   * @type {Array<{id: number, name: string, image: string}>}
+   */
   const CARDS = [
     { id: 1, name: "bird", image: "assets/images/cards/bird.png" },
     { id: 2, name: "deer", image: "assets/images/cards/deer.png" },
@@ -75,11 +77,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // DOM REFERENCES
   // ============================================================================
 
+  /** @type {HTMLButtonElement} Start game button element */
   const startBtn = document.getElementById("start-btn");
+  /** @type {HTMLButtonElement} How to Play button element */
   const howToPlayBtn = document.getElementById("how-to-play-btn");
+  /** @type {HTMLHeadingElement} Main game title element */
   const gameTitle = document.getElementById("game-title");
 
-  /** Array to hold references to different sections of the game */
+  /** 
+   * Array to hold references to different sections of the game
+   * @type {HTMLElement[]}
+   */
   const sections = [
     document.getElementById("menu"),
     document.getElementById("how-to-play-area"),
@@ -108,13 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================================
   // EVENT LISTENER REGISTRATION
   // ============================================================================
-  
+
   /**
    * Global event delegation for all button clicks throughout the application.
    * Handles Start, How to Play, Back, Retry, and Main Menu buttons.
    */
   document.addEventListener("click", handleButtonClick);
-  
+
   /**
    * Prevents mouse wheel scrolling to keep the game view locked in place.
    * Uses passive: false to allow preventDefault() to work.
@@ -122,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("wheel", (e) => e.preventDefault(), {
     passive: false,
   });
-  
+
   /**
    * Prevents touch-based scrolling on mobile devices for a locked game experience.
    * Uses passive: false to allow preventDefault() to work.
@@ -130,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("touchmove", (e) => e.preventDefault(), {
     passive: false,
   });
-  
+
   /**
    * Prevents drag-and-drop interactions on images and other elements
    * to maintain clean game aesthetics and prevent accidental drags.
@@ -369,7 +377,10 @@ document.addEventListener("DOMContentLoaded", () => {
     /** Create deck by duplicating card array for pairs */
     const shuffledCards = [...CARDS, ...CARDS];
 
-    // Shuffle cards using Fisher-Yates algorithm
+    /**
+     * Shuffle cards using Fisher-Yates algorithm
+     * This ensures a truly random distribution of cards
+     */
     for (let i = shuffledCards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffledCards[i], shuffledCards[j]] = [
@@ -663,11 +674,9 @@ document.addEventListener("DOMContentLoaded", () => {
    * @returns {void}
    */
   function showEndScreen() {
-    const finalTime = (
-    document.getElementById("timer") ?
-      document.getElementById("timer").textContent.replace("Time: ", "")
-      : "00:00"
-    );
+    const finalTime = document.getElementById("timer")
+      ? document.getElementById("timer").textContent.replace("Time: ", "")
+      : "00:00";
 
     const grid = document.getElementById("grid-container");
     if (grid) grid.remove();
@@ -706,9 +715,12 @@ document.addEventListener("DOMContentLoaded", () => {
         { name: "Ethan", time: "00:50" },
         { name: "Luna", time: "01:20" },
         { name: "Martin", time: "01:30" },
-        { name: "Sam", time: "01:40" }
+        { name: "Sam", time: "01:40" },
       ];
-      localStorage.setItem("forestPalsHighscores", JSON.stringify(defaultScores));
+      localStorage.setItem(
+        "forestPalsHighscores",
+        JSON.stringify(defaultScores)
+      );
     }
   }
 
@@ -726,16 +738,16 @@ document.addEventListener("DOMContentLoaded", () => {
    * - Keeps only the fastest MAX_HIGHSCORES entries and re-renders the list.
    * - Highlights the just-added score in the DOM and persists the top list in localStorage.
    *
-   * @param {string} name
-   * @param {string} time
-   * @param {HTMLOListElement|HTMLElement} highscoresList
+   * @param {string} name - The player's name
+   * @param {string} time - The completion time in mm:ss format
+   * @param {HTMLOListElement|HTMLElement} highscoresList - The ordered list element to populate
    * @returns {void}
    */
   function saveAndDisplayHighscores(name, time, highscoresList) {
     if (!highscoresList) {
       return;
     }
-    
+
     // Load existing scores from localStorage
     let existingScores = [];
     const savedScores = localStorage.getItem("forestPalsHighscores");
@@ -858,7 +870,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize default highscores in localStorage if none exist
   initializeDefaultHighscores();
-  
+
   // Prevent background scroll and drag on the whole page
   document.body.style.overflow = "hidden";
   // Show initial menu and prepare a board (board remains hidden until shown)
